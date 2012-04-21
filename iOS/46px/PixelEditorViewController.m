@@ -14,6 +14,7 @@
 @synthesize colorsView;
 @synthesize toolsView;
 @synthesize canvasView;
+@synthesize canvasThumbnailView;
 @synthesize undoButton;
 @synthesize redoButton;
 @synthesize drawing;
@@ -35,6 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.drawing setupForEditing];
     
     // attach the tool "buttons" to the sidebar so we can have lots of tools
     CGRect f = CGRectMake(0, 0, 65, 65);
@@ -52,12 +54,35 @@
     
     // attach the drawing to the canvas
     [canvasView setDrawing: self.drawing];
-    
-    // draw us for the first time!
+    [canvasThumbnailView setDrawing: self.drawing];
     [canvasView setNeedsDisplay];
+    [canvasThumbnailView setNeedsDisplay];
+    
+    // setup the color view for the first time
+    [colorsView setDrawing: self.drawing];
+    [colorsView setNeedsDisplay];
     
     // subscribe to know when the drawing changes so we can update the interface
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(drawingModified) name:@"PixelDrawingChanged" object:nil];
+}
+
+- (void)viewDidUnload
+{
+    [[NSNotificationCenter defaultCenter] removeObserver: self];
+
+    [self setColorsView:nil];
+    [self setToolsView:nil];
+    [self setCanvasView:nil];
+    [self setUndoButton:nil];
+    [self setCanvasThumbnailView: nil];
+    [self setRedoButton:nil];
+    [super viewDidUnload];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    // save the drawing to drafts!!
+    [drawing save];
 }
 
 - (void)toolToggled:(UIButton*)toolButton
@@ -89,16 +114,6 @@
     [redoButton setEnabled: [self.drawing canRedo]];
 }
 
-- (void)viewDidUnload
-{
-    [self setColorsView:nil];
-    [self setToolsView:nil];
-    [self setCanvasView:nil];
-    [self setUndoButton:nil];
-    [self setRedoButton:nil];
-    [super viewDidUnload];
-}
-
 - (void)dealloc
 {
     self.drawing = nil;
@@ -106,6 +121,7 @@
     [undoButton release];
     [redoButton release];
     [canvasView release];
+    [canvasThumbnailView release];
     [colorsView release];
     [toolsView release];
     [super dealloc];

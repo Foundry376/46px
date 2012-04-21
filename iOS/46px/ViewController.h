@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PixelEditorViewController.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <PixelEditorDelegate>
 
 @end

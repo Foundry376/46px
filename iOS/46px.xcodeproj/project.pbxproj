@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4318A0461543152C0004540E /* redo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4318A0441543152C0004540E /* redo.png */; };
 		4318A0471543152C0004540E /* undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4318A0451543152C0004540E /* undo.png */; };
+		4318A04B154322C00004540E /* ColorGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4318A04A154322C00004540E /* ColorGridView.m */; };
+		4318A0511543329C0004540E /* APIConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4318A0501543329C0004540E /* APIConnector.m */; };
+		4318A053154338D50004540E /* missing.png in Resources */ = {isa = PBXBuildFile; fileRef = 4318A052154338D50004540E /* missing.png */; };
 		4382791115429010002E0A53 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382791015429010002E0A53 /* UIKit.framework */; };
 		4382791315429010002E0A53 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382791215429010002E0A53 /* Foundation.framework */; };
 		4382791515429010002E0A53 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382791415429010002E0A53 /* CoreGraphics.framework */; };
@@ -31,6 +34,11 @@
 /* Begin PBXFileReference section */
 		4318A0441543152C0004540E /* redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redo.png; sourceTree = "<group>"; };
 		4318A0451543152C0004540E /* undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undo.png; sourceTree = "<group>"; };
+		4318A049154322C00004540E /* ColorGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGridView.h; sourceTree = "<group>"; };
+		4318A04A154322C00004540E /* ColorGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorGridView.m; sourceTree = "<group>"; };
+		4318A04F1543329C0004540E /* APIConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIConnector.h; sourceTree = "<group>"; };
+		4318A0501543329C0004540E /* APIConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIConnector.m; sourceTree = "<group>"; };
+		4318A052154338D50004540E /* missing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missing.png; sourceTree = "<group>"; };
 		4382790C15429010002E0A53 /* 46px.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 46px.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4382791015429010002E0A53 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4382791215429010002E0A53 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -108,6 +116,8 @@
 			children = (
 				4382791F15429010002E0A53 /* AppDelegate.h */,
 				4382792015429010002E0A53 /* AppDelegate.m */,
+				4318A04F1543329C0004540E /* APIConnector.h */,
+				4318A0501543329C0004540E /* APIConnector.m */,
 				4382792215429010002E0A53 /* ViewController.h */,
 				4382792315429010002E0A53 /* ViewController.m */,
 				4382792515429010002E0A53 /* ViewController.xib */,
@@ -118,6 +128,8 @@
 				43827940154296CA002E0A53 /* PixelCanvasView.m */,
 				43827942154296D6002E0A53 /* PixelDrawing.h */,
 				43827943154296D6002E0A53 /* PixelDrawing.m */,
+				4318A049154322C00004540E /* ColorGridView.h */,
+				4318A04A154322C00004540E /* ColorGridView.m */,
 				4382794D15429CFC002E0A53 /* CGHelpers.h */,
 				4382794B15429CF4002E0A53 /* CGHelpers.m */,
 				43827945154296E6002E0A53 /* PixelTool.h */,
@@ -149,6 +161,7 @@
 				4318A0441543152C0004540E /* redo.png */,
 				4318A0451543152C0004540E /* undo.png */,
 				43827952154312E0002E0A53 /* tool-default.png */,
+				4318A052154338D50004540E /* missing.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -209,6 +222,7 @@
 				43827953154312E0002E0A53 /* tool-default.png in Resources */,
 				4318A0461543152C0004540E /* redo.png in Resources */,
 				4318A0471543152C0004540E /* undo.png in Resources */,
+				4318A053154338D50004540E /* missing.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +243,8 @@
 				4382794A15429701002E0A53 /* PixelEditOperation.m in Sources */,
 				4382794C15429CF4002E0A53 /* CGHelpers.m in Sources */,
 				43827950154310F7002E0A53 /* PenPixelTool.m in Sources */,
+				4318A04B154322C00004540E /* ColorGridView.m in Sources */,
+				4318A0511543329C0004540E /* APIConnector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

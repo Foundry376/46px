@@ -36,6 +36,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setNeedsDisplay) name:@"PixelDrawingChanged" object:nil];
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver: self];
+    [super dealloc];
+}
+
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef c = UIGraphicsGetCurrentContext();
@@ -50,21 +56,25 @@
     CGContextDrawLayerInRect(c, [self bounds], drawing.baseLayer);
     CGContextDrawLayerInRect(c, [self bounds], drawing.operationLayer);
     
-    // draw little hairlines over each pixel
-    CGContextSetStrokeColorWithColor(c, [[UIColor lightGrayColor] CGColor]);
-    float pixelWidth = [self bounds].size.width / [drawing size].width;
-    float pixelHeight = [self bounds].size.height / [drawing size].height;
-    
-    for (int x = 0; x < [drawing size].width; x++) {
-        CGContextMoveToPoint(c, x * pixelWidth, 0);
-        CGContextAddLineToPoint(c, x * pixelWidth, self.bounds.size.height);
-        CGContextStrokePath(c);
-    }
+    // if the view is more than 4x the width of the drawing, draw little hairlines
+    // separating each pixel. If the view is small, we don't want that!
+    if (self.bounds.size.width > [drawing size].width * 4) {
+        // draw little hairlines over each pixel
+        CGContextSetStrokeColorWithColor(c, [[UIColor lightGrayColor] CGColor]);
+        float pixelWidth = [self bounds].size.width / [drawing size].width;
+        float pixelHeight = [self bounds].size.height / [drawing size].height;
+        
+        for (int x = 0; x <= [drawing size].width; x++) {
+            CGContextMoveToPoint(c, x * pixelWidth, 0);
+            CGContextAddLineToPoint(c, x * pixelWidth, self.bounds.size.height);
+            CGContextStrokePath(c);
+        }
 
-    for (int y = 0; y < [drawing size].height; y++) {
-        CGContextMoveToPoint(c, 0, y * pixelHeight);
-        CGContextAddLineToPoint(c, self.bounds.size.width, y * pixelHeight);
-        CGContextStrokePath(c);
+        for (int y = 0; y <= [drawing size].height; y++) {
+            CGContextMoveToPoint(c, 0, y * pixelHeight);
+            CGContextAddLineToPoint(c, self.bounds.size.width, y * pixelHeight);
+            CGContextStrokePath(c);
+        }
     }
     
     // Cool! So we drew the drawing into our view. Now let's draw whatever the 

@@ -25,13 +25,24 @@
 @property (nonatomic, retain) NSMutableArray * tools;
 @property (nonatomic, assign) PixelTool * tool;
 
+@property (nonatomic, retain) NSMutableArray * colors;
+@property (nonatomic, assign) UIColor * color;
+
 @property (nonatomic, assign) CGLayerRef baseLayer;
 @property (nonatomic, assign) CGLayerRef operationLayer;
 @property (nonatomic, assign) CGSize size;
 
+@property (nonatomic, retain) NSString * directory;
+
+- (id)initWithSize:(CGSize)s andDirectory:(NSString*)d;
+- (id)initWithDirectory:(NSString*)d;
+
+- (void)setupForEditing;
+
 - (void)initializeWithContext:(CGContextRef)ref;
 - (BOOL)layersInitialized;
 
+- (void)save;
 
 #pragma mark -
 #pragma mark Handling Operations
@@ -41,5 +52,12 @@
 - (BOOL)canRedo;
 - (void)performRedo;
 - (void)applyOperation:(PixelEditOperation*)op;
+
+#pragma mark -
+#pragma mark Representing on Disk
+
+- (UIImage*)image;
+- (NSString*)imagePath;
+- (NSString*)statePath;
 
 @end

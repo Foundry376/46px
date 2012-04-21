@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PixelEditOperation : NSObject
+@interface PixelEditOperation : NSObject <NSCoding>
 {
 }
 
@@ -16,5 +16,8 @@
 @property (nonatomic, retain) UIImage * changed;
 @property (nonatomic, assign) CGRect changeRegion;
 
+
+- (id)initWithCoder:(NSCoder *)aDecoder;
+- (void)encodeWithCoder:(NSCoder *)aCoder;
 
 @end

@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "PixelEditorViewController.h"
 #import "PixelDrawing.h"
+#import "APIConnector.h"
 
 @interface ViewController ()
 
@@ -26,18 +27,23 @@
 }
 
 - (IBAction)start:(id)sender
-{
-    // for now, just open the pixel editor immediately
-    PixelDrawing * d = [[[PixelDrawing alloc] initWithSize: CGSizeMake(46, 46)] autorelease];
+{    
+    // ask for a folder that we can put our new drawing into
+    NSString * dir = [[APIConnector shared] pathForNewDrawing];
+    
+    // create the new drawing, and add it to our drafts
+    PixelDrawing * d = [[[PixelDrawing alloc] initWithSize: CGSizeMake(46, 46) andDirectory: dir] autorelease];
+    [[[APIConnector shared] drafts] addObject: d];
+    
+    // open the editing view controller and go!
     PixelEditorViewController * pevc = [[PixelEditorViewController alloc] initWithDrawing: d andDelegate: self];
-    [self presentModalViewController: pevc animated:NO];
-    [pevc autorelease];    
+    [self.navigationController pushViewController:pevc animated:YES];
+    [pevc autorelease];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
