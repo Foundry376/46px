@@ -55,7 +55,14 @@
     // draw the baseLayer of the drawing
     CGContextDrawLayerInRect(c, [self bounds], drawing.baseLayer);
     CGContextDrawLayerInRect(c, [self bounds], drawing.operationLayer);
-    
+    if (drawing.mirroring){
+        CGContextSaveGState(c);
+        CGContextScaleCTM(c, -1, 1);
+        CGContextTranslateCTM(c, [self bounds].size.width, 0);
+        CGContextDrawLayerInRect(c, [self bounds], drawing.operationLayer);
+        CGContextRestoreGState(c);
+        
+    }
     // if the view is more than 4x the width of the drawing, draw little hairlines
     // separating each pixel. If the view is small, we don't want that!
     if (self.bounds.size.width > [drawing size].width * 4) {
@@ -80,7 +87,9 @@
     // Cool! So we drew the drawing into our view. Now let's draw whatever the 
     // tool needs drawn. This could be anything from a straight line or some sort
     // of "guide thing" that indicates what the tool is doing...
-    [drawing.tool drawInContext: c];
+    if ([[drawing tool] down]) {
+        [drawing.tool drawInContext: c];
+    }
 }
 
 #pragma mark -
@@ -94,9 +103,9 @@
     TouchProperties p;
     p.touch = t;
     p.locationInView = [t locationInView: self];
-    p.pixelInView = CGPointMake(floorf(p.locationInView.x / pixelWidth), roundf(p.locationInView.y / pixelHeight));
+    p.pixelInView = CGPointMake(p.locationInView.x / pixelWidth, p.locationInView.y / pixelHeight);
     p.prevLocationInView = [t previousLocationInView: self];
-    p.prevPixelInView = CGPointMake(floorf(p.prevLocationInView.x / pixelWidth), roundf(p.prevLocationInView.y / pixelHeight));
+    p.prevPixelInView = CGPointMake(p.prevLocationInView.x / pixelWidth, p.prevLocationInView.y / pixelHeight);
     
     return p;
 }

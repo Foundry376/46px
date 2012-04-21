@@ -31,6 +31,7 @@
 @property (nonatomic, assign) CGLayerRef baseLayer;
 @property (nonatomic, assign) CGLayerRef operationLayer;
 @property (nonatomic, assign) CGSize size;
+@property (nonatomic, assign) BOOL mirroring;
 
 @property (nonatomic, retain) NSString * directory;
 

@@ -15,6 +15,7 @@
 @interface PixelTool : NSObject
 {
     PixelEditOperation * operation;
+    BOOL down;
 }
 
 - (void)touchBegan:(TouchProperties)touch inDrawing:(PixelDrawing*)d;
@@ -23,6 +24,7 @@
 
 - (void)drawInContext:(CGContextRef)c;
 
+- (BOOL)down;
 - (UIImage*)icon;
 
 @end

@@ -11,10 +11,12 @@
 #import "CGHelpers.h"
 #import "PenPixelTool.h"
 #import "PixelTool.h"
+#import "LinePixelTool.h"
+#import "PaintBucketPixelTool.h"
 
 @implementation PixelDrawing
 
-@synthesize baseLayer, operationLayer, size, tools, tool, colors, color, directory;
+@synthesize baseLayer, operationLayer, size, tools, tool, colors, color, directory, mirroring;
 
 - (id)initWithDirectory:(NSString*)d
 {
@@ -44,8 +46,9 @@
 
     // setup some tools
     tools = [[NSMutableArray alloc] init];
-    PenPixelTool * pen = [[[PenPixelTool alloc] init] autorelease];
-    [tools addObject: pen];
+    [tools addObject: [[[PenPixelTool alloc] init] autorelease]];
+    [tools addObject: [[[LinePixelTool alloc] init] autorelease]];
+    [tools addObject: [[[PaintBucketPixelTool alloc] init] autorelease]];
     
     // setup some colors
     colors = [[NSMutableArray alloc] init];
@@ -186,12 +189,20 @@
 {
     // okay—so each operation has a change region. Grab that portion of our image,
     // and save it so we can undo this change later.
+    
     [op setOriginal: UIImageFromLayer(baseLayer, [op changeRegion])];
     [UIImagePNGRepresentation([op original]) writeToFile:@"/test.png" atomically:YES];
     
     // flatten the operationLayer onto the baseLayer
     CGContextRef b = CGLayerGetContext(baseLayer);
     CGContextDrawLayerAtPoint(b, CGPointZero, operationLayer);
+    if (mirroring) {
+        CGContextSaveGState(b);
+        CGContextScaleCTM(b, -1, 1);
+        CGContextTranslateCTM(b, size.width, 0);
+        CGContextDrawLayerAtPoint(b, CGPointZero, operationLayer);
+        CGContextRestoreGState(b);
+    }
     
     // clear the operation layer—the user will want to begin another operation soon
     // and we want this layer to ONLY hold the part of the drawing the tool is 

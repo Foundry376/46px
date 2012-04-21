@@ -9,6 +9,8 @@
 #import "PixelEditorViewController.h"
 #import "PenPixelTool.h"
 
+#define TOOL_PADDING 5
+
 @implementation PixelEditorViewController
 
 @synthesize colorsView;
@@ -39,9 +41,9 @@
     [self.drawing setupForEditing];
     
     // attach the tool "buttons" to the sidebar so we can have lots of tools
-    CGRect f = CGRectMake(0, 0, 65, 65);
+    CGRect r = CGRectMake(0, 0, 65, 65);
     for (PixelTool * t in self.drawing.tools) {
-        UIButton * b = [[[UIButton alloc] initWithFrame: f] autorelease];
+        UIButton * b = [[[UIButton alloc] initWithFrame: r] autorelease];
         [b setImage:[t icon] forState:UIControlStateNormal];
         [b setTag: [self.drawing.tools indexOfObject: t]];
         [b addTarget:self action:@selector(toolToggled:) forControlEvents:UIControlEventTouchUpInside];
@@ -50,6 +52,12 @@
             [b setSelected: YES];
             
         [toolsView addSubview: b];
+        
+        r.origin.x += r.size.width + TOOL_PADDING;
+        if (r.origin.x + r.size.width > toolsView.bounds.size.width) {
+            r.origin.x = TOOL_PADDING;
+            r.origin.y += r.size.height + TOOL_PADDING;
+        }
     }
     
     // attach the drawing to the canvas

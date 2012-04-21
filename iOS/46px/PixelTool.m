@@ -13,6 +13,7 @@
 
 - (void)touchBegan:(TouchProperties)touch inDrawing:(PixelDrawing*)d
 {
+    down = YES;
 }
 
 - (void)touchMoved:(TouchProperties)touch inDrawing:(PixelDrawing*)d
@@ -32,6 +33,12 @@
     [operation setChangeRegion: r];
     
     [d applyOperation: operation];
+    down = NO;
+}
+
+- (BOOL)down
+{
+    return down;
 }
 
 - (UIImage*)icon
