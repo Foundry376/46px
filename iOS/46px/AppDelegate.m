@@ -38,7 +38,7 @@
     NSLog(@"%@", [[APIConnector shared] description]);
     
     
-    facebook = [[Facebook alloc] initWithAppId:@"FACEBOOK_APP_ID" andDelegate:self];
+    facebook = [[Facebook alloc] initWithAppId:FACEBOOK_APP_ID andDelegate:self];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults objectForKey:@"FBAccessTokenKey"] 
