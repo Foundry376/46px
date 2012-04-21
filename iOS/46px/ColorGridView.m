@@ -52,7 +52,7 @@
         CGContextStrokeRect(c, r);
         
         if (highlightedColorIndex == ii) {
-            CGContextSetRGBFillColor(c, 1, 1, 1, 0.3);
+            CGContextSetRGBFillColor(c, 1, 1, 1, 0.4);
             CGContextFillRect(c, r);
         }
         
@@ -68,9 +68,9 @@
 {
     int hx = floor(p.x / (COLOR_CELL_SIZE + COLOR_CELL_PADDING));
     int hy = floor(p.y / (COLOR_CELL_SIZE + COLOR_CELL_PADDING));
-    highlightedColorIndex = hy * (self.bounds.size.width / (COLOR_CELL_SIZE + COLOR_CELL_PADDING)) + hx;
+    highlightedColorIndex = hy * roundf(self.bounds.size.width / (COLOR_CELL_SIZE + COLOR_CELL_PADDING)) + hx;
     
-    if ((highlightedColorIndex < 0) || (highlightedColorIndex > [drawing.colors count]))
+    if ((highlightedColorIndex < 0) || (highlightedColorIndex >= [drawing.colors count]))
         highlightedColorIndex = NSNotFound;
 }
 
