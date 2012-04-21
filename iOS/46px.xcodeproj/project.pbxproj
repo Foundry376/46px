@@ -43,6 +43,7 @@
 		813E1AC2154373010004FBB5 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AB4154373010004FBB5 /* SBJsonBase.m */; };
 		813E1AC3154373010004FBB5 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AB6154373010004FBB5 /* SBJsonParser.m */; };
 		813E1AC4154373010004FBB5 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AB8154373010004FBB5 /* SBJsonWriter.m */; };
+		813E1ACC154377F50004FBB5 /* ShapeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1ACB154377F50004FBB5 /* ShapeTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +113,8 @@
 		813E1AB6154373010004FBB5 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		813E1AB7154373010004FBB5 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		813E1AB8154373010004FBB5 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		813E1ACA154377F50004FBB5 /* ShapeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ShapeTool.h; sourceTree = "<group>"; };
+		813E1ACB154377F50004FBB5 /* ShapeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +181,8 @@
 				4382794B15429CF4002E0A53 /* CGHelpers.m */,
 				43827945154296E6002E0A53 /* PixelTool.h */,
 				43827946154296E6002E0A53 /* PixelTool.m */,
+				813E1ACA154377F50004FBB5 /* ShapeTool.h */,
+				813E1ACB154377F50004FBB5 /* ShapeTool.m */,
 				4312D494154374ED00D92C6C /* LinePixelTool.h */,
 				4312D495154374ED00D92C6C /* LinePixelTool.m */,
 				4312D490154374E500D92C6C /* PaintBucketPixelTool.h */,
@@ -349,6 +354,7 @@
 				813E1AC4154373010004FBB5 /* SBJsonWriter.m in Sources */,
 				4312D492154374E500D92C6C /* PaintBucketPixelTool.m in Sources */,
 				4312D496154374ED00D92C6C /* LinePixelTool.m in Sources */,
+				813E1ACC154377F50004FBB5 /* ShapeTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
