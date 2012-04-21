@@ -12,5 +12,5 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 
-#define FACEBOOK_APP_ID 364788460224900
+#define FACEBOOK_APP_ID @"364788460224900"
 #endif
