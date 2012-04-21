@@ -16,8 +16,8 @@
 {
     self = [super init];
     if (self) {
-        original = [[aDecoder decodeObjectForKey:@"original"] retain];
-        changed = [[aDecoder decodeObjectForKey:@"changed"] retain];
+        original = [[UIImage imageWithData: [aDecoder decodeObjectForKey:@"original"]] retain];
+        changed = [[UIImage imageWithData: [aDecoder decodeObjectForKey:@"changed"]] retain];
         changeRegion = [[aDecoder decodeObjectForKey:@"changeRegion"] CGRectValue];
     }
     return self;

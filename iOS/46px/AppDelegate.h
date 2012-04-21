@@ -7,12 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FBConnect.h"
+
 
 @class ViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+{
+    Facebook * facebook;
+}
 
 @property (strong, nonatomic) UIWindow * window;
+@property (strong, nonatomic) Facebook * facebook;
 @property (strong, nonatomic) UINavigationController * viewController;
 
 @end

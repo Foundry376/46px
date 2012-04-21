@@ -11,4 +11,13 @@
 
 @interface ViewController : UIViewController <PixelEditorDelegate>
 
+@property (nonatomic, retain) IBOutlet UIWebView *webView;
+
+@property (retain, nonatomic) IBOutlet UIButton *draftOne;
+@property (retain, nonatomic) IBOutlet UIButton *draftTwo;
+@property (retain, nonatomic) IBOutlet UIButton *draftThree;
+@property (retain, nonatomic) IBOutlet UIButton *draftFour;
+@property (retain, nonatomic) IBOutlet UIButton *draftFive;
+@property (retain, nonatomic) IBOutlet UIButton *draftSix;
+
 @end

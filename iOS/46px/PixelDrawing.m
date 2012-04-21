@@ -22,6 +22,7 @@
 {
     self = [super init];
     if (self) {
+        self.size = CGSizeMake(46, 46);
         self.directory = d;
     }
     return self;
@@ -74,8 +75,8 @@
     // load operations and redo...
     if ([[NSFileManager defaultManager] fileExistsAtPath: [self statePath]]) {
         NSDictionary * state = [NSKeyedUnarchiver unarchiveObjectWithFile: [self statePath]];
-        operationStack = [state objectForKey:@"operationStack"];
-        redoStack = [state objectForKey:@"redoStack"];
+        operationStack = [[state objectForKey:@"operationStack"] retain];
+        redoStack = [[state objectForKey:@"redoStack"] retain];
     }
 
     if (operationStack == nil)
