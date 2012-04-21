@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4318A0461543152C0004540E /* redo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4318A0441543152C0004540E /* redo.png */; };
+		4318A0471543152C0004540E /* undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4318A0451543152C0004540E /* undo.png */; };
 		4382791115429010002E0A53 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382791015429010002E0A53 /* UIKit.framework */; };
 		4382791315429010002E0A53 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382791215429010002E0A53 /* Foundation.framework */; };
 		4382791515429010002E0A53 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382791415429010002E0A53 /* CoreGraphics.framework */; };
@@ -15,9 +17,20 @@
 		4382792115429010002E0A53 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4382792015429010002E0A53 /* AppDelegate.m */; };
 		4382792415429010002E0A53 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4382792315429010002E0A53 /* ViewController.m */; };
 		4382792715429010002E0A53 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4382792515429010002E0A53 /* ViewController.xib */; };
+		4382793D154295AB002E0A53 /* PixelEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4382793B154295AB002E0A53 /* PixelEditorViewController.m */; };
+		4382793E154295AB002E0A53 /* PixelEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4382793C154295AB002E0A53 /* PixelEditorViewController.xib */; };
+		43827941154296CA002E0A53 /* PixelCanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43827940154296CA002E0A53 /* PixelCanvasView.m */; };
+		43827944154296D7002E0A53 /* PixelDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 43827943154296D6002E0A53 /* PixelDrawing.m */; };
+		43827947154296E6002E0A53 /* PixelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 43827946154296E6002E0A53 /* PixelTool.m */; };
+		4382794A15429701002E0A53 /* PixelEditOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4382794915429701002E0A53 /* PixelEditOperation.m */; };
+		4382794C15429CF4002E0A53 /* CGHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4382794B15429CF4002E0A53 /* CGHelpers.m */; };
+		43827950154310F7002E0A53 /* PenPixelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4382794F154310F7002E0A53 /* PenPixelTool.m */; };
+		43827953154312E0002E0A53 /* tool-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 43827952154312E0002E0A53 /* tool-default.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4318A0441543152C0004540E /* redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redo.png; sourceTree = "<group>"; };
+		4318A0451543152C0004540E /* undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undo.png; sourceTree = "<group>"; };
 		4382790C15429010002E0A53 /* 46px.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 46px.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4382791015429010002E0A53 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4382791215429010002E0A53 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -31,6 +44,22 @@
 		4382792215429010002E0A53 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		4382792315429010002E0A53 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4382792615429010002E0A53 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		4382793A154295AB002E0A53 /* PixelEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelEditorViewController.h; sourceTree = "<group>"; };
+		4382793B154295AB002E0A53 /* PixelEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PixelEditorViewController.m; sourceTree = "<group>"; };
+		4382793C154295AB002E0A53 /* PixelEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PixelEditorViewController.xib; sourceTree = "<group>"; };
+		4382793F154296CA002E0A53 /* PixelCanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelCanvasView.h; sourceTree = "<group>"; };
+		43827940154296CA002E0A53 /* PixelCanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PixelCanvasView.m; sourceTree = "<group>"; };
+		43827942154296D6002E0A53 /* PixelDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelDrawing.h; sourceTree = "<group>"; };
+		43827943154296D6002E0A53 /* PixelDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PixelDrawing.m; sourceTree = "<group>"; };
+		43827945154296E6002E0A53 /* PixelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelTool.h; sourceTree = "<group>"; };
+		43827946154296E6002E0A53 /* PixelTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PixelTool.m; sourceTree = "<group>"; };
+		4382794815429701002E0A53 /* PixelEditOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelEditOperation.h; sourceTree = "<group>"; };
+		4382794915429701002E0A53 /* PixelEditOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PixelEditOperation.m; sourceTree = "<group>"; };
+		4382794B15429CF4002E0A53 /* CGHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGHelpers.m; sourceTree = "<group>"; };
+		4382794D15429CFC002E0A53 /* CGHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGHelpers.h; sourceTree = "<group>"; };
+		4382794E154310F7002E0A53 /* PenPixelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PenPixelTool.h; sourceTree = "<group>"; };
+		4382794F154310F7002E0A53 /* PenPixelTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PenPixelTool.m; sourceTree = "<group>"; };
+		43827952154312E0002E0A53 /* tool-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tool-default.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +111,22 @@
 				4382792215429010002E0A53 /* ViewController.h */,
 				4382792315429010002E0A53 /* ViewController.m */,
 				4382792515429010002E0A53 /* ViewController.xib */,
+				4382793A154295AB002E0A53 /* PixelEditorViewController.h */,
+				4382793B154295AB002E0A53 /* PixelEditorViewController.m */,
+				4382793C154295AB002E0A53 /* PixelEditorViewController.xib */,
+				4382793F154296CA002E0A53 /* PixelCanvasView.h */,
+				43827940154296CA002E0A53 /* PixelCanvasView.m */,
+				43827942154296D6002E0A53 /* PixelDrawing.h */,
+				43827943154296D6002E0A53 /* PixelDrawing.m */,
+				4382794D15429CFC002E0A53 /* CGHelpers.h */,
+				4382794B15429CF4002E0A53 /* CGHelpers.m */,
+				43827945154296E6002E0A53 /* PixelTool.h */,
+				43827946154296E6002E0A53 /* PixelTool.m */,
+				4382794E154310F7002E0A53 /* PenPixelTool.h */,
+				4382794F154310F7002E0A53 /* PenPixelTool.m */,
+				4382794815429701002E0A53 /* PixelEditOperation.h */,
+				4382794915429701002E0A53 /* PixelEditOperation.m */,
+				43827951154312E0002E0A53 /* Resources */,
 				4382791715429010002E0A53 /* Supporting Files */,
 			);
 			path = 46px;
@@ -96,6 +141,16 @@
 				4382791E15429010002E0A53 /* 46px-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		43827951154312E0002E0A53 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4318A0441543152C0004540E /* redo.png */,
+				4318A0451543152C0004540E /* undo.png */,
+				43827952154312E0002E0A53 /* tool-default.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +205,10 @@
 			files = (
 				4382791B15429010002E0A53 /* InfoPlist.strings in Resources */,
 				4382792715429010002E0A53 /* ViewController.xib in Resources */,
+				4382793E154295AB002E0A53 /* PixelEditorViewController.xib in Resources */,
+				43827953154312E0002E0A53 /* tool-default.png in Resources */,
+				4318A0461543152C0004540E /* redo.png in Resources */,
+				4318A0471543152C0004540E /* undo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +222,13 @@
 				4382791D15429010002E0A53 /* main.m in Sources */,
 				4382792115429010002E0A53 /* AppDelegate.m in Sources */,
 				4382792415429010002E0A53 /* ViewController.m in Sources */,
+				4382793D154295AB002E0A53 /* PixelEditorViewController.m in Sources */,
+				43827941154296CA002E0A53 /* PixelCanvasView.m in Sources */,
+				43827944154296D7002E0A53 /* PixelDrawing.m in Sources */,
+				43827947154296E6002E0A53 /* PixelTool.m in Sources */,
+				4382794A15429701002E0A53 /* PixelEditOperation.m in Sources */,
+				4382794C15429CF4002E0A53 /* CGHelpers.m in Sources */,
+				43827950154310F7002E0A53 /* PenPixelTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +340,7 @@
 				4382792C15429010002E0A53 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

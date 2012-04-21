@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "PixelEditorViewController.h"
+#import "PixelDrawing.h"
 
 @interface ViewController ()
 
@@ -17,7 +19,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+}
+
+- (IBAction)start:(id)sender
+{
+    // for now, just open the pixel editor immediately
+    PixelDrawing * d = [[[PixelDrawing alloc] initWithSize: CGSizeMake(46, 46)] autorelease];
+    PixelEditorViewController * pevc = [[PixelEditorViewController alloc] initWithDrawing: d andDelegate: self];
+    [self presentModalViewController: pevc animated:NO];
+    [pevc autorelease];    
 }
 
 - (void)viewDidUnload
