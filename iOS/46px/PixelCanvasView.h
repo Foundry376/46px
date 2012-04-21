@@ -24,12 +24,15 @@ typedef struct {
 
 @property (nonatomic, assign) PixelDrawing * drawing;
 
-- (void)drawRect:(CGRect)rect;
+- (id)initWithFrame:(CGRect)frame;
+- (id)initWithCoder:(NSCoder *)aDecoder;
+- (void)setup;
+- (void)dealloc;
 
-- (void)drawingChanged:(PixelDrawing*)d;
+#pragma mark -
+#pragma mark Touch Input
 
 - (TouchProperties)touchPropertiesForTouch:(UITouch*)t;
-
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;

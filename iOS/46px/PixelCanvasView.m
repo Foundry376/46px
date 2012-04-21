@@ -83,6 +83,9 @@
     [drawing.tool drawInContext: c];
 }
 
+#pragma mark -
+#pragma mark Touch Input
+
 - (TouchProperties)touchPropertiesForTouch:(UITouch*)t
 {
     float pixelWidth = [self bounds].size.width / [drawing size].width;
