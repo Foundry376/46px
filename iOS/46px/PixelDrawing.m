@@ -105,7 +105,7 @@
     [NSKeyedArchiver archiveRootObject:d toFile:[self statePath]];
     
     // save our png file
-    UIImage * us = UIImageFromLayer(baseLayer, CGRectMake(0, 0, size.width, size.height),YES);
+    UIImage * us = UIImageFromLayer(baseLayer, CGRectMake(0, 0, size.width, size.height), NO);
     [UIImagePNGRepresentation(us) writeToFile:[self imagePath] atomically:NO];
 }
 
