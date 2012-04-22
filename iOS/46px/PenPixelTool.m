@@ -19,7 +19,9 @@
     CGLayerRef l = [d operationLayer];
     CGContextRef c = CGLayerGetContext(l);
     
-    CGRect pixelRect = CGRectMake(touch.pixelInView.x, touch.pixelInView.y, 1, 1);
+    int x = (int)floorf(touch.pixelInView.x);
+    int y = (int)floorf(touch.pixelInView.y);
+    CGRect pixelRect = CGRectMake(x, y, 1, 1);
     CGContextSetFillColorWithColor(c, [d.color CGColor]);
     CGContextFillRect(c, pixelRect);
     
