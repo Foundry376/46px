@@ -170,6 +170,7 @@
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error
 {
     NSLog(@"Requestdidfail");
+    NSLog(@"error:%@",[error localizedDescription]);
 }
 
 - (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response
@@ -184,6 +185,12 @@
     else if (!([request.url rangeOfString:@"me/firstname"].location == NSNotFound)) {
         userName.text = urlString;
     }
+    
+}
+-(void)request:(FBRequest *)request didLoad:(id)result
+{
+    NSDictionary * userDict =(NSDictionary*)result;
+    [userDict objectForKey:@"first_name"];
     
 }
 - (void)viewDidUnload
@@ -225,6 +232,8 @@
 
 #pragma mark -
 #pragma mark UIWebView Delegate Functionality
+
+
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
