@@ -98,6 +98,22 @@ static FacebookManager * sharedManager;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateUser" object:nil];
 }
 
+- (void)fbDidExtendToken:(NSString*)accessToken expiresAt:(NSDate*)expiresAt
+{
+    [facebook setAccessToken: accessToken];
+    [self fbDidLogin];
+}
+
+- (void)fbSessionInvalidated
+{
+    
+}
+
+- (void)fbDidNotLogin:(BOOL)cancelled
+{
+    
+}
+
 - (void)fbDidLogout {
     // Remove saved authorization information if it exists
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

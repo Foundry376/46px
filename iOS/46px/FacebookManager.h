@@ -30,7 +30,6 @@
 - (oneway void)release;
 - (id)autorelease;
 - (BOOL)isLoggedIn;
-- (void)updateUserTableWithUserID:(NSString*)userID;
 
 - (NSString*)facebookUserID;
 
