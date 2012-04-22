@@ -9,6 +9,7 @@
 #import "PostViewController.h"
 #import "APIConnector.h"
 #import <QuartzCore/QuartzCore.h>
+#import "FacebookManager.h"
 
 @implementation PostViewController
 

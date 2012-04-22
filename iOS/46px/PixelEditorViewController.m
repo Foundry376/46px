@@ -12,6 +12,7 @@
 #import "ASIHTTPRequest.h"
 #import "PostViewController.h"
 #import "OrangeButton.h"
+#import "FacebookManager.h"
 
 #define TOOL_PADDING 5
 
@@ -149,12 +150,18 @@
 
 - (void)finished:(id)sender
 {
-    // okay. so the user is done! let's fire back to the delegate
-    PostViewController * pvc = [[[PostViewController alloc] init] autorelease];
-    [pvc setDrawing: drawing];
-    [pvc setModalTransitionStyle: UIModalTransitionStyleCoverVertical];
-    [pvc setModalPresentationStyle: UIModalPresentationFormSheet];
-    [self presentModalViewController:pvc animated:YES];
+    if ([[[FacebookManager sharedManager] facebookUserID] length] > 0) {
+        // okay. so the user is done! let's fire back to the delegate
+        PostViewController * pvc = [[[PostViewController alloc] init] autorelease];
+        [pvc setDrawing: drawing];
+        [pvc setModalTransitionStyle: UIModalTransitionStyleCoverVertical];
+        [pvc setModalPresentationStyle: UIModalPresentationFormSheet];
+        [self presentModalViewController:pvc animated:YES];
+    } else {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Not Logged In" message:@"Before you can post your drawings, you need to sign in to Facebook on the home screen. Don't worry, you can re-open this drawing!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        [alert release];
+    }
 }
 
 - (IBAction)undo:(id)sender
