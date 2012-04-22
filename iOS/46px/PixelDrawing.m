@@ -16,14 +16,21 @@
 
 @implementation PixelDrawing
 
-@synthesize baseLayer, operationLayer, size, tools, tool, colors, color, directory, mirroringX, mirroringY, caption;
+@synthesize baseLayer, operationLayer, size, tools, tool, colors, color, directory, mirroringX, mirroringY, caption, threadID;
 
 - (id)initWithDirectory:(NSString*)d
 {
     self = [super init];
     if (self) {
-        self.size = CGSizeMake(46, 46);
+        self.threadID = -1;
         self.directory = d;
+        
+        // load the drawing size and the thread ID
+        if ([[NSFileManager defaultManager] fileExistsAtPath: [self statePath]]) {
+            NSDictionary * state = [NSKeyedUnarchiver unarchiveObjectWithFile: [self statePath]];
+            self.size = [[state objectForKey:@"size"] CGSizeValue];
+            self.threadID = [[state objectForKey:@"threadID"] intValue];
+        }
     }
     return self;
 }
@@ -32,6 +39,7 @@
 {
     self = [super init];
     if (self) {
+        self.threadID = -1;
         self.size = s;
         self.directory = d;
         
@@ -91,6 +99,9 @@
     NSMutableDictionary * d = [NSMutableDictionary dictionaryWithCapacity:2];
     [d setObject:operationStack forKey:@"operationStack"];
     [d setObject:redoStack forKey:@"redoStack"];
+    [d setObject:[NSNumber numberWithInt: threadID] forKey:@"threadID"];
+    [d setObject:[NSValue valueWithCGSize: size] forKey:@"size"];
+    
     [NSKeyedArchiver archiveRootObject:d toFile:[self statePath]];
     
     // save our png file

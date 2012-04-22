@@ -10,7 +10,7 @@
 #import "PixelEditorViewController.h"
 #import "FBConnect.h"
 
-@interface ViewController : UIViewController <PixelEditorDelegate, FBRequestDelegate>
+@interface ViewController : UIViewController <UIWebViewDelegate, PixelEditorDelegate, FBRequestDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 
@@ -28,5 +28,6 @@
 
 @property (retain, nonatomic) IBOutlet UILabel *userPostCount;
 
+- (void)postVisitURL:(NSString*)u;
 
 @end

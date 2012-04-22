@@ -8,9 +8,11 @@
 
 #import "ViewController.h"
 #import "PixelEditorViewController.h"
+#import "WebViewController.h"
 #import "PixelDrawing.h"
 #import "APIConnector.h"
 #import "FacebookManager.h"
+#import "PostViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface ViewController ()
@@ -18,6 +20,7 @@
 @end
 
 @implementation ViewController
+
 @synthesize webView;
 @synthesize draftOne;
 @synthesize draftTwo;
@@ -44,13 +47,7 @@
     
     // Load the request in the UIWebView.
     [webView loadRequest:requestObj];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationDidEnterForeground)
-                                                 name:UIApplicationWillEnterForegroundNotification
-                                               object:nil];
-    
-    
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -97,9 +94,11 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+
     Facebook * facebook = [FacebookManager sharedManager].facebook;
     [facebook requestWithGraphPath:@"me/picture" andDelegate:self];
     [facebook requestWithGraphPath:@"me/name" andDelegate:self];
+    [webView reload];
 }
 
 - (IBAction)start:(id)sender
@@ -142,7 +141,26 @@
     [pevc autorelease];
 }
 
-- (IBAction)loginPressed:(id)sender {
+- (void)postSuccess:(NSNotification*)n
+{ 
+    [self performSelector:@selector(postSuccessDismissEditor:) withObject:[n object] afterDelay:0.8];
+}
+
+- (void)postSuccessDismissEditor:(NSString*)path
+{ 
+    [self.navigationController popToRootViewControllerAnimated: YES];
+    [self performSelector:@selector(postSuccessVisitThread:) withObject:path afterDelay:0.8];
+}
+
+- (void)postSuccessVisitThread:(NSString*)path
+{
+    WebViewController * wvc = [[WebViewController alloc] initWithPage: [NSURL URLWithString: path]];
+    [self.navigationController pushViewController:wvc animated: YES];
+    [wvc autorelease];        
+}
+
+- (IBAction)loginPressed:(id)sender 
+{
     [[FacebookManager sharedManager] login];
 }
 
@@ -191,7 +209,8 @@
     return YES;
 }
 
-- (void)dealloc {
+- (void)dealloc 
+{
     [draftOne release];
     [draftTwo release];
     [draftThree release];
@@ -205,4 +224,21 @@
     [userPostCount release];
     [super dealloc];
 }
+
+#pragma mark -
+#pragma mark UIWebView Delegate Functionality
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSString * path = [[request URL] absoluteString];
+    if ([path rangeOfString:@"thread.php"].location != NSNotFound) {
+        // open it in a new web view!
+        WebViewController * wvc = [[WebViewController alloc] initWithPage: [request URL]];
+        [self.navigationController pushViewController:wvc animated:YES];
+        [wvc autorelease];        
+        return NO;
+    }
+    return YES;
+}
+
 @end

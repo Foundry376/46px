@@ -9,6 +9,7 @@
 #import "APIConnector.h"
 #import "PixelDrawing.h"
 #import "ASIFormDataRequest.h"
+#import "FacebookManager.h"
 
 static APIConnector * sharedConnector;
 
@@ -104,12 +105,13 @@ static APIConnector * sharedConnector;
 
 - (void)postDrawing:(PixelDrawing*)d
 {
-    NSURL * url = [NSURL URLWithString:@"http://46px.com/testPost.php"];
+    NSURL * url = [NSURL URLWithString:@"http://46px.com/testForm.php"];
     
     ASIFormDataRequest * req = [[[ASIFormDataRequest alloc] initWithURL: url] autorelease];
-    
-    [req addPostValue:@"0" forKey:@"id"];
+    NSLog(@"%@", [[[FacebookManager sharedManager] facebook] accessToken]);
+    [req addPostValue:[[[FacebookManager sharedManager] facebook] accessToken] forKey:@"userToken"];
     [req addPostValue:[d caption] forKey:@"caption"];
+    [req addPostValue:[NSString stringWithFormat:@"%d", [d threadID]] forKey:@"threadID"];
     [req addData:UIImagePNGRepresentation(d.image) withFileName:@"image.png" andContentType: @"image/png" forKey:@"image"];
     [req setUserAgent:@"46px App"];
     [req addRequestHeader:@"Expect" value:@"100-Continue"];
@@ -122,7 +124,11 @@ static APIConnector * sharedConnector;
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"PostEnded" object:nil];
+    if ([[request responseString] rangeOfString:@"404"].location != NSNotFound)
+        return [self requestFailed: request];
+        
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PostEnded" object: nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PostSuccess" object: [request responseString]];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
