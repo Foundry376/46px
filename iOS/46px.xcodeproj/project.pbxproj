@@ -54,6 +54,8 @@
 		43EB9D7F154393280040C04E /* tool-line.png in Resources */ = {isa = PBXBuildFile; fileRef = 43EB9D7D154393280040C04E /* tool-line.png */; };
 		43EB9D80154393280040C04E /* tool-paintbucket.png in Resources */ = {isa = PBXBuildFile; fileRef = 43EB9D7E154393280040C04E /* tool-paintbucket.png */; };
 		43EB9D82154399DE0040C04E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB9D81154399DE0040C04E /* QuartzCore.framework */; };
+		43EB9D8A15439B900040C04E /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9D8815439B900040C04E /* WebViewController.m */; };
+		43EB9D8B15439B900040C04E /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43EB9D8915439B900040C04E /* WebViewController.xib */; };
 		813E1AB9154373010004FBB5 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1A9F154373010004FBB5 /* Facebook.m */; };
 		813E1ABA154373010004FBB5 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 813E1AA2154373010004FBB5 /* FBDialog.bundle */; };
 		813E1ABB154373010004FBB5 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AA4154373010004FBB5 /* FBDialog.m */; };
@@ -151,6 +153,9 @@
 		43EB9D7D154393280040C04E /* tool-line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tool-line.png"; path = "Resources/tool-line.png"; sourceTree = SOURCE_ROOT; };
 		43EB9D7E154393280040C04E /* tool-paintbucket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tool-paintbucket.png"; path = "Resources/tool-paintbucket.png"; sourceTree = SOURCE_ROOT; };
 		43EB9D81154399DE0040C04E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		43EB9D8715439B900040C04E /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		43EB9D8815439B900040C04E /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		43EB9D8915439B900040C04E /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		813E1A9E154373010004FBB5 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
 		813E1A9F154373010004FBB5 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
 		813E1AA0154373010004FBB5 /* facebook_ios_sdk_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = facebook_ios_sdk_Prefix.pch; sourceTree = "<group>"; };
@@ -241,6 +246,9 @@
 				4382792015429010002E0A53 /* AppDelegate.m */,
 				4318A04F1543329C0004540E /* APIConnector.h */,
 				4318A0501543329C0004540E /* APIConnector.m */,
+				43EB9D8715439B900040C04E /* WebViewController.h */,
+				43EB9D8815439B900040C04E /* WebViewController.m */,
+				43EB9D8915439B900040C04E /* WebViewController.xib */,
 				4382792215429010002E0A53 /* ViewController.h */,
 				4382792315429010002E0A53 /* ViewController.m */,
 				4382792515429010002E0A53 /* ViewController.xib */,
@@ -482,6 +490,7 @@
 				43EB9D7415438FEE0040C04E /* README-GHUnit in Resources */,
 				43EB9D7F154393280040C04E /* tool-line.png in Resources */,
 				43EB9D80154393280040C04E /* tool-paintbucket.png in Resources */,
+				43EB9D8B15439B900040C04E /* WebViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +540,7 @@
 				43EB9D5D15438FEE0040C04E /* ASIOARequest.m in Sources */,
 				43EB9D5E15438FEE0040C04E /* ASIOAuthParameter.m in Sources */,
 				43EB9D7515438FEE0040C04E /* Reachability.m in Sources */,
+				43EB9D8A15439B900040C04E /* WebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

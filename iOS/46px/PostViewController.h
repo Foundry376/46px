@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PixelDrawing.h"
+#import "ViewController.h"
 
 @interface PostViewController : UIViewController
 {

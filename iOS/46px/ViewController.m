@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "PixelEditorViewController.h"
+#import "WebViewController.h"
 #import "PixelDrawing.h"
 #import "APIConnector.h"
 #import "FacebookManager.h"
@@ -18,6 +19,7 @@
 @end
 
 @implementation ViewController
+
 @synthesize webView;
 @synthesize draftOne;
 @synthesize draftTwo;
@@ -42,7 +44,9 @@
     
     // Load the request in the UIWebView.
     [webView loadRequest:requestObj];
-    
+        
+    // Listen for images being posted successfully
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postSuccess:) name:@"PostSuccess" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -82,6 +86,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [webView reload];
 }
 
 - (IBAction)start:(id)sender
@@ -124,13 +129,22 @@
     [pevc autorelease];
 }
 
-- (void)pixelEditorDidFinishEditing:(PixelEditorViewController*)e committed:(BOOL)committed
+- (void)postSuccess:(NSNotification*)n
+{ 
+    [self performSelector:@selector(postSuccessDismissEditor:) withObject:[n object] afterDelay:0.8];
+}
+
+- (void)postSuccessDismissEditor:(NSString*)path
+{ 
+    [self.navigationController popToRootViewControllerAnimated: YES];
+    [self performSelector:@selector(postSuccessVisitThread:) withObject:path afterDelay:0.8];
+}
+
+- (void)postSuccessVisitThread:(NSString*)path
 {
-    PostViewController * pvc = [[[PostViewController alloc] init] autorelease];
-    [pvc setDrawing: [e drawing]];
-    [pvc setModalTransitionStyle: UIModalTransitionStyleCoverVertical];
-    [pvc setModalPresentationStyle: UIModalPresentationFormSheet];
-    [e presentModalViewController:pvc animated:YES];
+    WebViewController * wvc = [[WebViewController alloc] initWithPage: [NSURL URLWithString: path]];
+    [self.navigationController pushViewController:wvc animated: YES];
+    [wvc autorelease];        
 }
 
 - (IBAction)loginPressed:(id)sender 
@@ -175,4 +189,21 @@
     [logoutButton release];
     [super dealloc];
 }
+
+#pragma mark -
+#pragma mark UIWebView Delegate Functionality
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSString * path = [[request URL] absoluteString];
+    if ([path rangeOfString:@"thread.php"].location != NSNotFound) {
+        // open it in a new web view!
+        WebViewController * wvc = [[WebViewController alloc] initWithPage: [request URL]];
+        [self.navigationController pushViewController:wvc animated:YES];
+        [wvc autorelease];        
+        return NO;
+    }
+    return YES;
+}
+
 @end

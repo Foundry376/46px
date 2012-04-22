@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation PostViewController
+
 @synthesize previewImage;
 @synthesize captionTextView;
 @synthesize postButton;

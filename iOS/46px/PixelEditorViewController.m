@@ -10,6 +10,7 @@
 #import "PenPixelTool.h"
 #import "ASIFormDataRequest.h"
 #import "ASIHTTPRequest.h"
+#import "PostViewController.h"
 
 #define TOOL_PADDING 5
 
@@ -123,8 +124,11 @@
 - (void)finished:(id)sender
 {
     // okay. so the user is done! let's fire back to the delegate
-    if ([delegate respondsToSelector:@selector(pixelEditorDidFinishEditing:committed:)])
-        [delegate pixelEditorDidFinishEditing:self committed:YES];
+    PostViewController * pvc = [[[PostViewController alloc] init] autorelease];
+    [pvc setDrawing: drawing];
+    [pvc setModalTransitionStyle: UIModalTransitionStyleCoverVertical];
+    [pvc setModalPresentationStyle: UIModalPresentationFormSheet];
+    [self presentModalViewController:pvc animated:YES];
 }
 
 - (IBAction)undo:(id)sender
