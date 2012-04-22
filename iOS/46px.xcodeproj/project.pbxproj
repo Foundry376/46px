@@ -47,6 +47,8 @@
 		43EB9CDA154381F70040C04E /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CD8154381F70040C04E /* PostViewController.m */; };
 		43EB9CDB154381F70040C04E /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43EB9CD9154381F70040C04E /* PostViewController.xib */; };
 		43EB9CE215438D8F0040C04E /* FacebookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CE115438D8F0040C04E /* FacebookManager.m */; };
+		43EB9CE915438DDE0040C04E /* FacebookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CE815438DDE0040C04E /* FacebookManager.m */; };
+		43EB9CED15438DE80040C04E /* ShapeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CEC15438DE80040C04E /* ShapeTool.m */; };
 		813E1AB9154373010004FBB5 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1A9F154373010004FBB5 /* Facebook.m */; };
 		813E1ABA154373010004FBB5 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 813E1AA2154373010004FBB5 /* FBDialog.bundle */; };
 		813E1ABB154373010004FBB5 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AA4154373010004FBB5 /* FBDialog.m */; };
@@ -133,6 +135,10 @@
 		43EB9CD9154381F70040C04E /* PostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostViewController.xib; sourceTree = "<group>"; };
 		43EB9CE015438D8F0040C04E /* FacebookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookManager.h; sourceTree = "<group>"; };
 		43EB9CE115438D8F0040C04E /* FacebookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookManager.m; sourceTree = "<group>"; };
+		43EB9CE715438DDE0040C04E /* FacebookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookManager.h; sourceTree = "<group>"; };
+		43EB9CE815438DDE0040C04E /* FacebookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookManager.m; sourceTree = "<group>"; };
+		43EB9CEB15438DE80040C04E /* ShapeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeTool.h; sourceTree = "<group>"; };
+		43EB9CEC15438DE80040C04E /* ShapeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeTool.m; sourceTree = "<group>"; };
 		813E1A9E154373010004FBB5 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
 		813E1A9F154373010004FBB5 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
 		813E1AA0154373010004FBB5 /* facebook_ios_sdk_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = facebook_ios_sdk_Prefix.pch; sourceTree = "<group>"; };
@@ -213,6 +219,8 @@
 		4382791615429010002E0A53 /* 46px */ = {
 			isa = PBXGroup;
 			children = (
+				43EB9CE715438DDE0040C04E /* FacebookManager.h */,
+				43EB9CE815438DDE0040C04E /* FacebookManager.m */,
 				43EB9CCA15437F420040C04E /* ASIHTTPRequest */,
 				4382791F15429010002E0A53 /* AppDelegate.h */,
 				4382792015429010002E0A53 /* AppDelegate.m */,
@@ -239,6 +247,8 @@
 				4382794B15429CF4002E0A53 /* CGHelpers.m */,
 				43827945154296E6002E0A53 /* PixelTool.h */,
 				43827946154296E6002E0A53 /* PixelTool.m */,
+				43EB9CEB15438DE80040C04E /* ShapeTool.h */,
+				43EB9CEC15438DE80040C04E /* ShapeTool.m */,
 				4312D494154374ED00D92C6C /* LinePixelTool.h */,
 				4312D495154374ED00D92C6C /* LinePixelTool.m */,
 				4312D490154374E500D92C6C /* PaintBucketPixelTool.h */,
@@ -460,6 +470,8 @@
 				43EB9CCE15437F810040C04E /* Reachability.m in Sources */,
 				43EB9CDA154381F70040C04E /* PostViewController.m in Sources */,
 				43EB9CE215438D8F0040C04E /* FacebookManager.m in Sources */,
+				43EB9CE915438DDE0040C04E /* FacebookManager.m in Sources */,
+				43EB9CED15438DE80040C04E /* ShapeTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

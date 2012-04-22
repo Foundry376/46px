@@ -7,11 +7,11 @@
 //
 
 #import "PixelTool.h"
+#import "ShapeTool.h"
 
-@interface LinePixelTool : PixelTool
+@interface LinePixelTool : ShapeTool
 {
-    TouchProperties start;
-    TouchProperties end;
+
 }
 
 @end
