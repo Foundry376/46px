@@ -55,14 +55,32 @@
     // draw the baseLayer of the drawing
     CGContextDrawLayerInRect(c, [self bounds], drawing.baseLayer);
     CGContextDrawLayerInRect(c, [self bounds], drawing.operationLayer);
-    if (drawing.mirroring){
+    if (drawing.mirroringY){
         CGContextSaveGState(c);
-        CGContextScaleCTM(c, -1, 1);
         CGContextTranslateCTM(c, [self bounds].size.width, 0);
+        CGContextScaleCTM(c, -1, 1);
         CGContextDrawLayerInRect(c, [self bounds], drawing.operationLayer);
         CGContextRestoreGState(c);
-        
     }
+    
+    if (drawing.mirroringX) {
+        CGContextSaveGState(c);
+        CGContextTranslateCTM(c, 0, [self bounds].size.height);
+        CGContextScaleCTM(c, 1, -1);
+        CGContextDrawLayerInRect(c, [self bounds], drawing.operationLayer);
+        CGContextRestoreGState(c);
+    }
+    
+    if ((drawing.mirroringX) && (drawing.mirroringY)) {
+        CGContextSaveGState(c);
+        CGContextTranslateCTM(c, 0, [self bounds].size.height);
+        CGContextScaleCTM(c, 1, -1);
+        CGContextTranslateCTM(c, [self bounds].size.width, 0);
+        CGContextScaleCTM(c, -1, 1);
+        CGContextDrawLayerInRect(c, [self bounds], drawing.operationLayer);
+        CGContextRestoreGState(c);
+    }
+
     // if the view is more than 4x the width of the drawing, draw little hairlines
     // separating each pixel. If the view is small, we don't want that!
     if (self.bounds.size.width > [drawing size].width * 4) {

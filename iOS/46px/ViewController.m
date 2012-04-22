@@ -10,6 +10,7 @@
 #import "PixelEditorViewController.h"
 #import "PixelDrawing.h"
 #import "APIConnector.h"
+#import "FacebookManager.h"
 
 @interface ViewController ()
 
@@ -23,6 +24,9 @@
 @synthesize draftFour;
 @synthesize draftFive;
 @synthesize draftSix;
+@synthesize profilePicture;
+@synthesize loginButton;
+@synthesize logoutButton;
 
 - (void)viewDidLoad
 {
@@ -42,6 +46,9 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    Facebook *facebook = [FacebookManager sharedManager].facebook;
+    [facebook requestWithGraphPath:@"me/picture" andDelegate:self];
+    
     NSMutableArray *buttonArray = [NSMutableArray arrayWithCapacity:6];
     [buttonArray addObject:draftOne];
     [buttonArray addObject:draftTwo];
@@ -54,6 +61,9 @@
     UIButton *curButton;
     
     for (size_t i = 0; i < [[[APIConnector shared] drafts] count]; ++i) {
+        if (i >= 6) {
+            break;
+        }
         increment++;
         PixelDrawing *d = [[[APIConnector shared] drafts] objectAtIndex:i];
         
@@ -113,6 +123,14 @@
     [pevc autorelease];
 }
 
+- (IBAction)loginPressed:(id)sender {
+    [[FacebookManager sharedManager] login];
+}
+
+- (void)request:(FBRequest *)request didLoad:(id)result {
+    profilePicture.image = [UIImage imageWithData:result];
+}
+
 - (void)viewDidUnload
 {
     [self setDraftOne:nil];
@@ -121,6 +139,9 @@
     [self setDraftFour:nil];
     [self setDraftFive:nil];
     [self setDraftSix:nil];
+    [self setProfilePicture:nil];
+    [self setLoginButton:nil];
+    [self setLogoutButton:nil];
     [super viewDidUnload];
 }
 
@@ -136,6 +157,9 @@
     [draftFour release];
     [draftFive release];
     [draftSix release];
+    [profilePicture release];
+    [loginButton release];
+    [logoutButton release];
     [super dealloc];
 }
 @end

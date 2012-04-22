@@ -15,7 +15,7 @@
 
 @synthesize window = _window;
 @synthesize viewController = _viewController;
-@synthesize facebook;
+
 
 - (void)dealloc
 {
@@ -37,7 +37,7 @@
     // force load the APIConnector
     NSLog(@"%@", [[APIConnector shared] description]);
     
-    
+    /*
     facebook = [[Facebook alloc] initWithAppId:FACEBOOK_APP_ID andDelegate:self];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -50,8 +50,10 @@
     if (![facebook isSessionValid]) {
         [facebook authorize:nil];
     }
+    */
     
-    
+    //initialization of singleton
+    FacebookManager * manager = [FacebookManager sharedManager];
     
     return YES;
 }
@@ -84,19 +86,19 @@
 }
 // Pre iOS 4.2 support
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return [facebook handleOpenURL:url]; 
+    return [[FacebookManager sharedManager].facebook handleOpenURL:url]; 
 }
 
 // For iOS 4.2+ support
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [facebook handleOpenURL:url]; 
+    return [[FacebookManager sharedManager].facebook handleOpenURL:url]; 
 }
 
 - (void)fbDidLogin {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];
-    [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
+    [defaults setObject:[[FacebookManager sharedManager].facebook accessToken] forKey:@"FBAccessTokenKey"];
+    [defaults setObject:[[FacebookManager sharedManager].facebook expirationDate] forKey:@"FBExpirationDateKey"];
     [defaults synchronize];
     
 }

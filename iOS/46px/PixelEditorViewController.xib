@@ -84,7 +84,7 @@
 					<object class="IBUIView" id="20321736">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{160, 629}</string>
+						<string key="NSFrameSize">{160, 570}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="597910857"/>
@@ -121,7 +121,7 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalImage">
+						<object class="NSCustomResource" key="IBUINormalImage" id="973419065">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">undo.png</string>
 						</object>
@@ -158,6 +158,50 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">redo.png</string>
 						</object>
+						<reference key="IBUIFontDescription" ref="540421904"/>
+						<reference key="IBUIFont" ref="764408853"/>
+					</object>
+					<object class="IBUIButton" id="1055742385">
+						<reference key="NSNextResponder" ref="766721923"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{0, 572}, {65, 65}}</string>
+						<reference key="NSSuperview" ref="766721923"/>
+						<reference key="NSWindow"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<int key="IBUIButtonType">1</int>
+						<reference key="IBUIHighlightedTitleColor" ref="1060866391"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="474925155"/>
+						<reference key="IBUINormalImage" ref="973419065"/>
+						<reference key="IBUIFontDescription" ref="540421904"/>
+						<reference key="IBUIFont" ref="764408853"/>
+					</object>
+					<object class="IBUIButton" id="78666913">
+						<reference key="NSNextResponder" ref="766721923"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{95, 572}, {65, 65}}</string>
+						<reference key="NSSuperview" ref="766721923"/>
+						<reference key="NSWindow"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<int key="IBUIButtonType">1</int>
+						<reference key="IBUIHighlightedTitleColor" ref="1060866391"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="474925155"/>
+						<reference key="IBUINormalImage" ref="973419065"/>
 						<reference key="IBUIFontDescription" ref="540421904"/>
 						<reference key="IBUIFont" ref="764408853"/>
 					</object>
@@ -244,6 +288,22 @@
 					<int key="connectionID">17</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">mirrorXButton</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="1055742385"/>
+					</object>
+					<int key="connectionID">24</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">mirrorYButton</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="78666913"/>
+					</object>
+					<int key="connectionID">25</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">undo:</string>
 						<reference key="source" ref="597910857"/>
@@ -260,6 +320,24 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">13</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">toggleMirroringX:</string>
+						<reference key="source" ref="1055742385"/>
+						<reference key="destination" ref="841351856"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">22</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">toggleMirroringY:</string>
+						<reference key="source" ref="78666913"/>
+						<reference key="destination" ref="841351856"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">23</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -291,6 +369,8 @@
 							<reference ref="622421238"/>
 							<reference ref="342855660"/>
 							<reference ref="789418877"/>
+							<reference ref="1055742385"/>
+							<reference ref="78666913"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -329,6 +409,16 @@
 						<reference key="parent" ref="766721923"/>
 						<string key="objectName">Canvas View</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">18</int>
+						<reference key="object" ref="1055742385"/>
+						<reference key="parent" ref="766721923"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">20</int>
+						<reference key="object" ref="78666913"/>
+						<reference key="parent" ref="766721923"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -340,7 +430,9 @@
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="16.CustomClassName">PixelCanvasView</string>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="20.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.CustomClassName">PixelCanvasView</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.CustomClassName">ColorGridView</string>
@@ -351,7 +443,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">17</int>
+			<int key="maxID">25</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -392,6 +484,8 @@
 						<string key="canvasThumbnailView">PixelCanvasView</string>
 						<string key="canvasView">PixelCanvasView</string>
 						<string key="colorsView">ColorGridView</string>
+						<string key="mirrorXButton">UIButton</string>
+						<string key="mirrorYButton">UIButton</string>
 						<string key="redoButton">UIButton</string>
 						<string key="toolsView">UIView</string>
 						<string key="undoButton">UIButton</string>
@@ -408,6 +502,14 @@
 						<object class="IBToOneOutletInfo" key="colorsView">
 							<string key="name">colorsView</string>
 							<string key="candidateClassName">ColorGridView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="mirrorXButton">
+							<string key="name">mirrorXButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="mirrorYButton">
+							<string key="name">mirrorYButton</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="redoButton">
 							<string key="name">redoButton</string>

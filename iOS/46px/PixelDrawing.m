@@ -16,7 +16,7 @@
 
 @implementation PixelDrawing
 
-@synthesize baseLayer, operationLayer, size, tools, tool, colors, color, directory, mirroring;
+@synthesize baseLayer, operationLayer, size, tools, tool, colors, color, directory, mirroringX, mirroringY, caption;
 
 - (id)initWithDirectory:(NSString*)d
 {
@@ -178,7 +178,7 @@
     CGContextRef b = CGLayerGetContext(baseLayer);
     CGContextClearRect(b, [op changeRegion]);
     CGContextDrawImage(b, [op changeRegion], [[op changed] CGImage]);
-    
+
     // push this operation back on the operations stack so we can undo it again!
     [operationStack addObject: op];
     
@@ -190,6 +190,18 @@
 {
     // okay—so each operation has a change region. Grab that portion of our image,
     // and save it so we can undo this change later.
+    if (mirroringY) {
+        CGRect o = [op changeRegion];
+        float flip = size.width / 2;
+        o.origin.x = flip + (flip - (o.origin.x + o.size.width));
+        [op setChangeRegion: CGRectUnion([op changeRegion], o)];
+    }
+    if (mirroringX) {
+        CGRect o = [op changeRegion];
+        float flip = size.height / 2;
+        o.origin.y = flip + (flip - (o.origin.y + o.size.height));
+        [op setChangeRegion: CGRectUnion([op changeRegion], o)];
+    }
     
     [op setOriginal: UIImageFromLayer(baseLayer, [op changeRegion])];
     [UIImagePNGRepresentation([op original]) writeToFile:@"/test.png" atomically:YES];
@@ -197,10 +209,26 @@
     // flatten the operationLayer onto the baseLayer
     CGContextRef b = CGLayerGetContext(baseLayer);
     CGContextDrawLayerAtPoint(b, CGPointZero, operationLayer);
-    if (mirroring) {
+    if (mirroringY) {
         CGContextSaveGState(b);
-        CGContextScaleCTM(b, -1, 1);
         CGContextTranslateCTM(b, size.width, 0);
+        CGContextScaleCTM(b, -1, 1);
+        CGContextDrawLayerAtPoint(b, CGPointZero, operationLayer);
+        CGContextRestoreGState(b);
+    }
+    if (mirroringX) {
+        CGContextSaveGState(b);
+        CGContextTranslateCTM(b, 0, size.height);
+        CGContextScaleCTM(b, 1, -1);
+        CGContextDrawLayerAtPoint(b, CGPointZero, operationLayer);
+        CGContextRestoreGState(b);
+    }
+    if ((mirroringX) && (mirroringY)) {
+        CGContextSaveGState(b);
+        CGContextTranslateCTM(b, 0, size.height);
+        CGContextScaleCTM(b, 1, -1);
+        CGContextTranslateCTM(b, size.width, 0);
+        CGContextScaleCTM(b, -1, 1);
         CGContextDrawLayerAtPoint(b, CGPointZero, operationLayer);
         CGContextRestoreGState(b);
     }
@@ -230,6 +258,7 @@
         
     } else {
         UIImage * i = [UIImage imageWithContentsOfFile: [self imagePath]];
+        i = [UIImage imageWithCGImage:[i CGImage] scale:1 orientation:UIImageOrientationDownMirrored];
         if (i) return i;
     }
 

@@ -19,7 +19,6 @@
     
     NSMutableArray    * operationStack;
     NSMutableArray    * redoStack;
-    
 }
 
 @property (nonatomic, retain) NSMutableArray * tools;
@@ -28,10 +27,13 @@
 @property (nonatomic, retain) NSMutableArray * colors;
 @property (nonatomic, assign) UIColor * color;
 
+@property (nonatomic, retain) NSString * caption;
+
 @property (nonatomic, assign) CGLayerRef baseLayer;
 @property (nonatomic, assign) CGLayerRef operationLayer;
 @property (nonatomic, assign) CGSize size;
-@property (nonatomic, assign) BOOL mirroring;
+@property (nonatomic, assign) BOOL mirroringX;
+@property (nonatomic, assign) BOOL mirroringY;
 
 @property (nonatomic, retain) NSString * directory;
 
