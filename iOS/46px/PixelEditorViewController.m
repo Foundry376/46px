@@ -108,6 +108,27 @@
     [drawing save];
 }
 
+- (void)downloadAndAddImage:(NSString*)path
+{
+    ASIHTTPRequest * req = [[[ASIHTTPRequest alloc] initWithURL: [NSURL URLWithString: path]] autorelease];
+    [req setDelegate:self];
+    [req setDidFinishSelector:@selector(downloadAndAddImageFinished:)];
+    [req startAsynchronous];
+}
+
+- (void)downloadAndAddImageFinished:(ASIHTTPRequest*)req
+{
+    UIImage * i = [UIImage imageWithData: [req responseData]];
+    CGLayerRef r = [drawing baseLayer];
+    CGContextRef c = CGLayerGetContext(r);
+    CGContextSaveGState(c);
+    CGContextScaleCTM(c, 1, -1);
+    CGContextTranslateCTM(c, 0, -i.size.height);
+    CGContextDrawImage(c, CGRectMake(0, 0, [i size].width, [i size].height), [i CGImage]);
+    CGContextRestoreGState(c);
+    [canvasView setNeedsDisplay];
+}
+
 - (void)toolToggled:(UIButton*)toolButton
 {
     // deselect all the tool buttons
@@ -176,6 +197,6 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-	return YES;
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 @end

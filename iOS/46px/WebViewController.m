@@ -33,9 +33,14 @@
     [super viewDidUnload];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [webView reload];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-	return YES;
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
 - (void)dealloc 
@@ -48,20 +53,36 @@
 - (void)webViewDidFinishLoad:(UIWebView *)wv
 {
     self.navigationItem.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    if (editing) {
+        [wv stringByEvaluatingJavaScriptFromString:@"window.scrollTo(document.body.scrollWidth, document.body.scrollHeight);"];
+        editing = NO;
+    }
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     if ([[[request URL] scheme] isEqualToString:@"fortysix"]) {
         NSString * path = [[request URL] absoluteString];
-        NSString * threadID = [path substringFromIndex:[path rangeOfString:@"edit:"].location + 5];
+        
+        int lastDelimiter = [path rangeOfString:@"---" options:NSBackwardsSearch].location;
+        int prevDelimiter = [path rangeOfString:@"---" options:NSBackwardsSearch range:NSMakeRange(0, lastDelimiter)].location;
+        
+        NSString * threadID = [path substringFromIndex:lastDelimiter + 3];
+        NSString * sourceImageURL = [path substringWithRange:NSMakeRange(prevDelimiter + 3, lastDelimiter - (prevDelimiter + 3))];
+        if ([sourceImageURL rangeOfString:@"http://"].location == NSNotFound)   
+            sourceImageURL = [@"http://www.46px.com" stringByAppendingString:sourceImageURL];
         
         NSString * dir = [[APIConnector shared] pathForNewDrawing];
+        
         PixelDrawing * d = [[[PixelDrawing alloc] initWithSize:CGSizeMake(46, 46) andDirectory:dir] autorelease];
         [d setThreadID: [threadID intValue]];
         
         PixelEditorViewController * c = [[[PixelEditorViewController alloc] initWithDrawing:d andDelegate:self] autorelease];
         [self.navigationController pushViewController:c animated:YES];
+        if ([sourceImageURL length] > 0)
+            [c downloadAndAddImage: sourceImageURL];
+        
+        editing = YES;
         return NO;
     }
     return YES;

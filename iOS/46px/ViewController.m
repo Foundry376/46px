@@ -147,16 +147,12 @@
 }
 
 - (void)postSuccessDismissEditor:(NSString*)path
-{ 
-    [self.navigationController popToRootViewControllerAnimated: YES];
-    [self performSelector:@selector(postSuccessVisitThread:) withObject:path afterDelay:0.8];
-}
-
-- (void)postSuccessVisitThread:(NSString*)path
-{
-    WebViewController * wvc = [[WebViewController alloc] initWithPage: [NSURL URLWithString: path]];
-    [self.navigationController pushViewController:wvc animated: YES];
-    [wvc autorelease];        
+{   
+    NSArray * vcs = [self.navigationController viewControllers];
+    if ([[vcs objectAtIndex: [vcs count] - 2] isKindOfClass:[WebViewController class]])
+        [self.navigationController popViewControllerAnimated:YES];
+    else
+        [self.navigationController popToRootViewControllerAnimated: YES];
 }
 
 - (IBAction)loginPressed:(id)sender 
@@ -208,7 +204,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return YES;
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
 - (void)dealloc 
