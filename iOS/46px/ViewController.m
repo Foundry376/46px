@@ -190,16 +190,22 @@
 
 - (void)updateUser:(NSNotification*)notif
 {
-    NSString * urlString = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture", [[FacebookManager sharedManager] facebookUserID]];
-    NSData *imgUrl = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
-    [profilePicture setImage:[UIImage imageWithData:imgUrl]];
-    
     NSDictionary * userDict =[[FacebookManager sharedManager] facebookUserDictionary];
-    NSLog(@"%@", [userDict description]);
-    NSString * fn = [userDict objectForKey:@"first_name"];
-    NSString * ln = [userDict objectForKey:@"last_name"];
+    if (userDict) {
+        NSString * urlString = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture", [[FacebookManager sharedManager] facebookUserID]];
+        NSData *imgUrl = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+        [profilePicture setImage:[UIImage imageWithData:imgUrl]];
     
-    [userName setText: [NSString stringWithFormat:@"%@ %@", fn, ln]];
+        NSLog(@"%@", [userDict description]);
+        NSString * fn = [userDict objectForKey:@"first_name"];
+        NSString * ln = [userDict objectForKey:@"last_name"];
+        
+        [userName setText: [NSString stringWithFormat:@"%@ %@", fn, ln]];
+        [loginButton setHidden: YES];
+        
+    } else {
+        [loginButton setHidden: NO];
+    }
 }
 
 - (void)manageDrafts 

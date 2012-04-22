@@ -17,6 +17,7 @@
     self = [super init];
     if (self) {
         url = [u retain];
+        self.title = @"Loading...";
     }
     return self;
 }
@@ -53,7 +54,12 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)wv
 {
-    self.navigationItem.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    NSString * pageTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    if ([pageTitle length] > 0)
+        self.navigationItem.title = pageTitle;
+    else
+        self.navigationItem.title = @"Thread";
+    
     if (editing) {
         [wv stringByEvaluatingJavaScriptFromString:@"window.scrollTo(document.body.scrollWidth, document.body.scrollHeight);"];
         editing = NO;

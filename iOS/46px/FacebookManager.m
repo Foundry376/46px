@@ -95,6 +95,7 @@ static FacebookManager * sharedManager;
     [defaults synchronize];
     
     [self.facebook requestWithGraphPath:@"/me" andDelegate:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateUser" object:nil];
 }
 
 - (void)fbDidLogout {
@@ -109,6 +110,8 @@ static FacebookManager * sharedManager;
         [facebookUserDictionary release];
         facebookUserDictionary = nil;
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateUser" object:nil];
 }
 
 #pragma mark FBRequestDelegate
@@ -133,7 +136,7 @@ static FacebookManager * sharedManager;
     [defaults setObject:facebookUserDictionary forKey:@"facebookUserDictionary"];
     [defaults synchronize];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshUser" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateUser" object:nil];
 }
 
 - (NSString*)facebookUserID

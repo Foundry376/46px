@@ -40,7 +40,11 @@
     bbh = [bbh stretchableImageWithLeftCapWidth:7 topCapHeight:7];
     bbdh = [bbdh stretchableImageWithLeftCapWidth:7 topCapHeight:7];
     
-    [[self titleLabel] setFont:[UIFont boldSystemFontOfSize: 22]];
+    if (self.frame.size.width > 80)
+        [[self titleLabel] setFont:[UIFont boldSystemFontOfSize: 22]];
+    else
+        [[self titleLabel] setFont:[UIFont boldSystemFontOfSize: 15]];
+    
     [self setBackgroundImage:bb forState:UIControlStateNormal];
     [self setBackgroundImage:bbd forState:UIControlStateSelected];
     [self setBackgroundImage:bbh forState:UIControlStateHighlighted];
