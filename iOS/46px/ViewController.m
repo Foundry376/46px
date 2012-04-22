@@ -51,6 +51,10 @@
     
     // Listen for images being posted successfully
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postSuccess:) name:@"PostSuccess" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUser:) name:@"UpdateUser" object:nil];
+    
+    // update the interface to show the currently logged in user (if there is one)
+    [self updateUser: nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -93,8 +97,7 @@
     
     // Load in facebook user information
     Facebook * facebook = [FacebookManager sharedManager].facebook;
-    [facebook requestWithGraphPath:@"me/picture" andDelegate:self];
-    [facebook requestWithGraphPath:@"me/name" andDelegate:self];
+    [facebook requestWithGraphPath:@"me" andDelegate:self];
     [webView reload];
     
 }
@@ -183,38 +186,24 @@
         }
         [self manageDrafts];
     }
-    
 }
 
-- (void)request:(FBRequest *)request didFailWithError:(NSError *)error
+- (void)updateUser:(NSNotification*)notif
 {
-    NSLog(@"Requestdidfail");
-    NSLog(@"error:%@",[error localizedDescription]);
+    NSString * urlString = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture", [[FacebookManager sharedManager] facebookUserID]];
+    NSData *imgUrl = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+    [profilePicture setImage:[UIImage imageWithData:imgUrl]];
+    
+    NSDictionary * userDict =[[FacebookManager sharedManager] facebookUserDictionary];
+    NSLog(@"%@", [userDict description]);
+    NSString * fn = [userDict objectForKey:@"first_name"];
+    NSString * ln = [userDict objectForKey:@"last_name"];
+    
+    [userName setText: [NSString stringWithFormat:@"%@ %@", fn, ln]];
 }
 
-- (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response
-{
-    NSString * urlString = [[response URL]absoluteString];
-    // This is a picture
-    if (!([request.url rangeOfString:@"me/picture"].location == NSNotFound)) {
-        NSData *imgUrl = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
-        [profilePicture setImage:[UIImage imageWithData:imgUrl]];
-    } 
-    // This is a name
-    else if (!([request.url rangeOfString:@"me/firstname"].location == NSNotFound)) {
-        userName.text = urlString;
-    }
-    
-}
--(void)request:(FBRequest *)request didLoad:(id)result
-{
-    NSDictionary * userDict =(NSDictionary*)result;
-    [userDict objectForKey:@"first_name"];
-    
-}
-
-- (void)manageDrafts {
-    
+- (void)manageDrafts 
+{    
     NSMutableArray *buttonArray = [NSMutableArray arrayWithCapacity:6];
     [buttonArray addObject:draftOne];
     [buttonArray addObject:draftTwo];

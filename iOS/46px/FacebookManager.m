@@ -14,7 +14,7 @@ static FacebookManager * sharedManager;
 @implementation FacebookManager
 
 @synthesize facebook;
-@synthesize facebookUserID;
+@synthesize facebookUserDictionary;
 
 #pragma mark Singleton Implementation
 
@@ -74,9 +74,11 @@ static FacebookManager * sharedManager;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         if ([defaults objectForKey:@"FBAccessTokenKey"] 
             && [defaults objectForKey:@"FBExpirationDateKey"]) {
-            facebookUserID = [defaults objectForKey:@"facebookUserID"];
+            facebookUserDictionary = [defaults objectForKey:@"facebookUserDictionary"];
             facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
             facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshUser" object:nil];
         }
 
     }
@@ -85,15 +87,14 @@ static FacebookManager * sharedManager;
 
 #pragma mark FBSessionsDelegate
 
-- (void)fbDidLogin {
+- (void)fbDidLogin 
+{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];
-    [defaults setObject:facebookUserID forKey:@"facebookUserID"];
     [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
     [defaults synchronize];
     
     [self.facebook requestWithGraphPath:@"/me" andDelegate:self];
-    
 }
 
 - (void)fbDidLogout {
@@ -102,11 +103,11 @@ static FacebookManager * sharedManager;
     if ([defaults objectForKey:@"FBAccessTokenKey"]) {
         [defaults removeObjectForKey:@"FBAccessTokenKey"];
         [defaults removeObjectForKey:@"FBExpirationDateKey"];
-        [defaults removeObjectForKey:@"facebookUserID"];
+        [defaults removeObjectForKey:@"facebookUserDictionary"];
         [defaults synchronize];
         
-        [facebookUserID release];
-        facebookUserID = nil;
+        [facebookUserDictionary release];
+        facebookUserDictionary = nil;
     }
 }
 
@@ -125,16 +126,20 @@ static FacebookManager * sharedManager;
 
 - (void)request:(FBRequest *)request didLoad:(id)result
 {
-    NSDictionary * userDict = (NSDictionary*) result;
-    
-    facebookUserID = [[userDict objectForKey:@"id"] retain];
-    [[APIConnector shared] updateUserTableWithUserID: facebookUserID];
+    facebookUserDictionary = [(NSDictionary*) result retain];
+    [[APIConnector shared] updateUserTableWithUserID: [self facebookUserID]];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:facebookUserID forKey:@"facebookUserID"];
+    [defaults setObject:facebookUserDictionary forKey:@"facebookUserDictionary"];
     [defaults synchronize];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshUser" object:nil];
 }
 
+- (NSString*)facebookUserID
+{
+    return [facebookUserDictionary objectForKey: @"id"];
+}
 
 - (void)login
 {

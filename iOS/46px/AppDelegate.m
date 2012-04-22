@@ -95,22 +95,4 @@
     return [[FacebookManager sharedManager].facebook handleOpenURL:url]; 
 }
 
-- (void)fbDidLogin {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[[FacebookManager sharedManager].facebook accessToken] forKey:@"FBAccessTokenKey"];
-    [defaults setObject:[[FacebookManager sharedManager].facebook expirationDate] forKey:@"FBExpirationDateKey"];
-    [defaults synchronize];
-    
-}
-
-- (void) fbDidLogout {
-    // Remove saved authorization information if it exists
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults objectForKey:@"FBAccessTokenKey"]) {
-        [defaults removeObjectForKey:@"FBAccessTokenKey"];
-        [defaults removeObjectForKey:@"FBExpirationDateKey"];
-        [defaults synchronize];
-    }
-}
-
 @end

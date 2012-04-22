@@ -14,7 +14,7 @@
     Facebook * facebook;
 }
 
-@property (nonatomic, retain) NSString * facebookUserID;
+@property (nonatomic, retain) NSDictionary * facebookUserDictionary;
 @property (nonatomic, retain, readonly) Facebook * facebook;
 
 - (void)login;
@@ -31,5 +31,7 @@
 - (id)autorelease;
 - (BOOL)isLoggedIn;
 - (void)updateUserTableWithUserID:(NSString*)userID;
+
+- (NSString*)facebookUserID;
 
 @end

@@ -129,7 +129,6 @@ static APIConnector * sharedConnector;
 
 - (void)updateUserTableWithUserID:(NSString *)userID
 {
-
     NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.46px.com/updateUser.php?accessToken=%@&id=%@",[FacebookManager sharedManager].facebook.accessToken, userID]];
     ASIHTTPRequest * req = [[[ASIHTTPRequest alloc] initWithURL: url] autorelease];
     [req setUserAgent:@"46px App"];
