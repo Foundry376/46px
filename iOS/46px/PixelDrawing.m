@@ -61,9 +61,9 @@
     
     // setup some colors
     colors = [[NSMutableArray alloc] init];
-    [colors addObject: [UIColor blackColor]];
-    [colors addObject: [UIColor grayColor]];
-    [colors addObject: [UIColor whiteColor]];
+    [colors addObject: [UIColor colorWithRed:0 green:0 blue:0 alpha:1]];
+    [colors addObject: [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1]];
+    [colors addObject: [UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
     
     // populate a ton of colors... algorithmically
     float hStep = 1.0 / 10.0;
@@ -150,6 +150,9 @@
 
 - (void)performUndo
 {
+    if (![self canUndo])
+        return;
+    
     PixelEditOperation * op = [operationStack lastObject];
     [operationStack removeLastObject];
     
@@ -178,6 +181,9 @@
 
 - (void)performRedo
 {
+    if (![self canRedo])
+        return;
+        
     PixelEditOperation * op = [redoStack lastObject];
     [redoStack removeLastObject];
     

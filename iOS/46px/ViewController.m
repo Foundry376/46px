@@ -37,7 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSString *urlAddress = @"http://46px.com/test_pagenums.php";
+    NSString *urlAddress = @"http://46px.com/index.php";
     
     // Create a URL object.
     NSURL *url = [NSURL URLWithString:urlAddress];

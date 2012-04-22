@@ -105,7 +105,7 @@ static APIConnector * sharedConnector;
 
 - (void)postDrawing:(PixelDrawing*)d
 {
-    NSURL * url = [NSURL URLWithString:@"http://46px.com/testForm.php"];
+    NSURL * url = [NSURL URLWithString:@"http://46px.com/upload.php"];
     
     ASIFormDataRequest * req = [[[ASIFormDataRequest alloc] initWithURL: url] autorelease];
     NSLog(@"%@", [[[FacebookManager sharedManager] facebook] accessToken]);

@@ -30,7 +30,25 @@
 		4382794A15429701002E0A53 /* PixelEditOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4382794915429701002E0A53 /* PixelEditOperation.m */; };
 		4382794C15429CF4002E0A53 /* CGHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4382794B15429CF4002E0A53 /* CGHelpers.m */; };
 		43827950154310F7002E0A53 /* PenPixelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4382794F154310F7002E0A53 /* PenPixelTool.m */; };
-		43827953154312E0002E0A53 /* tool-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 43827952154312E0002E0A53 /* tool-default.png */; };
+		43C32CFC15446200006E6895 /* OrangeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C32CFB15446200006E6895 /* OrangeButton.m */; };
+		43C32D0015446257006E6895 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32CFD15446257006E6895 /* background.png */; };
+		43C32D0115446257006E6895 /* button_background_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32CFE15446257006E6895 /* button_background_down.png */; };
+		43C32D0215446257006E6895 /* button_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32CFF15446257006E6895 /* button_background.png */; };
+		43C32D0415446360006E6895 /* button_background_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D0315446360006E6895 /* button_background_highlighted.png */; };
+		43C32D0615446498006E6895 /* home_sidebar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D0515446498006E6895 /* home_sidebar_background.png */; };
+		43C32D0A15446592006E6895 /* icon_comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D0715446592006E6895 /* icon_comments.png */; };
+		43C32D0B15446592006E6895 /* icon_draw.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D0815446592006E6895 /* icon_draw.png */; };
+		43C32D0C15446592006E6895 /* icon_like.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D0915446592006E6895 /* icon_like.png */; };
+		43C32D0E15446639006E6895 /* home_gallery_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D0D15446639006E6895 /* home_gallery_background.png */; };
+		43C32D111544670C006E6895 /* icon_flip_x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D0F1544670C006E6895 /* icon_flip_x.png */; };
+		43C32D121544670C006E6895 /* icon_flip_y.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D101544670C006E6895 /* icon_flip_y.png */; };
+		43C32D1515446752006E6895 /* icon_redo.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D1315446752006E6895 /* icon_redo.png */; };
+		43C32D1615446752006E6895 /* icon_undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D1415446752006E6895 /* icon_undo.png */; };
+		43C32D181544689D006E6895 /* drawing_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D171544689D006E6895 /* drawing_background.png */; };
+		43C32D1A154475C8006E6895 /* button_background_down+highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D19154475C8006E6895 /* button_background_down+highlighted.png */; };
+		43C32D1C1544769C006E6895 /* tool-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D1B1544769C006E6895 /* tool-default.png */; };
+		43C32D1E15447AFB006E6895 /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D1D15447AFA006E6895 /* icon72.png */; };
+		43C32D2015447AFD006E6895 /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D1F15447AFD006E6895 /* icon144.png */; };
 		43EB9CD015437F980040C04E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB9CCF15437F980040C04E /* MobileCoreServices.framework */; };
 		43EB9CD215437F9C0040C04E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB9CD115437F9C0040C04E /* CFNetwork.framework */; };
 		43EB9CD415437FAB0040C04E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB9CD315437FAB0040C04E /* SystemConfiguration.framework */; };
@@ -110,7 +128,26 @@
 		4382794D15429CFC002E0A53 /* CGHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGHelpers.h; sourceTree = "<group>"; };
 		4382794E154310F7002E0A53 /* PenPixelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PenPixelTool.h; sourceTree = "<group>"; };
 		4382794F154310F7002E0A53 /* PenPixelTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PenPixelTool.m; sourceTree = "<group>"; };
-		43827952154312E0002E0A53 /* tool-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tool-default.png"; sourceTree = "<group>"; };
+		43C32CFA15446200006E6895 /* OrangeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrangeButton.h; sourceTree = "<group>"; };
+		43C32CFB15446200006E6895 /* OrangeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrangeButton.m; sourceTree = "<group>"; };
+		43C32CFD15446257006E6895 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Resources/background.png; sourceTree = SOURCE_ROOT; };
+		43C32CFE15446257006E6895 /* button_background_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_background_down.png; path = Resources/button_background_down.png; sourceTree = SOURCE_ROOT; };
+		43C32CFF15446257006E6895 /* button_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_background.png; path = Resources/button_background.png; sourceTree = SOURCE_ROOT; };
+		43C32D0315446360006E6895 /* button_background_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_background_highlighted.png; path = Resources/button_background_highlighted.png; sourceTree = SOURCE_ROOT; };
+		43C32D0515446498006E6895 /* home_sidebar_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home_sidebar_background.png; path = Resources/home_sidebar_background.png; sourceTree = SOURCE_ROOT; };
+		43C32D0715446592006E6895 /* icon_comments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_comments.png; path = Resources/icon_comments.png; sourceTree = SOURCE_ROOT; };
+		43C32D0815446592006E6895 /* icon_draw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_draw.png; path = Resources/icon_draw.png; sourceTree = SOURCE_ROOT; };
+		43C32D0915446592006E6895 /* icon_like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_like.png; path = Resources/icon_like.png; sourceTree = SOURCE_ROOT; };
+		43C32D0D15446639006E6895 /* home_gallery_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home_gallery_background.png; path = Resources/home_gallery_background.png; sourceTree = SOURCE_ROOT; };
+		43C32D0F1544670C006E6895 /* icon_flip_x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_flip_x.png; path = Resources/icon_flip_x.png; sourceTree = SOURCE_ROOT; };
+		43C32D101544670C006E6895 /* icon_flip_y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_flip_y.png; path = Resources/icon_flip_y.png; sourceTree = SOURCE_ROOT; };
+		43C32D1315446752006E6895 /* icon_redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_redo.png; path = Resources/icon_redo.png; sourceTree = SOURCE_ROOT; };
+		43C32D1415446752006E6895 /* icon_undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_undo.png; path = Resources/icon_undo.png; sourceTree = SOURCE_ROOT; };
+		43C32D171544689D006E6895 /* drawing_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = drawing_background.png; path = Resources/drawing_background.png; sourceTree = SOURCE_ROOT; };
+		43C32D19154475C8006E6895 /* button_background_down+highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_background_down+highlighted.png"; path = "Resources/button_background_down+highlighted.png"; sourceTree = SOURCE_ROOT; };
+		43C32D1B1544769C006E6895 /* tool-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tool-default.png"; path = "Resources/tool-default.png"; sourceTree = SOURCE_ROOT; };
+		43C32D1D15447AFA006E6895 /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72.png; sourceTree = "<group>"; };
+		43C32D1F15447AFD006E6895 /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
 		43EB9CCF15437F980040C04E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		43EB9CD115437F9C0040C04E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		43EB9CD315437FAB0040C04E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -208,6 +245,8 @@
 		4382790115429010002E0A53 = {
 			isa = PBXGroup;
 			children = (
+				43C32D1F15447AFD006E6895 /* icon144.png */,
+				43C32D1D15447AFA006E6895 /* icon72.png */,
 				43EB9D81154399DE0040C04E /* QuartzCore.framework */,
 				43EB9D7B154390A30040C04E /* libxml2.dylib */,
 				43EB9CD515437FB10040C04E /* libz.dylib */,
@@ -249,6 +288,8 @@
 				43EB9D8715439B900040C04E /* WebViewController.h */,
 				43EB9D8815439B900040C04E /* WebViewController.m */,
 				43EB9D8915439B900040C04E /* WebViewController.xib */,
+				43C32CFA15446200006E6895 /* OrangeButton.h */,
+				43C32CFB15446200006E6895 /* OrangeButton.m */,
 				4382792215429010002E0A53 /* ViewController.h */,
 				4382792315429010002E0A53 /* ViewController.m */,
 				4382792515429010002E0A53 /* ViewController.xib */,
@@ -303,11 +344,26 @@
 		43827951154312E0002E0A53 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				43C32D0715446592006E6895 /* icon_comments.png */,
+				43C32D0815446592006E6895 /* icon_draw.png */,
+				43C32D0915446592006E6895 /* icon_like.png */,
+				43C32CFD15446257006E6895 /* background.png */,
+				43C32D0D15446639006E6895 /* home_gallery_background.png */,
+				43C32D0515446498006E6895 /* home_sidebar_background.png */,
+				43C32D19154475C8006E6895 /* button_background_down+highlighted.png */,
+				43C32CFE15446257006E6895 /* button_background_down.png */,
+				43C32CFF15446257006E6895 /* button_background.png */,
+				43C32D171544689D006E6895 /* drawing_background.png */,
+				43C32D0315446360006E6895 /* button_background_highlighted.png */,
 				4318A0441543152C0004540E /* redo.png */,
 				4318A0451543152C0004540E /* undo.png */,
 				43EB9D7D154393280040C04E /* tool-line.png */,
+				43C32D1B1544769C006E6895 /* tool-default.png */,
 				43EB9D7E154393280040C04E /* tool-paintbucket.png */,
-				43827952154312E0002E0A53 /* tool-default.png */,
+				43C32D0F1544670C006E6895 /* icon_flip_x.png */,
+				43C32D101544670C006E6895 /* icon_flip_y.png */,
+				43C32D1315446752006E6895 /* icon_redo.png */,
+				43C32D1415446752006E6895 /* icon_undo.png */,
 				4318A052154338D50004540E /* missing.png */,
 			);
 			path = Resources;
@@ -481,7 +537,6 @@
 				4382791B15429010002E0A53 /* InfoPlist.strings in Resources */,
 				4382792715429010002E0A53 /* ViewController.xib in Resources */,
 				4382793E154295AB002E0A53 /* PixelEditorViewController.xib in Resources */,
-				43827953154312E0002E0A53 /* tool-default.png in Resources */,
 				4318A0461543152C0004540E /* redo.png in Resources */,
 				4318A0471543152C0004540E /* undo.png in Resources */,
 				4318A053154338D50004540E /* missing.png in Resources */,
@@ -491,6 +546,24 @@
 				43EB9D7F154393280040C04E /* tool-line.png in Resources */,
 				43EB9D80154393280040C04E /* tool-paintbucket.png in Resources */,
 				43EB9D8B15439B900040C04E /* WebViewController.xib in Resources */,
+				43C32D0015446257006E6895 /* background.png in Resources */,
+				43C32D0115446257006E6895 /* button_background_down.png in Resources */,
+				43C32D0215446257006E6895 /* button_background.png in Resources */,
+				43C32D0415446360006E6895 /* button_background_highlighted.png in Resources */,
+				43C32D0615446498006E6895 /* home_sidebar_background.png in Resources */,
+				43C32D0A15446592006E6895 /* icon_comments.png in Resources */,
+				43C32D0B15446592006E6895 /* icon_draw.png in Resources */,
+				43C32D0C15446592006E6895 /* icon_like.png in Resources */,
+				43C32D0E15446639006E6895 /* home_gallery_background.png in Resources */,
+				43C32D111544670C006E6895 /* icon_flip_x.png in Resources */,
+				43C32D121544670C006E6895 /* icon_flip_y.png in Resources */,
+				43C32D1515446752006E6895 /* icon_redo.png in Resources */,
+				43C32D1615446752006E6895 /* icon_undo.png in Resources */,
+				43C32D181544689D006E6895 /* drawing_background.png in Resources */,
+				43C32D1A154475C8006E6895 /* button_background_down+highlighted.png in Resources */,
+				43C32D1C1544769C006E6895 /* tool-default.png in Resources */,
+				43C32D1E15447AFB006E6895 /* icon72.png in Resources */,
+				43C32D2015447AFD006E6895 /* icon144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +614,7 @@
 				43EB9D5E15438FEE0040C04E /* ASIOAuthParameter.m in Sources */,
 				43EB9D7515438FEE0040C04E /* Reachability.m in Sources */,
 				43EB9D8A15439B900040C04E /* WebViewController.m in Sources */,
+				43C32CFC15446200006E6895 /* OrangeButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,7 @@
 
 #import "ColorGridView.h"
 
-#define COLOR_CELL_SIZE 45
+#define COLOR_CELL_SIZE 42
 #define COLOR_CELL_PADDING 6
 
 @implementation ColorGridView

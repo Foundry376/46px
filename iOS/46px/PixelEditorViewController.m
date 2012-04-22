@@ -11,6 +11,7 @@
 #import "ASIFormDataRequest.h"
 #import "ASIHTTPRequest.h"
 #import "PostViewController.h"
+#import "OrangeButton.h"
 
 #define TOOL_PADDING 5
 
@@ -46,21 +47,23 @@
     [self.drawing setupForEditing];
     
     // attach the tool "buttons" to the sidebar so we can have lots of tools
-    CGRect r = CGRectMake(0, 0, 65, 65);
+    CGRect r = CGRectMake(4, TOOL_PADDING, 60, 60);
     for (PixelTool * t in self.drawing.tools) {
-        UIButton * b = [[[UIButton alloc] initWithFrame: r] autorelease];
+        OrangeButton * b = [[[OrangeButton alloc] initWithFrame: r] autorelease];
         [b setImage:[t icon] forState:UIControlStateNormal];
         [b setTag: [self.drawing.tools indexOfObject: t]];
         [b addTarget:self action:@selector(toolToggled:) forControlEvents:UIControlEventTouchUpInside];
+        [b setImageEdgeInsets: UIEdgeInsetsMake(5, 5, 10, 10)];
+        [b setup];
         
-        if (self.drawing.tool = t)
+        if (self.drawing.tool == t)
             [b setSelected: YES];
             
         [toolsView addSubview: b];
         
         r.origin.x += r.size.width + TOOL_PADDING;
         if (r.origin.x + r.size.width > toolsView.bounds.size.width) {
-            r.origin.x = TOOL_PADDING;
+            r.origin.x = 4;
             r.origin.y += r.size.height + TOOL_PADDING;
         }
     }
@@ -74,6 +77,8 @@
     // setup the color view for the first time
     [colorsView setDrawing: self.drawing];
     [colorsView setNeedsDisplay];
+    [undoButton setEnabled: [self.drawing canUndo]];
+    [redoButton setEnabled: [self.drawing canRedo]];
     
     // subscribe to know when the drawing changes so we can update the interface
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(drawingModified) name:@"PixelDrawingChanged" object:nil];
