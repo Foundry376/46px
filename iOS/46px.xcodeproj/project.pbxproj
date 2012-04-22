@@ -171,6 +171,8 @@
 		813E1AB6154373010004FBB5 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		813E1AB7154373010004FBB5 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		813E1AB8154373010004FBB5 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		813E1AD515438EAA0004FBB5 /* EllipseTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EllipseTool.h; sourceTree = "<group>"; };
+		813E1AD615438EAA0004FBB5 /* EllipseTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EllipseTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +258,8 @@
 				43EB9CEC15438DE80040C04E /* ShapeTool.m */,
 				4312D494154374ED00D92C6C /* LinePixelTool.h */,
 				4312D495154374ED00D92C6C /* LinePixelTool.m */,
+				813E1AD515438EAA0004FBB5 /* EllipseTool.h */,
+				813E1AD615438EAA0004FBB5 /* EllipseTool.m */,
 				4312D490154374E500D92C6C /* PaintBucketPixelTool.h */,
 				4312D491154374E500D92C6C /* PaintBucketPixelTool.m */,
 				4382794E154310F7002E0A53 /* PenPixelTool.h */,
