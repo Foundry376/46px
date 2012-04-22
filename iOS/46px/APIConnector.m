@@ -129,11 +129,13 @@ static APIConnector * sharedConnector;
 
 - (void)updateUserTableWithUserID:(NSString *)userID
 {
-    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"www.46px.com/updateUser.php?accessToken=%@&id=%@",[FacebookManager sharedManager].facebook.accessToken,userID]];
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.46px.com/updateUser.php?accessToken=%@&id=%@",[FacebookManager sharedManager].facebook.accessToken, userID]];
     
     ASIHTTPRequest * req = [[[ASIHTTPRequest alloc] initWithURL: url] autorelease];
     
     [req setUserAgent:@"46px App"];
+    [req setDidFinishSelector:@selector(userUpdateFinished:)];
+    [req setDidFailSelector:@selector(userUpdateFailed:)];
     [req setDelegate: self];
     [req startAsynchronous];
     
@@ -150,9 +152,20 @@ static APIConnector * sharedConnector;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PostSuccess" object: [request responseString]];
 }
 
+- (void)userUpdateFinished:(ASIHTTPRequest *)request
+{
+    NSLog(@"request response:%@",[request responseString]);
+}
+
+- (void)userUpdateFailed:(ASIHTTPRequest *)request
+{
+    NSLog(@"request response:%@",[[request error] localizedDescription]);
+}
+
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PostEnded" object: [request error]];
+    NSLog(@"request error: %@", [[request error]localizedDescription]);
 }
 
 @end
