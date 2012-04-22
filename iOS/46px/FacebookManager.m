@@ -75,10 +75,6 @@ static FacebookManager * sharedManager;
             facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
             facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
         }
-        /*
-        if (![facebook isSessionValid]) {
-            [facebook authorize:nil];
-        }*/
 
     }
     return self;
@@ -90,6 +86,8 @@ static FacebookManager * sharedManager;
     [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];
     [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
     [defaults synchronize];
+    
+    
     
 }
 
@@ -106,7 +104,11 @@ static FacebookManager * sharedManager;
 - (void)login
 {
     if (![facebook isSessionValid]) {
-        [facebook authorize:nil];
+        NSArray *permissions = [[NSArray alloc] initWithObjects:
+                                @"user_photos", 
+                                @"read_stream",
+                                nil];
+        [facebook authorize:permissions];
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Hmm..."
@@ -135,6 +137,16 @@ static FacebookManager * sharedManager;
                                               cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
+}
+
+- (BOOL)isLoggedIn
+{
+    return [facebook isSessionValid];
+}
+
+- (void)updateUserTable
+{
+    
 }
 
 

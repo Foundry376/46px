@@ -26,8 +26,10 @@
 @synthesize draftFive;
 @synthesize draftSix;
 @synthesize profilePicture;
+@synthesize userName;
 @synthesize loginButton;
 @synthesize logoutButton;
+@synthesize userPostCount;
 
 - (void)viewDidLoad
 {
@@ -43,13 +45,16 @@
     // Load the request in the UIWebView.
     [webView loadRequest:requestObj];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidEnterForeground)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    Facebook *facebook = [FacebookManager sharedManager].facebook;
-    [facebook requestWithGraphPath:@"me/picture" andDelegate:self];
-    
     NSMutableArray *buttonArray = [NSMutableArray arrayWithCapacity:6];
     [buttonArray addObject:draftOne];
     [buttonArray addObject:draftTwo];
@@ -85,8 +90,16 @@
     }
 }
 
+- (void)applicationDidEnterForeground
+{
+    NSLog(@"DidReturn");
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
+    Facebook * facebook = [FacebookManager sharedManager].facebook;
+    [facebook requestWithGraphPath:@"me/picture" andDelegate:self];
+    [facebook requestWithGraphPath:@"me/name" andDelegate:self];
 }
 
 - (IBAction)start:(id)sender
@@ -137,10 +150,26 @@
     [[FacebookManager sharedManager] logout];
 }
 
-- (void)request:(FBRequest *)request didLoad:(id)result {
-    profilePicture.image = [UIImage imageWithData:result];
+
+- (void)request:(FBRequest *)request didFailWithError:(NSError *)error
+{
+    NSLog(@"Requestdidfail");
 }
 
+- (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response
+{
+    NSString * urlString = [[response URL]absoluteString];
+    // This is a picture
+    if (!([request.url rangeOfString:@"me/picture"].location == NSNotFound)) {
+        NSData *imgUrl = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+        [profilePicture setImage:[UIImage imageWithData:imgUrl]];
+    } 
+    // This is a name
+    else if (!([request.url rangeOfString:@"me/firstname"].location == NSNotFound)) {
+        userName.text = urlString;
+    }
+    
+}
 - (void)viewDidUnload
 {
     [self setDraftOne:nil];
@@ -152,6 +181,8 @@
     [self setProfilePicture:nil];
     [self setLoginButton:nil];
     [self setLogoutButton:nil];
+    [self setUserName:nil];
+    [self setUserPostCount:nil];
     [super viewDidUnload];
 }
 
@@ -170,6 +201,8 @@
     [profilePicture release];
     [loginButton release];
     [logoutButton release];
+    [userName release];
+    [userPostCount release];
     [super dealloc];
 }
 @end

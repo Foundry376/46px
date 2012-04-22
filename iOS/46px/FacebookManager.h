@@ -28,5 +28,7 @@
 - (unsigned)retainCount;
 - (oneway void)release;
 - (id)autorelease;
+- (BOOL)isLoggedIn;
+- (void)updateUserTable;
 
 @end
