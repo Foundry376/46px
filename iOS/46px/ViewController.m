@@ -181,7 +181,7 @@
     APIConnector *curDrafts = [APIConnector shared];
     
     if ([[curDrafts drafts] count] != 0) {
-        for (size_t i = 0; i < [[curDrafts drafts] count]; ++i) {
+        for (int i = [[curDrafts drafts] count] - 1; [[curDrafts drafts] count] != 0; i--) {
             [curDrafts removeFromCache:[[curDrafts drafts] objectAtIndex:i]];
         }
         [self manageDrafts];
