@@ -124,7 +124,11 @@
     
     if ([[NSFileManager defaultManager] fileExistsAtPath: [self imagePath]]) {
         UIImage * i = [UIImage imageWithContentsOfFile: [self imagePath]];
+        CGContextSaveGState(bc);
+        CGContextScaleCTM(bc, 1, -1);
+        CGContextTranslateCTM(bc, 0, -[i size].height);
         CGContextDrawImage(bc, CGRectMake(0, 0, [i size].width, [i size].height), [i CGImage]);
+        CGContextRestoreGState(bc);
     }
 }
 
