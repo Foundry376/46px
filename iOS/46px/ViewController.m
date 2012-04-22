@@ -55,39 +55,48 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSMutableArray *buttonArray = [NSMutableArray arrayWithCapacity:6];
-    [buttonArray addObject:draftOne];
-    [buttonArray addObject:draftTwo];
-    [buttonArray addObject:draftThree];
-    [buttonArray addObject:draftFour];
-    [buttonArray addObject:draftFive];
-    [buttonArray addObject:draftSix];
-    size_t increment = 0;
+//    NSMutableArray *buttonArray = [NSMutableArray arrayWithCapacity:6];
+//    [buttonArray addObject:draftOne];
+//    [buttonArray addObject:draftTwo];
+//    [buttonArray addObject:draftThree];
+//    [buttonArray addObject:draftFour];
+//    [buttonArray addObject:draftFive];
+//    [buttonArray addObject:draftSix];
+//    size_t increment = 0;
+//    
+//    UIButton *curButton;
+//    
+//    for (size_t i = 0; i < [[[APIConnector shared] drafts] count]; ++i) {
+//        if (i >= 6) {
+//            break;
+//        }
+//        increment++;
+//        PixelDrawing *d = [[[APIConnector shared] drafts] objectAtIndex:i];
+//        
+//        curButton = [buttonArray objectAtIndex:i];
+//        
+//        curButton.layer.cornerRadius = 9;
+//        curButton.clipsToBounds = YES;
+//        
+//        curButton.layer.borderColor = [[UIColor grayColor] CGColor];
+//        curButton.layer.borderWidth = .5;
+//        [curButton setImage:[d image] forState:UIControlStateNormal];
+//        [curButton setImage:[d image] forState:UIControlStateHighlighted];
+//        curButton.adjustsImageWhenHighlighted = NO;
+//    }
+//    for (size_t i = increment; i < [buttonArray count]; ++i) {
+//        curButton = [buttonArray objectAtIndex:i];
+//        curButton.hidden = YES;
+//    }
+
+    [self manageDrafts];
     
-    UIButton *curButton;
+    // Load in facebook user information
+    Facebook * facebook = [FacebookManager sharedManager].facebook;
+    [facebook requestWithGraphPath:@"me/picture" andDelegate:self];
+    [facebook requestWithGraphPath:@"me/name" andDelegate:self];
+    [webView reload];
     
-    for (size_t i = 0; i < [[[APIConnector shared] drafts] count]; ++i) {
-        if (i >= 6) {
-            break;
-        }
-        increment++;
-        PixelDrawing *d = [[[APIConnector shared] drafts] objectAtIndex:i];
-        
-        curButton = [buttonArray objectAtIndex:i];
-        
-        curButton.layer.cornerRadius = 9;
-        curButton.clipsToBounds = YES;
-        
-        curButton.layer.borderColor = [[UIColor grayColor] CGColor];
-        curButton.layer.borderWidth = .5;
-        [curButton setImage:[d image] forState:UIControlStateNormal];
-        [curButton setImage:[d image] forState:UIControlStateHighlighted];
-        curButton.adjustsImageWhenHighlighted = NO;
-    }
-    for (size_t i = increment; i < [buttonArray count]; ++i) {
-        curButton = [buttonArray objectAtIndex:i];
-        curButton.hidden = YES;
-    }
 }
 
 - (void)applicationDidEnterForeground
@@ -98,10 +107,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 
-    Facebook * facebook = [FacebookManager sharedManager].facebook;
-    [facebook requestWithGraphPath:@"me/picture" andDelegate:self];
-    [facebook requestWithGraphPath:@"me/name" andDelegate:self];
-    [webView reload];
 }
 
 - (IBAction)start:(id)sender
@@ -169,6 +174,17 @@
     profilePicture.hidden = YES;
 }
 
+- (IBAction)clearPressed:(id)sender {
+    APIConnector *curDrafts = [APIConnector shared];
+    
+    if ([[curDrafts drafts] count] != 0) {
+        for (size_t i = 0; i < [[curDrafts drafts] count]; ++i) {
+            [curDrafts removeFromCache:[[curDrafts drafts] objectAtIndex:i]];
+        }
+        [self manageDrafts];
+    }
+    
+}
 
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error
 {
@@ -196,6 +212,47 @@
     [userDict objectForKey:@"first_name"];
     
 }
+
+- (void)manageDrafts {
+    
+    NSMutableArray *buttonArray = [NSMutableArray arrayWithCapacity:6];
+    [buttonArray addObject:draftOne];
+    [buttonArray addObject:draftTwo];
+    [buttonArray addObject:draftThree];
+    [buttonArray addObject:draftFour];
+    [buttonArray addObject:draftFive];
+    [buttonArray addObject:draftSix];
+    size_t increment = 0;
+    
+    UIButton *curButton;
+    
+    for (size_t i = 0; i < [[[APIConnector shared] drafts] count]; ++i) {
+        if (i >= 6) {
+            break;
+        }
+        increment++;
+        PixelDrawing *d = [[[APIConnector shared] drafts] objectAtIndex:i];
+    
+        
+        curButton = [buttonArray objectAtIndex:i];
+        curButton.hidden = NO;
+//        
+//        curButton.layer.cornerRadius = 9;
+        curButton.clipsToBounds = YES;
+//        
+//        curButton.layer.borderColor = [[UIColor grayColor] CGColor];
+//        curButton.layer.borderWidth = .5;
+        [curButton setImage:[d image] forState:UIControlStateNormal];
+        [curButton setImage:[d image] forState:UIControlStateHighlighted];
+        curButton.adjustsImageWhenHighlighted = NO;
+    }
+    for (size_t i = increment; i < [buttonArray count]; ++i) {
+        curButton = [buttonArray objectAtIndex:i];
+        curButton.hidden = YES;
+    }
+
+}
+
 - (void)viewDidUnload
 {
     [self setDraftOne:nil];

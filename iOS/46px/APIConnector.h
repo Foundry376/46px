@@ -28,6 +28,7 @@
 - (oneway void)release;
 - (id)autorelease;
 
+- (void)removeFromCache:(PixelDrawing*)d;
 - (NSString*)pathForNewDrawing;
 - (void)postDrawing:(PixelDrawing*)d;
 - (void)updateUserTableWithUserID:(NSString *)userID;

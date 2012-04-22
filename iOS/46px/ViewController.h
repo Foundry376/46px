@@ -22,12 +22,13 @@
 @property (retain, nonatomic) IBOutlet UIButton *draftSix;
 
 @property (retain, nonatomic) IBOutlet UIImageView *profilePicture;
-@property (retain, nonatomic) IBOutlet UILabel *userName;
 @property (retain, nonatomic) IBOutlet UIButton *loginButton;
 @property (retain, nonatomic) IBOutlet UIButton *logoutButton;
 
+@property (retain, nonatomic) IBOutlet UILabel *userName;
 @property (retain, nonatomic) IBOutlet UILabel *userPostCount;
 
 - (void)postVisitURL:(NSString*)u;
+- (void)manageDrafts;
 
 @end
