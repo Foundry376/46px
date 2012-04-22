@@ -93,7 +93,7 @@ static FacebookManager * sharedManager;
     
 }
 
-- (void) fbDidLogout {
+- (void)fbDidLogout {
     // Remove saved authorization information if it exists
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults objectForKey:@"FBAccessTokenKey"]) {
@@ -103,10 +103,37 @@ static FacebookManager * sharedManager;
     }
 }
 
--(void)login
+- (void)login
 {
     if (![facebook isSessionValid]) {
         [facebook authorize:nil];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Hmm..."
+                                                        message:[NSString stringWithFormat:@"You are already logged in to Facebook."]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (void)logout
+{
+    if ([facebook isSessionValid]) {
+        [facebook logout];
+    
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
+                                                            message:[NSString stringWithFormat:@"You have been logged out of Facebook."]
+                                                            delegate:nil
+                                                            cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Hmm..."
+                                                        message:[NSString stringWithFormat:@"You are not logged in to Facebook."]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
 }
 
