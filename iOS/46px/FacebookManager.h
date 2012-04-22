@@ -14,6 +14,7 @@
     Facebook * facebook;
 }
 
+@property (nonatomic, retain) NSString * facebookUserID;
 @property (nonatomic, retain, readonly) Facebook * facebook;
 
 - (void)login;
