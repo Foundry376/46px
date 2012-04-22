@@ -8,6 +8,8 @@
 
 #import "PixelEditorViewController.h"
 #import "PenPixelTool.h"
+#import "ASIFormDataRequest.h"
+#import "ASIHTTPRequest.h"
 
 #define TOOL_PADDING 5
 
@@ -19,6 +21,8 @@
 @synthesize canvasThumbnailView;
 @synthesize undoButton;
 @synthesize redoButton;
+@synthesize mirrorXButton;
+@synthesize mirrorYButton;
 @synthesize drawing;
 @synthesize delegate;
 
@@ -72,6 +76,14 @@
     
     // subscribe to know when the drawing changes so we can update the interface
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(drawingModified) name:@"PixelDrawingChanged" object:nil];
+
+    // add the publish / save button to the upper right
+    NSString * title = @"Save";
+    if ([delegate respondsToSelector:@selector(commitButtonTitleForPixelEditor:)])
+        title = [delegate commitButtonTitleForPixelEditor: self];
+
+    UIBarButtonItem * b = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleDone target:self action:@selector(finished:)];
+    [self.navigationItem setRightBarButtonItem:b animated:YES];
 }
 
 - (void)viewDidUnload
@@ -84,6 +96,8 @@
     [self setUndoButton:nil];
     [self setCanvasThumbnailView: nil];
     [self setRedoButton:nil];
+    [self setMirrorXButton:nil];
+    [self setMirrorYButton:nil];
     [super viewDidUnload];
 }
 
@@ -106,6 +120,13 @@
     [self.drawing setTool: [[self.drawing tools] objectAtIndex: [toolButton tag]]];
 }
 
+- (void)finished:(id)sender
+{
+    // okay. so the user is done! let's fire back to the delegate
+    if ([delegate respondsToSelector:@selector(pixelEditorDidFinishEditing:committed:)])
+        [delegate pixelEditorDidFinishEditing:self committed:YES];
+}
+
 - (IBAction)undo:(id)sender
 {
     [self.drawing performUndo];
@@ -114,6 +135,18 @@
 - (IBAction)redo:(id)sender
 {
     [self.drawing performRedo];
+}
+
+- (IBAction)toggleMirroringY:(id)sender
+{
+     [self.drawing setMirroringY: !drawing.mirroringY];
+     [mirrorYButton setSelected: drawing.mirroringY];
+}
+
+- (IBAction)toggleMirroringX:(id)sender
+{
+    [self.drawing setMirroringX: !drawing.mirroringX];
+    [mirrorXButton setSelected: drawing.mirroringX];
 }
 
 - (void)drawingModified
@@ -132,6 +165,8 @@
     [canvasThumbnailView release];
     [colorsView release];
     [toolsView release];
+    [mirrorXButton release];
+    [mirrorYButton release];
     [super dealloc];
 }
 
@@ -139,5 +174,4 @@
 {
 	return YES;
 }
-
 @end

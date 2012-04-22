@@ -26,10 +26,10 @@
     // expand the changeRegion a bit to account for the fact that rounding
     // occasionally causes edits to unintentional pixels
     CGRect r = [operation changeRegion];
-    r.origin.x = fmaxf(0, r.origin.x - 1);
-    r.origin.y = fmaxf(0, r.origin.y - 1);
-    r.size.width = fminf([d size].width - r.origin.x, r.size.width + 2);
-    r.size.height = fminf([d size].height - r.origin.y, r.size.height + 2);
+    r.origin.x = fmaxf(0, floorf(r.origin.x - 1));
+    r.origin.y = fmaxf(0, floorf(r.origin.y - 1));
+    r.size.width = fminf(ceilf([d size].width - r.origin.x), ceilf(r.size.width + 2));
+    r.size.height = fminf(ceilf([d size].height - r.origin.y), ceilf(r.size.height + 2));
     [operation setChangeRegion: r];
     
     [d applyOperation: operation];

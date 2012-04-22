@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PixelEditorViewController.h"
+#import "FBConnect.h"
 
-@interface ViewController : UIViewController <PixelEditorDelegate>
+@interface ViewController : UIViewController <PixelEditorDelegate, FBRequestDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 
@@ -19,5 +20,11 @@
 @property (retain, nonatomic) IBOutlet UIButton *draftFour;
 @property (retain, nonatomic) IBOutlet UIButton *draftFive;
 @property (retain, nonatomic) IBOutlet UIButton *draftSix;
+
+@property (retain, nonatomic) IBOutlet UIImageView *profilePicture;
+@property (retain, nonatomic) IBOutlet UIButton *loginButton;
+@property (retain, nonatomic) IBOutlet UIButton *logoutButton;
+
+
 
 @end

@@ -8,6 +8,7 @@
 
 #import "APIConnector.h"
 #import "PixelDrawing.h"
+#import "ASIFormDataRequest.h"
 
 static APIConnector * sharedConnector;
 
@@ -99,6 +100,34 @@ static APIConnector * sharedConnector;
     
     NSString * draftsFolder = [@"~/Documents/Drafts" stringByExpandingTildeInPath];
     return [draftsFolder stringByAppendingPathComponent: dateString];
+}
+
+- (void)postDrawing:(PixelDrawing*)d
+{
+    NSURL * url = [NSURL URLWithString:@"http://46px.com/testPost.php"];
+    
+    ASIFormDataRequest * req = [[[ASIFormDataRequest alloc] initWithURL: url] autorelease];
+    
+    [req addPostValue:@"0" forKey:@"id"];
+    [req addPostValue:[d caption] forKey:@"caption"];
+    [req addData:UIImagePNGRepresentation(d.image) withFileName:@"image.png" andContentType: @"image/png" forKey:@"image"];
+    [req setUserAgent:@"46px App"];
+    [req addRequestHeader:@"Expect" value:@"100-Continue"];
+    [req addRequestHeader:@"Content-Encoding" value:@"identity"];
+    [req addRequestHeader:@"Accept" value:@"application/json"];
+    [req setAllowCompressedResponse: NO];
+    [req setDelegate: self];
+    [req startAsynchronous];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PostEnded" object:nil];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PostEnded" object: [request error]];
 }
 
 @end

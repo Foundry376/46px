@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ASIHTTPRequest.h"
 
-@interface APIConnector : NSObject
+@class PixelDrawing;
+
+@interface APIConnector : NSObject <ASIHTTPRequestDelegate>
 {
     NSMutableArray *        drafts;
 }
@@ -26,5 +29,6 @@
 - (id)autorelease;
 
 - (NSString*)pathForNewDrawing;
+- (void)postDrawing:(PixelDrawing*)d;
 
 @end

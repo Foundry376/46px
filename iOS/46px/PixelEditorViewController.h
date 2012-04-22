@@ -19,7 +19,8 @@
 
 @optional
 - (NSString*)titleForPixelEditor:(PixelEditorViewController*)e;
-- (void)pixelEditorDidFinishEditing:(PixelEditorViewController*)e;
+- (NSString*)commitButtonTitleForPixelEditor:(PixelEditorViewController*)e;
+- (void)pixelEditorDidFinishEditing:(PixelEditorViewController*)e committed:(BOOL)committed;
 
 @end
 @interface PixelEditorViewController : UIViewController
@@ -36,6 +37,8 @@
 
 @property (retain, nonatomic) IBOutlet UIButton *undoButton;
 @property (retain, nonatomic) IBOutlet UIButton *redoButton;
+@property (retain, nonatomic) IBOutlet UIButton *mirrorXButton;
+@property (retain, nonatomic) IBOutlet UIButton *mirrorYButton;
 
 - (id)initWithDrawing:(PixelDrawing*)d andDelegate:(NSObject<PixelEditorDelegate>*)del;
 
