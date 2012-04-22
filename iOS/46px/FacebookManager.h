@@ -14,9 +14,10 @@
     Facebook * facebook;
 }
 
-@property(nonatomic, retain, readonly)Facebook * facebook;
+@property (nonatomic, retain, readonly) Facebook * facebook;
 
--(void)login;
+- (void)login;
+- (void)logout;
 
 #pragma mark Singleton Implementation
 

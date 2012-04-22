@@ -13,6 +13,7 @@
 #import "APIConnector.h"
 #import "FacebookManager.h"
 #import "PostViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ViewController ()
 
@@ -74,6 +75,11 @@
         
         curButton = [buttonArray objectAtIndex:i];
         
+        curButton.layer.cornerRadius = 9;
+        curButton.clipsToBounds = YES;
+        
+        curButton.layer.borderColor = [[UIColor grayColor] CGColor];
+        curButton.layer.borderWidth = .5;
         [curButton setImage:[d image] forState:UIControlStateNormal];
         [curButton setImage:[d image] forState:UIControlStateHighlighted];
         curButton.adjustsImageWhenHighlighted = NO;
@@ -152,8 +158,11 @@
     [[FacebookManager sharedManager] login];
 }
 
-- (void)request:(FBRequest *)request didLoad:(id)result 
-{
+- (IBAction)logoutPressed:(id)sender {
+    [[FacebookManager sharedManager] logout];
+}
+
+- (void)request:(FBRequest *)request didLoad:(id)result {
     profilePicture.image = [UIImage imageWithData:result];
 }
 
