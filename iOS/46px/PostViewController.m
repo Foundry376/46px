@@ -25,7 +25,8 @@
 
 - (void)viewDidUnload
 {
-    [[NSNotificationCenter defaultCenter] removeObserver: 
+    [[NSNotificationCenter defaultCenter] removeObserver: self];
+    
     [self setPreviewImage:nil];
     [self setCaptionTextView:nil];
     [self setPostButton:nil];
