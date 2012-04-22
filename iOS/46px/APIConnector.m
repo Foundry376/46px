@@ -122,6 +122,20 @@ static APIConnector * sharedConnector;
     [req startAsynchronous];
 }
 
+- (void)updateUserTableWithUserID:(NSString *)userID
+{
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"www.46px.com/updateUser.php?accessToken=%@&id=%@",[FacebookManager sharedManager].facebook.accessToken,userID]];
+    
+    ASIHTTPRequest * req = [[[ASIHTTPRequest alloc] initWithURL: url] autorelease];
+    
+    [req setUserAgent:@"46px App"];
+    [req setDelegate: self];
+    [req startAsynchronous];
+    
+    
+}
+
+
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     if ([[request responseString] rangeOfString:@"404"].location != NSNotFound)

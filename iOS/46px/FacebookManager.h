@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Facebook.h"
 
-@interface FacebookManager : NSObject <FBSessionDelegate>
+@interface FacebookManager : NSObject <FBSessionDelegate, FBRequestDelegate>
 {
     Facebook * facebook;
 }
@@ -28,5 +28,7 @@
 - (unsigned)retainCount;
 - (oneway void)release;
 - (id)autorelease;
+- (BOOL)isLoggedIn;
+- (void)updateUserTableWithUserID:(NSString*)userID;
 
 @end
