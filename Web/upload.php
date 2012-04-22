@@ -13,7 +13,7 @@ if (mysqli_connect_error()) {
 
 // grab all our variables... and sanitize them ;-)
 $id = mysql_escape_string($_POST["userID"]);
-$caption = mysql_escape_string($_POST["caption"]);
+$caption = $_POST["caption"];
 $threadID = mysql_escape_string($_POST["threadID"]);
 $file = $_FILES["image"];
 
