@@ -49,6 +49,7 @@
 		43C32D1C1544769C006E6895 /* tool-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D1B1544769C006E6895 /* tool-default.png */; };
 		43C32D1E15447AFB006E6895 /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D1D15447AFA006E6895 /* icon72.png */; };
 		43C32D2015447AFD006E6895 /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D1F15447AFD006E6895 /* icon144.png */; };
+		43C32D221544A5CF006E6895 /* post_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32D211544A5CF006E6895 /* post_background.png */; };
 		43EB9CD015437F980040C04E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB9CCF15437F980040C04E /* MobileCoreServices.framework */; };
 		43EB9CD215437F9C0040C04E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB9CD115437F9C0040C04E /* CFNetwork.framework */; };
 		43EB9CD415437FAB0040C04E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB9CD315437FAB0040C04E /* SystemConfiguration.framework */; };
@@ -148,6 +149,7 @@
 		43C32D1B1544769C006E6895 /* tool-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tool-default.png"; path = "Resources/tool-default.png"; sourceTree = SOURCE_ROOT; };
 		43C32D1D15447AFA006E6895 /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72.png; sourceTree = "<group>"; };
 		43C32D1F15447AFD006E6895 /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
+		43C32D211544A5CF006E6895 /* post_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = post_background.png; path = Resources/post_background.png; sourceTree = SOURCE_ROOT; };
 		43EB9CCF15437F980040C04E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		43EB9CD115437F9C0040C04E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		43EB9CD315437FAB0040C04E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -358,6 +360,7 @@
 				4318A0441543152C0004540E /* redo.png */,
 				4318A0451543152C0004540E /* undo.png */,
 				43EB9D7D154393280040C04E /* tool-line.png */,
+				43C32D211544A5CF006E6895 /* post_background.png */,
 				43C32D1B1544769C006E6895 /* tool-default.png */,
 				43EB9D7E154393280040C04E /* tool-paintbucket.png */,
 				43C32D0F1544670C006E6895 /* icon_flip_x.png */,
@@ -564,6 +567,7 @@
 				43C32D1C1544769C006E6895 /* tool-default.png in Resources */,
 				43C32D1E15447AFB006E6895 /* icon72.png in Resources */,
 				43C32D2015447AFD006E6895 /* icon144.png in Resources */,
+				43C32D221544A5CF006E6895 /* post_background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -45,6 +45,8 @@
 - (void)viewDidLoad;
 - (void)viewDidUnload;
 
+- (void)downloadAndAddImage:(NSString*)path;
+
 - (void)toolToggled:(UIButton*)toolButton;
 - (IBAction)undo:(id)sender;
 - (IBAction)redo:(id)sender;

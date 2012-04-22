@@ -54,6 +54,7 @@
     
     //initialization of singleton
     FacebookManager * manager = [FacebookManager sharedManager];
+    NSLog(@"%@", [manager description]);
     
     return YES;
 }

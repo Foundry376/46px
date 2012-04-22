@@ -28,7 +28,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *userName;
 @property (retain, nonatomic) IBOutlet UILabel *userPostCount;
 
-- (void)postVisitURL:(NSString*)u;
 - (void)manageDrafts;
 
 @end

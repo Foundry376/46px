@@ -12,7 +12,7 @@
 
 @class ViewController;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, FBSessionDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     
 }
