@@ -91,6 +91,11 @@ static APIConnector * sharedConnector;
     return self;
 }
 
+- (void)removeFromCache:(PixelDrawing *)d {
+    [[NSFileManager defaultManager] removeItemAtPath:d.directory error:nil];
+    [[self drafts] removeObject:d];
+}
+
 - (NSString*)pathForNewDrawing
 {
     NSDate *today = [NSDate date];
