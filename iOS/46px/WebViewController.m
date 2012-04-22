@@ -25,6 +25,7 @@
 {
     [super viewDidLoad];
     [webView loadRequest: [NSURLRequest requestWithURL: url]];
+    [[webView scrollView] setBounces: NO];
 }
 
 - (void)viewDidUnload

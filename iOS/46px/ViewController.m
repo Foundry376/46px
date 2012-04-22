@@ -45,7 +45,8 @@
     
     // Load the request in the UIWebView.
     [webView loadRequest:requestObj];
-        
+    [[webView scrollView] setBounces: NO];
+    
     // Listen for images being posted successfully
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postSuccess:) name:@"PostSuccess" object:nil];
 }
