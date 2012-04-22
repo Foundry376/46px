@@ -236,12 +236,12 @@
         
         curButton = [buttonArray objectAtIndex:i];
         curButton.hidden = NO;
-        
-        curButton.layer.cornerRadius = 9;
+//        
+//        curButton.layer.cornerRadius = 9;
         curButton.clipsToBounds = YES;
-        
-        curButton.layer.borderColor = [[UIColor grayColor] CGColor];
-        curButton.layer.borderWidth = .5;
+//        
+//        curButton.layer.borderColor = [[UIColor grayColor] CGColor];
+//        curButton.layer.borderWidth = .5;
         [curButton setImage:[d image] forState:UIControlStateNormal];
         [curButton setImage:[d image] forState:UIControlStateHighlighted];
         curButton.adjustsImageWhenHighlighted = NO;

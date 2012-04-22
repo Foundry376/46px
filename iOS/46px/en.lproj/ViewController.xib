@@ -160,7 +160,7 @@
 					<object class="IBUIButton" id="716338518">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{792, 392}, {103, 78}}</string>
+						<string key="NSFrame">{{795, 392}, {103, 78}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="192825203"/>
@@ -185,7 +185,7 @@
 					<object class="IBUIButton" id="192825203">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{908, 392}, {103, 78}}</string>
+						<string key="NSFrame">{{911, 392}, {103, 78}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="894017439"/>
@@ -207,7 +207,7 @@
 					<object class="IBUIButton" id="894017439">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{792, 478}, {103, 78}}</string>
+						<string key="NSFrame">{{795, 478}, {103, 78}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="374384502"/>
@@ -229,7 +229,7 @@
 					<object class="IBUIButton" id="374384502">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{908, 478}, {103, 78}}</string>
+						<string key="NSFrame">{{911, 478}, {103, 78}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="673333967"/>
@@ -251,7 +251,7 @@
 					<object class="IBUIButton" id="673333967">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{792, 564}, {103, 78}}</string>
+						<string key="NSFrame">{{795, 564}, {103, 78}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="960758145"/>
@@ -273,10 +273,10 @@
 					<object class="IBUIButton" id="960758145">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{908, 564}, {103, 78}}</string>
+						<string key="NSFrame">{{911, 564}, {103, 78}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="177265563"/>
+						<reference key="NSNextKeyView" ref="844732811"/>
 						<string key="NSReuseIdentifierKey">_NS:241</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -410,7 +410,7 @@
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
-					<object class="IBUIButton" id="177265563">
+					<object class="IBUIButton" id="844732811">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{844, 650}, {120, 37}}</string>
@@ -654,7 +654,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clearPressed:</string>
-						<reference key="source" ref="177265563"/>
+						<reference key="source" ref="844732811"/>
 						<reference key="destination" ref="841351856"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -685,12 +685,6 @@
 						<reference key="object" ref="766721923"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="459187860"/>
-							<reference ref="716338518"/>
-							<reference ref="192825203"/>
-							<reference ref="894017439"/>
-							<reference ref="374384502"/>
-							<reference ref="673333967"/>
-							<reference ref="960758145"/>
 							<reference ref="637788666"/>
 							<reference ref="174809280"/>
 							<reference ref="507434941"/>
@@ -699,8 +693,14 @@
 							<reference ref="506458266"/>
 							<reference ref="813653309"/>
 							<reference ref="506510851"/>
-							<reference ref="177265563"/>
+							<reference ref="844732811"/>
 							<reference ref="497902073"/>
+							<reference ref="716338518"/>
+							<reference ref="192825203"/>
+							<reference ref="894017439"/>
+							<reference ref="374384502"/>
+							<reference ref="673333967"/>
+							<reference ref="960758145"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -786,7 +786,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">51</int>
-						<reference key="object" ref="177265563"/>
+						<reference key="object" ref="844732811"/>
 						<reference key="parent" ref="766721923"/>
 					</object>
 				</array>
@@ -797,17 +797,23 @@
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="2" key="11.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="11.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="2" key="13.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="13.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="2" key="26.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="26.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="2" key="27.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="27.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="30.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="2" key="30.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="30.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="31.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="2" key="31.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="31.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="38.CustomClassName">OrangeButton</string>
 				<string key="38.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
