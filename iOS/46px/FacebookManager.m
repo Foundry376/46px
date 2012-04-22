@@ -74,6 +74,7 @@ static FacebookManager * sharedManager;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         if ([defaults objectForKey:@"FBAccessTokenKey"] 
             && [defaults objectForKey:@"FBExpirationDateKey"]) {
+            facebookUserID = [defaults objectForKey:@"facebookUserID"];
             facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
             facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
         }
@@ -87,6 +88,7 @@ static FacebookManager * sharedManager;
 - (void)fbDidLogin {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];
+    [defaults setObject:facebookUserID forKey:@"facebookUserID"];
     [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
     [defaults synchronize];
     
@@ -100,7 +102,11 @@ static FacebookManager * sharedManager;
     if ([defaults objectForKey:@"FBAccessTokenKey"]) {
         [defaults removeObjectForKey:@"FBAccessTokenKey"];
         [defaults removeObjectForKey:@"FBExpirationDateKey"];
+        [defaults removeObjectForKey:@"facebookUserID"];
         [defaults synchronize];
+        
+        [facebookUserID release];
+        facebookUserID = nil;
     }
 }
 
@@ -123,6 +129,10 @@ static FacebookManager * sharedManager;
     
     facebookUserID = [[userDict objectForKey:@"id"] retain];
     [[APIConnector shared] updateUserTableWithUserID: facebookUserID];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:facebookUserID forKey:@"facebookUserID"];
+    [defaults synchronize];
 }
 
 
