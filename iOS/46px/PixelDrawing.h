@@ -35,6 +35,7 @@
 @property (nonatomic, assign) BOOL mirroringX;
 @property (nonatomic, assign) BOOL mirroringY;
 
+@property (nonatomic, assign) int threadID;
 @property (nonatomic, retain) NSString * directory;
 
 - (id)initWithSize:(CGSize)s andDirectory:(NSString*)d;

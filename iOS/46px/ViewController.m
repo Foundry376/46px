@@ -11,6 +11,7 @@
 #import "PixelDrawing.h"
 #import "APIConnector.h"
 #import "FacebookManager.h"
+#import "PostViewController.h"
 
 @interface ViewController ()
 
@@ -123,11 +124,22 @@
     [pevc autorelease];
 }
 
-- (IBAction)loginPressed:(id)sender {
+- (void)pixelEditorDidFinishEditing:(PixelEditorViewController*)e committed:(BOOL)committed
+{
+    PostViewController * pvc = [[[PostViewController alloc] init] autorelease];
+    [pvc setDrawing: [e drawing]];
+    [pvc setModalTransitionStyle: UIModalTransitionStyleCoverVertical];
+    [pvc setModalPresentationStyle: UIModalPresentationFormSheet];
+    [e presentModalViewController:pvc animated:YES];
+}
+
+- (IBAction)loginPressed:(id)sender 
+{
     [[FacebookManager sharedManager] login];
 }
 
-- (void)request:(FBRequest *)request didLoad:(id)result {
+- (void)request:(FBRequest *)request didLoad:(id)result 
+{
     profilePicture.image = [UIImage imageWithData:result];
 }
 
@@ -150,7 +162,8 @@
     return YES;
 }
 
-- (void)dealloc {
+- (void)dealloc 
+{
     [draftOne release];
     [draftTwo release];
     [draftThree release];

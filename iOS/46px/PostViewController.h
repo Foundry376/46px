@@ -18,6 +18,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *previewImage;
 @property (retain, nonatomic) IBOutlet UITextView *captionTextView;
 @property (retain, nonatomic) IBOutlet UIButton *postButton;
+@property (retain, nonatomic) IBOutlet UIActivityIndicatorView * spinner;
 
 - (IBAction)post:(id)sender;
 - (IBAction)cancel:(id)sender;

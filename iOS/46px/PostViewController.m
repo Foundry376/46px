@@ -8,18 +8,24 @@
 
 #import "PostViewController.h"
 #import "APIConnector.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation PostViewController
 @synthesize previewImage;
 @synthesize captionTextView;
 @synthesize postButton;
 @synthesize drawing;
+@synthesize spinner;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postEnded) name:@"PostEnded" object:nil];
+    [[previewImage layer] setMagnificationFilter:kCAFilterNearest];
+    [previewImage setImage: [drawing image]];
+    [captionTextView setText: [drawing caption]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postEnded:) name:@"PostEnded" object:nil];
     [captionTextView becomeFirstResponder];
 }
 
@@ -43,6 +49,22 @@
 {
     [self.drawing setCaption: [captionTextView text]];
     [[APIConnector shared] postDrawing: self.drawing];
+    [spinner startAnimating];
+}
+
+- (void)postEnded:(NSNotification*)notif
+{
+    NSError * error = [notif object];
+    
+    [spinner stopAnimating];
+    
+    if (error) {
+        UIAlertView * a = [[UIAlertView alloc] initWithTitle:@"Post Failed!" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [a show];
+        [a release];
+    } else {
+        [self dismissModalViewControllerAnimated: YES];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -51,6 +51,9 @@
 		43EB9D5E15438FEE0040C04E /* ASIOAuthParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9D1A15438FEE0040C04E /* ASIOAuthParameter.m */; };
 		43EB9D7415438FEE0040C04E /* README-GHUnit in Resources */ = {isa = PBXBuildFile; fileRef = 43EB9D4915438FEE0040C04E /* README-GHUnit */; };
 		43EB9D7515438FEE0040C04E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9D4C15438FEE0040C04E /* Reachability.m */; };
+		43EB9D7F154393280040C04E /* tool-line.png in Resources */ = {isa = PBXBuildFile; fileRef = 43EB9D7D154393280040C04E /* tool-line.png */; };
+		43EB9D80154393280040C04E /* tool-paintbucket.png in Resources */ = {isa = PBXBuildFile; fileRef = 43EB9D7E154393280040C04E /* tool-paintbucket.png */; };
+		43EB9D82154399DE0040C04E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB9D81154399DE0040C04E /* QuartzCore.framework */; };
 		813E1AB9154373010004FBB5 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1A9F154373010004FBB5 /* Facebook.m */; };
 		813E1ABA154373010004FBB5 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 813E1AA2154373010004FBB5 /* FBDialog.bundle */; };
 		813E1ABB154373010004FBB5 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AA4154373010004FBB5 /* FBDialog.m */; };
@@ -145,6 +148,9 @@
 		43EB9D4B15438FEE0040C04E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		43EB9D4C15438FEE0040C04E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		43EB9D7B154390A30040C04E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		43EB9D7D154393280040C04E /* tool-line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tool-line.png"; path = "Resources/tool-line.png"; sourceTree = SOURCE_ROOT; };
+		43EB9D7E154393280040C04E /* tool-paintbucket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tool-paintbucket.png"; path = "Resources/tool-paintbucket.png"; sourceTree = SOURCE_ROOT; };
+		43EB9D81154399DE0040C04E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		813E1A9E154373010004FBB5 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
 		813E1A9F154373010004FBB5 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
 		813E1AA0154373010004FBB5 /* facebook_ios_sdk_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = facebook_ios_sdk_Prefix.pch; sourceTree = "<group>"; };
@@ -178,6 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43EB9D82154399DE0040C04E /* QuartzCore.framework in Frameworks */,
 				43EB9CD615437FB10040C04E /* libz.dylib in Frameworks */,
 				43EB9CD415437FAB0040C04E /* SystemConfiguration.framework in Frameworks */,
 				43EB9CD215437F9C0040C04E /* CFNetwork.framework in Frameworks */,
@@ -194,6 +201,7 @@
 		4382790115429010002E0A53 = {
 			isa = PBXGroup;
 			children = (
+				43EB9D81154399DE0040C04E /* QuartzCore.framework */,
 				43EB9D7B154390A30040C04E /* libxml2.dylib */,
 				43EB9CD515437FB10040C04E /* libz.dylib */,
 				43EB9CD315437FAB0040C04E /* SystemConfiguration.framework */,
@@ -285,6 +293,8 @@
 			children = (
 				4318A0441543152C0004540E /* redo.png */,
 				4318A0451543152C0004540E /* undo.png */,
+				43EB9D7D154393280040C04E /* tool-line.png */,
+				43EB9D7E154393280040C04E /* tool-paintbucket.png */,
 				43827952154312E0002E0A53 /* tool-default.png */,
 				4318A052154338D50004540E /* missing.png */,
 			);
@@ -466,6 +476,8 @@
 				813E1ABA154373010004FBB5 /* FBDialog.bundle in Resources */,
 				43EB9CDB154381F70040C04E /* PostViewController.xib in Resources */,
 				43EB9D7415438FEE0040C04E /* README-GHUnit in Resources */,
+				43EB9D7F154393280040C04E /* tool-line.png in Resources */,
+				43EB9D80154393280040C04E /* tool-paintbucket.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
