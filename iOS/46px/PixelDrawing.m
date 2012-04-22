@@ -105,7 +105,7 @@
     [NSKeyedArchiver archiveRootObject:d toFile:[self statePath]];
     
     // save our png file
-    UIImage * us = UIImageFromLayer(baseLayer, CGRectMake(0, 0, size.width, size.height));
+    UIImage * us = UIImageFromLayer(baseLayer, CGRectMake(0, 0, size.width, size.height), NO);
     [UIImagePNGRepresentation(us) writeToFile:[self imagePath] atomically:NO];
 }
 
@@ -156,7 +156,7 @@
     // do we have the "changed" data in the operation? If not, let's populate
     // it so that it's possible to redo!
     if ([op changed] == nil)
-        [op setChanged: UIImageFromLayer(baseLayer, [op changeRegion])];
+        [op setChanged: UIImageFromLayer(baseLayer, [op changeRegion], YES)];
     [UIImagePNGRepresentation([op changed]) writeToFile:@"/test.png" atomically:YES];
     
     // restore the drawing to what it looked like
@@ -214,7 +214,7 @@
         [op setChangeRegion: CGRectUnion([op changeRegion], o)];
     }
     
-    [op setOriginal: UIImageFromLayer(baseLayer, [op changeRegion])];
+    [op setOriginal: UIImageFromLayer(baseLayer, [op changeRegion], YES)];
     [UIImagePNGRepresentation([op original]) writeToFile:@"/test.png" atomically:YES];
     
     // flatten the operationLayer onto the baseLayer
@@ -259,17 +259,18 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PixelDrawingChanged" object:nil];
 }
 
+
 #pragma mark -
 #pragma mark Representing on Disk
 
 - (UIImage*)image
 {
     if (baseLayer != nil) {
-        return UIImageFromLayer(baseLayer, CGRectMake(0, 0, size.width, size.height));
+        return UIImageFromLayer(baseLayer, CGRectMake(0, 0, size.width, size.height), NO);
         
     } else {
         UIImage * i = [UIImage imageWithContentsOfFile: [self imagePath]];
-        i = [UIImage imageWithCGImage:[i CGImage] scale:1 orientation:UIImageOrientationDownMirrored];
+        //i = [UIImage imageWithCGImage:[i CGImage] scale:1 orientation:UIImageOrientationDownMirrored];
         if (i) return i;
     }
 

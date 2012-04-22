@@ -33,8 +33,9 @@
     CGPoint p = touch.pixelInView;
 
     int outPixelsLength = d.size.width * d.size.height;
-
-    RGBAPixel * pixels = (RGBAPixel *)[CGImageGetData([[d image] CGImage], r) bytes];
+    
+    UIImage * i = UIImageFromLayer(d.baseLayer, CGRectMake(0, 0, d.size.width, d.size.height), YES);
+    RGBAPixel * pixels = (RGBAPixel *)[CGImageGetData([i CGImage], r) bytes];
     RGBAPixel * outPixels = calloc(outPixelsLength, sizeof(RGBAPixel));
     BOOL * visited = calloc(outPixelsLength, sizeof(BOOL));
     

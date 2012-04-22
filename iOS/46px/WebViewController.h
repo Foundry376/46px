@@ -12,6 +12,7 @@
 @interface WebViewController : UIViewController <UIWebViewDelegate, PixelEditorDelegate>
 {
     NSURL * url;
+    BOOL editing;
 }
 
 @property (retain, nonatomic) IBOutlet UIWebView *webView;
