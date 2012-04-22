@@ -12,8 +12,9 @@
 static FacebookManager * sharedManager;
 
 @implementation FacebookManager
-@synthesize facebook;
 
+@synthesize facebook;
+@synthesize facebookUserID;
 
 #pragma mark Singleton Implementation
 
@@ -120,9 +121,8 @@ static FacebookManager * sharedManager;
 {
     NSDictionary * userDict = (NSDictionary*) result;
     
-    NSString * userID = [userDict objectForKey:@"id"];
-    NSLog(@"userID: %@", userID);
-    [[APIConnector shared] updateUserTableWithUserID:userID];
+    facebookUserID = [[userDict objectForKey:@"id"] retain];
+    [[APIConnector shared] updateUserTableWithUserID: facebookUserID];
 }
 
 

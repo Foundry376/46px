@@ -108,8 +108,8 @@ static APIConnector * sharedConnector;
     NSURL * url = [NSURL URLWithString:@"http://46px.com/upload.php"];
     
     ASIFormDataRequest * req = [[[ASIFormDataRequest alloc] initWithURL: url] autorelease];
-    NSLog(@"%@", [[[FacebookManager sharedManager] facebook] accessToken]);
-    [req addPostValue:[[[FacebookManager sharedManager] facebook] accessToken] forKey:@"userToken"];
+    
+    [req addPostValue:[[FacebookManager sharedManager] facebookUserID] forKey:@"userID"];
     [req addPostValue:[d caption] forKey:@"caption"];
     [req addPostValue:[NSString stringWithFormat:@"%d", [d threadID]] forKey:@"threadID"];
     [req addData:UIImagePNGRepresentation(d.image) withFileName:@"image.png" andContentType: @"image/png" forKey:@"image"];
@@ -124,17 +124,13 @@ static APIConnector * sharedConnector;
 
 - (void)updateUserTableWithUserID:(NSString *)userID
 {
-    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"www.46px.com/updateUser.php?accessToken=%@&id=%@",[FacebookManager sharedManager].facebook.accessToken,userID]];
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.46px.com/updateUser.php?accessToken=%@&id=%@",[FacebookManager sharedManager].facebook.accessToken,userID]];
     
     ASIHTTPRequest * req = [[[ASIHTTPRequest alloc] initWithURL: url] autorelease];
-    
     [req setUserAgent:@"46px App"];
     [req setDelegate: self];
     [req startAsynchronous];
-    
-    
 }
-
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
