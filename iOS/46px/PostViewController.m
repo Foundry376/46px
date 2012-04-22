@@ -80,4 +80,12 @@
     [postButton release];
     [super dealloc];
 }
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([[[textView text] stringByReplacingCharactersInRange:range withString:text] length] > 50)
+        return NO;
+    return YES;
+}
+
 @end

@@ -36,7 +36,7 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="65567219">
+					<object class="IBUIImageView" id="124055789">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{1024, 708}</string>
@@ -91,7 +91,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor" id="839381840">
+						<object class="NSColor" key="IBUIBackgroundColor" id="673315264">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
@@ -106,7 +106,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="78666913"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="839381840"/>
+						<reference key="IBUIBackgroundColor" ref="673315264"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
@@ -257,7 +257,7 @@
 				<string key="NSFrame">{{0, 64}, {1024, 704}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="65567219"/>
+				<reference key="NSNextKeyView" ref="124055789"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -337,19 +337,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">mirrorXButton</string>
+						<string key="label">mirrorYButton</string>
 						<reference key="source" ref="841351856"/>
 						<reference key="destination" ref="1055742385"/>
 					</object>
-					<int key="connectionID">24</int>
+					<int key="connectionID">29</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">mirrorYButton</string>
+						<string key="label">mirrorXButton</string>
 						<reference key="source" ref="841351856"/>
 						<reference key="destination" ref="78666913"/>
 					</object>
-					<int key="connectionID">25</int>
+					<int key="connectionID">30</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -419,7 +419,7 @@
 							<reference ref="1055742385"/>
 							<reference ref="78666913"/>
 							<reference ref="622421238"/>
-							<reference ref="65567219"/>
+							<reference ref="124055789"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -470,7 +470,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">26</int>
-						<reference key="object" ref="65567219"/>
+						<reference key="object" ref="124055789"/>
 						<reference key="parent" ref="766721923"/>
 					</object>
 				</array>
@@ -506,7 +506,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">28</int>
+			<int key="maxID">30</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

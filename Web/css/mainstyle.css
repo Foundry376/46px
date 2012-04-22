@@ -1,0 +1,75 @@
+body{
+	display:block;
+	font-family:"Arial", sans-serif;
+}
+
+#content{
+	display:block;
+	width:600px;
+}
+
+#threads{
+	display:block;
+	list-style:none;
+	overflow:auto;
+	width:615px;
+	padding: 10px 30px;
+}
+
+.post {
+	display:block;
+	float:left;
+	margin: 30px;
+	width:230px;
+}
+
+.post canvas {
+	display:block;
+	float:left;
+	width:230px;
+	background-color:white;
+	border:6px solid #CCCCCC;
+}
+
+.post .caption {
+	background-color:white;
+	border:6px solid #CCCCCC;
+}
+
+.button {
+	background:url(/images/button_background.png) top right no-repeat;
+	height:45px;
+	display:inline-block;
+	padding-top:15px;
+	padding-left:8px;
+	padding-right:15px;
+	font-size:22px;
+	font-family:"Arial", sans-serif;
+	
+	text-shadow: 0px 1px 0px #ffffff;
+	filter: dropshadow(color=#ffffff, offx=, offy=1);	
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	
+	text-decoration:none;
+	color:#222;
+	font-weight:bold;
+}
+
+.button:active {
+	background:url(/images/button_background_down.png) top right no-repeat;
+	height:42px;
+	display:inline-block;
+	padding-top:18px;
+	padding-left:8px;
+	padding-right:12px;
+	font-size:24px;
+	font-family:"Arial", sans-serif;
+	border-left:3px solid white;
+	text-shadow: 0px 1px 0px #ffffff;
+	filter: dropshadow(color=#ffffff, offx=, offy=1);	
+}

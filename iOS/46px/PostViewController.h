@@ -10,7 +10,7 @@
 #import "PixelDrawing.h"
 #import "ViewController.h"
 
-@interface PostViewController : UIViewController
+@interface PostViewController : UIViewController <UITextViewDelegate>
 {
     
 }

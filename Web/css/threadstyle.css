@@ -1,0 +1,48 @@
+* {
+	padding: 0;
+	margin:  0;
+	font-family: arial;
+}
+
+body {
+	text-align:center;
+	margin: 2.6em 0 0 0;
+	vertical-align:middle;
+}
+
+#thread {
+	width: 		595px;
+	text-align: center;
+	margin: 	0 auto;
+	list-style: none;
+}
+
+.details{
+	padding-left: 20px;
+}
+
+.username {
+	float: left;
+}
+
+.timestamp {
+	margin-left: 10px;
+	float:  	 left;
+}
+
+.caption {
+	clear: left;
+	text-align: left;
+}
+
+
+#content{
+	width: 760px;
+	text-align:left;
+	margin:0 auto;
+}
+
+#posts{
+	list-style-type:none;
+	
+}
