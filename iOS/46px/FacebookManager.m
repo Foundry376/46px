@@ -7,7 +7,8 @@
 //
 
 #import "FacebookManager.h"
-
+#import "ASIFormDataRequest.h"
+#import "APIConnector.h"
 static FacebookManager * sharedManager;
 
 @implementation FacebookManager
@@ -80,6 +81,7 @@ static FacebookManager * sharedManager;
     return self;
 }
 
+#pragma mark FBSessionsDelegate
 
 - (void)fbDidLogin {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -87,7 +89,7 @@ static FacebookManager * sharedManager;
     [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
     [defaults synchronize];
     
-    
+    [self.facebook requestWithGraphPath:@"/me" andDelegate:self];
     
 }
 
@@ -100,6 +102,29 @@ static FacebookManager * sharedManager;
         [defaults synchronize];
     }
 }
+
+#pragma mark FBRequestDelegate
+
+
+- (void)request:(FBRequest *)request didFailWithError:(NSError *)error
+{
+   
+}
+
+- (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response
+{
+   
+}
+
+- (void)request:(FBRequest *)request didLoad:(id)result
+{
+    NSDictionary * userDict = (NSDictionary*) result;
+    
+    NSString * userID = [userDict objectForKey:@"id"];
+    NSLog(@"userID: %@", userID);
+    [[APIConnector shared] updateUserTableWithUserID:userID];
+}
+
 
 - (void)login
 {
@@ -144,10 +169,6 @@ static FacebookManager * sharedManager;
     return [facebook isSessionValid];
 }
 
-- (void)updateUserTable
-{
-    
-}
 
 
 @end

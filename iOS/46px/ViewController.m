@@ -162,10 +162,12 @@
 - (IBAction)loginPressed:(id)sender 
 {
     [[FacebookManager sharedManager] login];
+    profilePicture.hidden = NO;
 }
 
 - (IBAction)logoutPressed:(id)sender {
     [[FacebookManager sharedManager] logout];
+    profilePicture.hidden = YES;
 }
 
 

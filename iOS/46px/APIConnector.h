@@ -30,5 +30,6 @@
 
 - (NSString*)pathForNewDrawing;
 - (void)postDrawing:(PixelDrawing*)d;
+- (void)updateUserTableWithUserID:(NSString *)userID;
 
 @end
