@@ -116,12 +116,12 @@
 		4382793C154295AB002E0A53 /* PixelEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PixelEditorViewController.xib; sourceTree = "<group>"; };
 		4382793F154296CA002E0A53 /* PixelCanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelCanvasView.h; sourceTree = "<group>"; };
 		43827940154296CA002E0A53 /* PixelCanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PixelCanvasView.m; sourceTree = "<group>"; };
-		43827942154296D6002E0A53 /* PixelDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelDrawing.h; sourceTree = "<group>"; };
-		43827943154296D6002E0A53 /* PixelDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PixelDrawing.m; sourceTree = "<group>"; };
-		4382794815429701002E0A53 /* PixelEditOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelEditOperation.h; sourceTree = "<group>"; };
-		4382794915429701002E0A53 /* PixelEditOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PixelEditOperation.m; sourceTree = "<group>"; };
-		4382794B15429CF4002E0A53 /* CGHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGHelpers.m; sourceTree = "<group>"; };
-		4382794D15429CFC002E0A53 /* CGHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGHelpers.h; sourceTree = "<group>"; };
+		43827942154296D6002E0A53 /* PixelDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PixelDrawing.h; path = ../PixelDrawing.h; sourceTree = "<group>"; };
+		43827943154296D6002E0A53 /* PixelDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PixelDrawing.m; path = ../PixelDrawing.m; sourceTree = "<group>"; };
+		4382794815429701002E0A53 /* PixelEditOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PixelEditOperation.h; path = ../PixelEditOperation.h; sourceTree = "<group>"; };
+		4382794915429701002E0A53 /* PixelEditOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PixelEditOperation.m; path = ../PixelEditOperation.m; sourceTree = "<group>"; };
+		4382794B15429CF4002E0A53 /* CGHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGHelpers.m; path = ../CGHelpers.m; sourceTree = "<group>"; };
+		4382794D15429CFC002E0A53 /* CGHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CGHelpers.h; path = ../CGHelpers.h; sourceTree = "<group>"; };
 		43C32CFA15446200006E6895 /* OrangeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrangeButton.h; sourceTree = "<group>"; };
 		43C32CFB15446200006E6895 /* OrangeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrangeButton.m; sourceTree = "<group>"; };
 		43C32CFD15446257006E6895 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Resources/background.png; sourceTree = SOURCE_ROOT; };
@@ -150,8 +150,8 @@
 		43EB9CD7154381F70040C04E /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		43EB9CD8154381F70040C04E /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		43EB9CD9154381F70040C04E /* PostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostViewController.xib; sourceTree = "<group>"; };
-		43EB9CE015438D8F0040C04E /* FacebookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookManager.h; sourceTree = "<group>"; };
-		43EB9CE115438D8F0040C04E /* FacebookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookManager.m; sourceTree = "<group>"; };
+		43EB9CE015438D8F0040C04E /* FacebookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FacebookManager.h; path = 46px/FacebookManager.h; sourceTree = SOURCE_ROOT; };
+		43EB9CE115438D8F0040C04E /* FacebookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FacebookManager.m; path = 46px/FacebookManager.m; sourceTree = SOURCE_ROOT; };
 		43EB9CF015438FEE0040C04E /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		43EB9CF115438FEE0040C04E /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		43EB9CF215438FEE0040C04E /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -250,12 +250,6 @@
 			children = (
 				43C32D1F15447AFD006E6895 /* icon144.png */,
 				43C32D1D15447AFA006E6895 /* icon72.png */,
-				43EB9D81154399DE0040C04E /* QuartzCore.framework */,
-				43EB9D7B154390A30040C04E /* libxml2.dylib */,
-				43EB9CD515437FB10040C04E /* libz.dylib */,
-				43EB9CD315437FAB0040C04E /* SystemConfiguration.framework */,
-				43EB9CD115437F9C0040C04E /* CFNetwork.framework */,
-				43EB9CCF15437F980040C04E /* MobileCoreServices.framework */,
 				4382791615429010002E0A53 /* 46px */,
 				4382790F15429010002E0A53 /* Frameworks */,
 				4382790D15429010002E0A53 /* Products */,
@@ -273,6 +267,12 @@
 		4382790F15429010002E0A53 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43EB9D81154399DE0040C04E /* QuartzCore.framework */,
+				43EB9D7B154390A30040C04E /* libxml2.dylib */,
+				43EB9CD515437FB10040C04E /* libz.dylib */,
+				43EB9CD315437FAB0040C04E /* SystemConfiguration.framework */,
+				43EB9CD115437F9C0040C04E /* CFNetwork.framework */,
+				43EB9CCF15437F980040C04E /* MobileCoreServices.framework */,
 				4382791015429010002E0A53 /* UIKit.framework */,
 				4382791215429010002E0A53 /* Foundation.framework */,
 				4382791415429010002E0A53 /* CoreGraphics.framework */,
@@ -283,7 +283,6 @@
 		4382791615429010002E0A53 /* 46px */ = {
 			isa = PBXGroup;
 			children = (
-				43EB9CEE15438FEE0040C04E /* ASI */,
 				4382791F15429010002E0A53 /* AppDelegate.h */,
 				4382792015429010002E0A53 /* AppDelegate.m */,
 				4318A04F1543329C0004540E /* APIConnector.h */,
@@ -296,26 +295,19 @@
 				4382792215429010002E0A53 /* ViewController.h */,
 				4382792315429010002E0A53 /* ViewController.m */,
 				4382792515429010002E0A53 /* ViewController.xib */,
-				43EB9CE015438D8F0040C04E /* FacebookManager.h */,
-				43EB9CE115438D8F0040C04E /* FacebookManager.m */,
 				43EB9CD7154381F70040C04E /* PostViewController.h */,
 				43EB9CD8154381F70040C04E /* PostViewController.m */,
 				43EB9CD9154381F70040C04E /* PostViewController.xib */,
 				4382793A154295AB002E0A53 /* PixelEditorViewController.h */,
 				4382793B154295AB002E0A53 /* PixelEditorViewController.m */,
 				4382793C154295AB002E0A53 /* PixelEditorViewController.xib */,
-				4382793F154296CA002E0A53 /* PixelCanvasView.h */,
-				43827940154296CA002E0A53 /* PixelCanvasView.m */,
-				43827942154296D6002E0A53 /* PixelDrawing.h */,
-				43827943154296D6002E0A53 /* PixelDrawing.m */,
 				4318A049154322C00004540E /* ColorGridView.h */,
 				4318A04A154322C00004540E /* ColorGridView.m */,
-				4382794D15429CFC002E0A53 /* CGHelpers.h */,
-				4382794B15429CF4002E0A53 /* CGHelpers.m */,
-				4382794815429701002E0A53 /* PixelEditOperation.h */,
-				4382794915429701002E0A53 /* PixelEditOperation.m */,
+				4382793F154296CA002E0A53 /* PixelCanvasView.h */,
+				43827940154296CA002E0A53 /* PixelCanvasView.m */,
 				813E1AED1545AAD00004FBB5 /* Drawing */,
 				813E1A9D154373010004FBB5 /* Facebook */,
+				43EB9CEE15438FEE0040C04E /* ASI */,
 				43827951154312E0002E0A53 /* Resources */,
 				4382791715429010002E0A53 /* Supporting Files */,
 			);
@@ -439,20 +431,9 @@
 		813E1A9D154373010004FBB5 /* Facebook */ = {
 			isa = PBXGroup;
 			children = (
-				813E1A9E154373010004FBB5 /* Facebook.h */,
-				813E1A9F154373010004FBB5 /* Facebook.m */,
-				813E1AA0154373010004FBB5 /* facebook_ios_sdk_Prefix.pch */,
-				813E1AA1154373010004FBB5 /* FBConnect.h */,
-				813E1AA2154373010004FBB5 /* FBDialog.bundle */,
-				813E1AA3154373010004FBB5 /* FBDialog.h */,
-				813E1AA4154373010004FBB5 /* FBDialog.m */,
-				813E1AA5154373010004FBB5 /* FBFrictionlessRequestSettings.h */,
-				813E1AA6154373010004FBB5 /* FBFrictionlessRequestSettings.m */,
-				813E1AA7154373010004FBB5 /* FBLoginDialog.h */,
-				813E1AA8154373010004FBB5 /* FBLoginDialog.m */,
-				813E1AA9154373010004FBB5 /* FBRequest.h */,
-				813E1AAA154373010004FBB5 /* FBRequest.m */,
-				813E1AAB154373010004FBB5 /* JSON */,
+				43EB9CE015438D8F0040C04E /* FacebookManager.h */,
+				43EB9CE115438D8F0040C04E /* FacebookManager.m */,
+				813E1B011545B0ED0004FBB5 /* SDK */,
 			);
 			path = Facebook;
 			sourceTree = "<group>";
@@ -480,6 +461,12 @@
 		813E1AED1545AAD00004FBB5 /* Drawing */ = {
 			isa = PBXGroup;
 			children = (
+				4382794815429701002E0A53 /* PixelEditOperation.h */,
+				4382794915429701002E0A53 /* PixelEditOperation.m */,
+				43827942154296D6002E0A53 /* PixelDrawing.h */,
+				43827943154296D6002E0A53 /* PixelDrawing.m */,
+				4382794D15429CFC002E0A53 /* CGHelpers.h */,
+				4382794B15429CF4002E0A53 /* CGHelpers.m */,
 				813E1AEE1545AAD10004FBB5 /* Tools */,
 			);
 			path = Drawing;
@@ -488,6 +475,10 @@
 		813E1AEE1545AAD10004FBB5 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				813E1AF71545AAD10004FBB5 /* PixelTool.h */,
+				813E1AF81545AAD10004FBB5 /* PixelTool.m */,
+				813E1AF91545AAD10004FBB5 /* ShapeTool.h */,
+				813E1AFA1545AAD10004FBB5 /* ShapeTool.m */,
 				813E1AEF1545AAD10004FBB5 /* EllipseTool.h */,
 				813E1AF01545AAD10004FBB5 /* EllipseTool.m */,
 				813E1AF11545AAD10004FBB5 /* LinePixelTool.h */,
@@ -496,12 +487,29 @@
 				813E1AF41545AAD10004FBB5 /* PaintBucketPixelTool.m */,
 				813E1AF51545AAD10004FBB5 /* PenPixelTool.h */,
 				813E1AF61545AAD10004FBB5 /* PenPixelTool.m */,
-				813E1AF71545AAD10004FBB5 /* PixelTool.h */,
-				813E1AF81545AAD10004FBB5 /* PixelTool.m */,
-				813E1AF91545AAD10004FBB5 /* ShapeTool.h */,
-				813E1AFA1545AAD10004FBB5 /* ShapeTool.m */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		813E1B011545B0ED0004FBB5 /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				813E1A9E154373010004FBB5 /* Facebook.h */,
+				813E1A9F154373010004FBB5 /* Facebook.m */,
+				813E1AA0154373010004FBB5 /* facebook_ios_sdk_Prefix.pch */,
+				813E1AA1154373010004FBB5 /* FBConnect.h */,
+				813E1AA2154373010004FBB5 /* FBDialog.bundle */,
+				813E1AA3154373010004FBB5 /* FBDialog.h */,
+				813E1AA4154373010004FBB5 /* FBDialog.m */,
+				813E1AA5154373010004FBB5 /* FBFrictionlessRequestSettings.h */,
+				813E1AA6154373010004FBB5 /* FBFrictionlessRequestSettings.m */,
+				813E1AA7154373010004FBB5 /* FBLoginDialog.h */,
+				813E1AA8154373010004FBB5 /* FBLoginDialog.m */,
+				813E1AA9154373010004FBB5 /* FBRequest.h */,
+				813E1AAA154373010004FBB5 /* FBRequest.m */,
+				813E1AAB154373010004FBB5 /* JSON */,
+			);
+			name = SDK;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
