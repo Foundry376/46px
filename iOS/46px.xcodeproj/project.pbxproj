@@ -140,8 +140,8 @@
 		43C32D171544689D006E6895 /* drawing_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = drawing_background.png; path = Resources/drawing_background.png; sourceTree = SOURCE_ROOT; };
 		43C32D19154475C8006E6895 /* button_background_down+highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_background_down+highlighted.png"; path = "Resources/button_background_down+highlighted.png"; sourceTree = SOURCE_ROOT; };
 		43C32D1B1544769C006E6895 /* tool-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tool-default.png"; path = "Resources/tool-default.png"; sourceTree = SOURCE_ROOT; };
-		43C32D1D15447AFA006E6895 /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72.png; sourceTree = "<group>"; };
-		43C32D1F15447AFD006E6895 /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
+		43C32D1D15447AFA006E6895 /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon72.png; path = ../../icon72.png; sourceTree = "<group>"; };
+		43C32D1F15447AFD006E6895 /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon144.png; path = ../../icon144.png; sourceTree = "<group>"; };
 		43C32D211544A5CF006E6895 /* post_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = post_background.png; path = Resources/post_background.png; sourceTree = SOURCE_ROOT; };
 		43EB9CCF15437F980040C04E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		43EB9CD115437F9C0040C04E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -248,8 +248,6 @@
 		4382790115429010002E0A53 = {
 			isa = PBXGroup;
 			children = (
-				43C32D1F15447AFD006E6895 /* icon144.png */,
-				43C32D1D15447AFA006E6895 /* icon72.png */,
 				4382791615429010002E0A53 /* 46px */,
 				4382790F15429010002E0A53 /* Frameworks */,
 				4382790D15429010002E0A53 /* Products */,
@@ -328,6 +326,8 @@
 		43827951154312E0002E0A53 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				43C32D1F15447AFD006E6895 /* icon144.png */,
+				43C32D1D15447AFA006E6895 /* icon72.png */,
 				43C32D0715446592006E6895 /* icon_comments.png */,
 				43C32D0815446592006E6895 /* icon_draw.png */,
 				43C32D0915446592006E6895 /* icon_like.png */,
