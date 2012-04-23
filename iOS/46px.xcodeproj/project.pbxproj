@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4312D492154374E500D92C6C /* PaintBucketPixelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4312D491154374E500D92C6C /* PaintBucketPixelTool.m */; };
-		4312D496154374ED00D92C6C /* LinePixelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4312D495154374ED00D92C6C /* LinePixelTool.m */; };
 		4318A0461543152C0004540E /* redo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4318A0441543152C0004540E /* redo.png */; };
 		4318A0471543152C0004540E /* undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4318A0451543152C0004540E /* undo.png */; };
 		4318A04B154322C00004540E /* ColorGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4318A04A154322C00004540E /* ColorGridView.m */; };
@@ -26,10 +24,8 @@
 		4382793E154295AB002E0A53 /* PixelEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4382793C154295AB002E0A53 /* PixelEditorViewController.xib */; };
 		43827941154296CA002E0A53 /* PixelCanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43827940154296CA002E0A53 /* PixelCanvasView.m */; };
 		43827944154296D7002E0A53 /* PixelDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 43827943154296D6002E0A53 /* PixelDrawing.m */; };
-		43827947154296E6002E0A53 /* PixelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 43827946154296E6002E0A53 /* PixelTool.m */; };
 		4382794A15429701002E0A53 /* PixelEditOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4382794915429701002E0A53 /* PixelEditOperation.m */; };
 		4382794C15429CF4002E0A53 /* CGHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4382794B15429CF4002E0A53 /* CGHelpers.m */; };
-		43827950154310F7002E0A53 /* PenPixelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4382794F154310F7002E0A53 /* PenPixelTool.m */; };
 		43C32CFC15446200006E6895 /* OrangeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C32CFB15446200006E6895 /* OrangeButton.m */; };
 		43C32D0015446257006E6895 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32CFD15446257006E6895 /* background.png */; };
 		43C32D0115446257006E6895 /* button_background_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32CFE15446257006E6895 /* button_background_down.png */; };
@@ -57,7 +53,6 @@
 		43EB9CDA154381F70040C04E /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CD8154381F70040C04E /* PostViewController.m */; };
 		43EB9CDB154381F70040C04E /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43EB9CD9154381F70040C04E /* PostViewController.xib */; };
 		43EB9CE215438D8F0040C04E /* FacebookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CE115438D8F0040C04E /* FacebookManager.m */; };
-		43EB9CED15438DE80040C04E /* ShapeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CEC15438DE80040C04E /* ShapeTool.m */; };
 		43EB9D4D15438FEE0040C04E /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CF115438FEE0040C04E /* ASIAuthenticationDialog.m */; };
 		43EB9D4E15438FEE0040C04E /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CF415438FEE0040C04E /* ASIDataCompressor.m */; };
 		43EB9D4F15438FEE0040C04E /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CF615438FEE0040C04E /* ASIDataDecompressor.m */; };
@@ -87,13 +82,15 @@
 		813E1AC2154373010004FBB5 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AB4154373010004FBB5 /* SBJsonBase.m */; };
 		813E1AC3154373010004FBB5 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AB6154373010004FBB5 /* SBJsonParser.m */; };
 		813E1AC4154373010004FBB5 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AB8154373010004FBB5 /* SBJsonWriter.m */; };
+		813E1AFB1545AAD10004FBB5 /* EllipseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AF01545AAD10004FBB5 /* EllipseTool.m */; };
+		813E1AFC1545AAD10004FBB5 /* LinePixelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AF21545AAD10004FBB5 /* LinePixelTool.m */; };
+		813E1AFD1545AAD10004FBB5 /* PaintBucketPixelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AF41545AAD10004FBB5 /* PaintBucketPixelTool.m */; };
+		813E1AFE1545AAD10004FBB5 /* PenPixelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AF61545AAD10004FBB5 /* PenPixelTool.m */; };
+		813E1AFF1545AAD10004FBB5 /* PixelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AF81545AAD10004FBB5 /* PixelTool.m */; };
+		813E1B001545AAD10004FBB5 /* ShapeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AFA1545AAD10004FBB5 /* ShapeTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4312D490154374E500D92C6C /* PaintBucketPixelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintBucketPixelTool.h; sourceTree = "<group>"; };
-		4312D491154374E500D92C6C /* PaintBucketPixelTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintBucketPixelTool.m; sourceTree = "<group>"; };
-		4312D494154374ED00D92C6C /* LinePixelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinePixelTool.h; sourceTree = "<group>"; };
-		4312D495154374ED00D92C6C /* LinePixelTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinePixelTool.m; sourceTree = "<group>"; };
 		4318A0441543152C0004540E /* redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redo.png; sourceTree = "<group>"; };
 		4318A0451543152C0004540E /* undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undo.png; sourceTree = "<group>"; };
 		4318A049154322C00004540E /* ColorGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGridView.h; sourceTree = "<group>"; };
@@ -121,14 +118,10 @@
 		43827940154296CA002E0A53 /* PixelCanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PixelCanvasView.m; sourceTree = "<group>"; };
 		43827942154296D6002E0A53 /* PixelDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelDrawing.h; sourceTree = "<group>"; };
 		43827943154296D6002E0A53 /* PixelDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PixelDrawing.m; sourceTree = "<group>"; };
-		43827945154296E6002E0A53 /* PixelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelTool.h; sourceTree = "<group>"; };
-		43827946154296E6002E0A53 /* PixelTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PixelTool.m; sourceTree = "<group>"; };
 		4382794815429701002E0A53 /* PixelEditOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelEditOperation.h; sourceTree = "<group>"; };
 		4382794915429701002E0A53 /* PixelEditOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PixelEditOperation.m; sourceTree = "<group>"; };
 		4382794B15429CF4002E0A53 /* CGHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGHelpers.m; sourceTree = "<group>"; };
 		4382794D15429CFC002E0A53 /* CGHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGHelpers.h; sourceTree = "<group>"; };
-		4382794E154310F7002E0A53 /* PenPixelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PenPixelTool.h; sourceTree = "<group>"; };
-		4382794F154310F7002E0A53 /* PenPixelTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PenPixelTool.m; sourceTree = "<group>"; };
 		43C32CFA15446200006E6895 /* OrangeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrangeButton.h; sourceTree = "<group>"; };
 		43C32CFB15446200006E6895 /* OrangeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrangeButton.m; sourceTree = "<group>"; };
 		43C32CFD15446257006E6895 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Resources/background.png; sourceTree = SOURCE_ROOT; };
@@ -159,8 +152,6 @@
 		43EB9CD9154381F70040C04E /* PostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostViewController.xib; sourceTree = "<group>"; };
 		43EB9CE015438D8F0040C04E /* FacebookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookManager.h; sourceTree = "<group>"; };
 		43EB9CE115438D8F0040C04E /* FacebookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookManager.m; sourceTree = "<group>"; };
-		43EB9CEB15438DE80040C04E /* ShapeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeTool.h; sourceTree = "<group>"; };
-		43EB9CEC15438DE80040C04E /* ShapeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeTool.m; sourceTree = "<group>"; };
 		43EB9CF015438FEE0040C04E /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		43EB9CF115438FEE0040C04E /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		43EB9CF215438FEE0040C04E /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -221,8 +212,18 @@
 		813E1AB6154373010004FBB5 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		813E1AB7154373010004FBB5 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		813E1AB8154373010004FBB5 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		813E1AD515438EAA0004FBB5 /* EllipseTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EllipseTool.h; sourceTree = "<group>"; };
-		813E1AD615438EAA0004FBB5 /* EllipseTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EllipseTool.m; sourceTree = "<group>"; };
+		813E1AEF1545AAD10004FBB5 /* EllipseTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EllipseTool.h; sourceTree = "<group>"; };
+		813E1AF01545AAD10004FBB5 /* EllipseTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EllipseTool.m; sourceTree = "<group>"; };
+		813E1AF11545AAD10004FBB5 /* LinePixelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinePixelTool.h; sourceTree = "<group>"; };
+		813E1AF21545AAD10004FBB5 /* LinePixelTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinePixelTool.m; sourceTree = "<group>"; };
+		813E1AF31545AAD10004FBB5 /* PaintBucketPixelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintBucketPixelTool.h; sourceTree = "<group>"; };
+		813E1AF41545AAD10004FBB5 /* PaintBucketPixelTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintBucketPixelTool.m; sourceTree = "<group>"; };
+		813E1AF51545AAD10004FBB5 /* PenPixelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PenPixelTool.h; sourceTree = "<group>"; };
+		813E1AF61545AAD10004FBB5 /* PenPixelTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PenPixelTool.m; sourceTree = "<group>"; };
+		813E1AF71545AAD10004FBB5 /* PixelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelTool.h; sourceTree = "<group>"; };
+		813E1AF81545AAD10004FBB5 /* PixelTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PixelTool.m; sourceTree = "<group>"; };
+		813E1AF91545AAD10004FBB5 /* ShapeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeTool.h; sourceTree = "<group>"; };
+		813E1AFA1545AAD10004FBB5 /* ShapeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,20 +312,9 @@
 				4318A04A154322C00004540E /* ColorGridView.m */,
 				4382794D15429CFC002E0A53 /* CGHelpers.h */,
 				4382794B15429CF4002E0A53 /* CGHelpers.m */,
-				43827945154296E6002E0A53 /* PixelTool.h */,
-				43827946154296E6002E0A53 /* PixelTool.m */,
-				43EB9CEB15438DE80040C04E /* ShapeTool.h */,
-				43EB9CEC15438DE80040C04E /* ShapeTool.m */,
-				4312D494154374ED00D92C6C /* LinePixelTool.h */,
-				4312D495154374ED00D92C6C /* LinePixelTool.m */,
-				813E1AD515438EAA0004FBB5 /* EllipseTool.h */,
-				813E1AD615438EAA0004FBB5 /* EllipseTool.m */,
-				4312D490154374E500D92C6C /* PaintBucketPixelTool.h */,
-				4312D491154374E500D92C6C /* PaintBucketPixelTool.m */,
-				4382794E154310F7002E0A53 /* PenPixelTool.h */,
-				4382794F154310F7002E0A53 /* PenPixelTool.m */,
 				4382794815429701002E0A53 /* PixelEditOperation.h */,
 				4382794915429701002E0A53 /* PixelEditOperation.m */,
+				813E1AED1545AAD00004FBB5 /* Drawing */,
 				813E1A9D154373010004FBB5 /* Facebook */,
 				43827951154312E0002E0A53 /* Resources */,
 				4382791715429010002E0A53 /* Supporting Files */,
@@ -487,6 +477,33 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		813E1AED1545AAD00004FBB5 /* Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				813E1AEE1545AAD10004FBB5 /* Tools */,
+			);
+			path = Drawing;
+			sourceTree = "<group>";
+		};
+		813E1AEE1545AAD10004FBB5 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				813E1AEF1545AAD10004FBB5 /* EllipseTool.h */,
+				813E1AF01545AAD10004FBB5 /* EllipseTool.m */,
+				813E1AF11545AAD10004FBB5 /* LinePixelTool.h */,
+				813E1AF21545AAD10004FBB5 /* LinePixelTool.m */,
+				813E1AF31545AAD10004FBB5 /* PaintBucketPixelTool.h */,
+				813E1AF41545AAD10004FBB5 /* PaintBucketPixelTool.m */,
+				813E1AF51545AAD10004FBB5 /* PenPixelTool.h */,
+				813E1AF61545AAD10004FBB5 /* PenPixelTool.m */,
+				813E1AF71545AAD10004FBB5 /* PixelTool.h */,
+				813E1AF81545AAD10004FBB5 /* PixelTool.m */,
+				813E1AF91545AAD10004FBB5 /* ShapeTool.h */,
+				813E1AFA1545AAD10004FBB5 /* ShapeTool.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -584,10 +601,8 @@
 				4382793D154295AB002E0A53 /* PixelEditorViewController.m in Sources */,
 				43827941154296CA002E0A53 /* PixelCanvasView.m in Sources */,
 				43827944154296D7002E0A53 /* PixelDrawing.m in Sources */,
-				43827947154296E6002E0A53 /* PixelTool.m in Sources */,
 				4382794A15429701002E0A53 /* PixelEditOperation.m in Sources */,
 				4382794C15429CF4002E0A53 /* CGHelpers.m in Sources */,
-				43827950154310F7002E0A53 /* PenPixelTool.m in Sources */,
 				4318A04B154322C00004540E /* ColorGridView.m in Sources */,
 				4318A0511543329C0004540E /* APIConnector.m in Sources */,
 				813E1AB9154373010004FBB5 /* Facebook.m in Sources */,
@@ -601,11 +616,8 @@
 				813E1AC2154373010004FBB5 /* SBJsonBase.m in Sources */,
 				813E1AC3154373010004FBB5 /* SBJsonParser.m in Sources */,
 				813E1AC4154373010004FBB5 /* SBJsonWriter.m in Sources */,
-				4312D492154374E500D92C6C /* PaintBucketPixelTool.m in Sources */,
-				4312D496154374ED00D92C6C /* LinePixelTool.m in Sources */,
 				43EB9CDA154381F70040C04E /* PostViewController.m in Sources */,
 				43EB9CE215438D8F0040C04E /* FacebookManager.m in Sources */,
-				43EB9CED15438DE80040C04E /* ShapeTool.m in Sources */,
 				43EB9D4D15438FEE0040C04E /* ASIAuthenticationDialog.m in Sources */,
 				43EB9D4E15438FEE0040C04E /* ASIDataCompressor.m in Sources */,
 				43EB9D4F15438FEE0040C04E /* ASIDataDecompressor.m in Sources */,
@@ -619,6 +631,12 @@
 				43EB9D7515438FEE0040C04E /* Reachability.m in Sources */,
 				43EB9D8A15439B900040C04E /* WebViewController.m in Sources */,
 				43C32CFC15446200006E6895 /* OrangeButton.m in Sources */,
+				813E1AFB1545AAD10004FBB5 /* EllipseTool.m in Sources */,
+				813E1AFC1545AAD10004FBB5 /* LinePixelTool.m in Sources */,
+				813E1AFD1545AAD10004FBB5 /* PaintBucketPixelTool.m in Sources */,
+				813E1AFE1545AAD10004FBB5 /* PenPixelTool.m in Sources */,
+				813E1AFF1545AAD10004FBB5 /* PixelTool.m in Sources */,
+				813E1B001545AAD10004FBB5 /* ShapeTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
