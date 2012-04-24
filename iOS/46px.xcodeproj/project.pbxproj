@@ -69,6 +69,7 @@
 		43EB9D82154399DE0040C04E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB9D81154399DE0040C04E /* QuartzCore.framework */; };
 		43EB9D8A15439B900040C04E /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9D8815439B900040C04E /* WebViewController.m */; };
 		43EB9D8B15439B900040C04E /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43EB9D8915439B900040C04E /* WebViewController.xib */; };
+		810F68F8154623C700AB815D /* FacebookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E71015460ECD00E468CA /* FacebookManager.m */; };
 		813E1AFB1545AAD10004FBB5 /* EllipseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AF01545AAD10004FBB5 /* EllipseTool.m */; };
 		813E1AFC1545AAD10004FBB5 /* LinePixelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AF21545AAD10004FBB5 /* LinePixelTool.m */; };
 		813E1AFD1545AAD10004FBB5 /* PaintBucketPixelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AF41545AAD10004FBB5 /* PaintBucketPixelTool.m */; };
@@ -643,6 +644,7 @@
 				81F6E70C15460EAD00E468CA /* SBJsonBase.m in Sources */,
 				81F6E70D15460EAD00E468CA /* SBJsonParser.m in Sources */,
 				81F6E70E15460EAD00E468CA /* SBJsonWriter.m in Sources */,
+				810F68F8154623C700AB815D /* FacebookManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
