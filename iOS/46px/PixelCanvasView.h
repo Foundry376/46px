@@ -18,8 +18,16 @@ typedef struct {
     CGPoint prevPixelInView;
 } TouchProperties;
 
+typedef struct {
+    float x;
+    float y;
+    float zoom;
+} Transforms;
+
 @interface PixelCanvasView : UIView
 {
+    Transforms  camera;
+    Transforms  pending;
 }
 
 @property (nonatomic, assign) PixelDrawing * drawing;
