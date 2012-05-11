@@ -15,11 +15,12 @@
     return [UIImage imageNamed:@"tool-line.png"];
 }
 
--(void)drawToolOverlayInContext:(CGContextRef)c withDrawing:(PixelDrawing *)d
+-(void)drawShapeInContext:(CGContextRef)c withDrawing:(PixelDrawing *)d
 {
     CGContextMoveToPoint(c, start.pixelInView.x, start.pixelInView.y);
     CGContextAddLineToPoint(c, end.pixelInView.x, end.pixelInView.y);
     CGContextSetStrokeColorWithColor(c, [d.color CGColor]);
+    CGContextStrokePath(c);
 }
 
 - (void)drawInContext:(CGContextRef)c

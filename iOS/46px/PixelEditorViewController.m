@@ -71,9 +71,7 @@
     
     // attach the drawing to the canvas
     [canvasView setDrawing: self.drawing];
-    [canvasThumbnailView setDrawing: self.drawing];
     [canvasView setNeedsDisplay];
-    [canvasThumbnailView setNeedsDisplay];
     
     // setup the color view for the first time
     [colorsView setDrawing: self.drawing];
@@ -106,6 +104,12 @@
     [self setMirrorXButton:nil];
     [self setMirrorYButton:nil];
     [super viewDidUnload];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [canvasThumbnailView setDrawing: self.drawing];
+    [canvasThumbnailView setNeedsDisplay];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -172,6 +176,11 @@
 - (IBAction)redo:(id)sender
 {
     [self.drawing performRedo];
+}
+
+- (IBAction)zoomToFit:(id)sender
+{
+    [canvasView zoomToFit];
 }
 
 - (IBAction)toggleMirroringY:(id)sender

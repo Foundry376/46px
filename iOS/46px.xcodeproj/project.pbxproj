@@ -13,6 +13,9 @@
 		4318A0511543329C0004540E /* APIConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4318A0501543329C0004540E /* APIConnector.m */; };
 		4318A053154338D50004540E /* missing.png in Resources */ = {isa = PBXBuildFile; fileRef = 4318A052154338D50004540E /* missing.png */; };
 		437DB9D5155D9C9F00ADF727 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 437DB9D1155D9C9F00ADF727 /* libTestFlight.a */; };
+		437DB9DF155DBAF800ADF727 /* RectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 437DB9DE155DBAF800ADF727 /* RectTool.m */; };
+		437DB9E3155DBCBF00ADF727 /* tool-ellipse.png in Resources */ = {isa = PBXBuildFile; fileRef = 437DB9E1155DBCBF00ADF727 /* tool-ellipse.png */; };
+		437DB9E4155DBCBF00ADF727 /* tool-rect.png in Resources */ = {isa = PBXBuildFile; fileRef = 437DB9E2155DBCBF00ADF727 /* tool-rect.png */; };
 		4382791115429010002E0A53 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382791015429010002E0A53 /* UIKit.framework */; };
 		4382791315429010002E0A53 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382791215429010002E0A53 /* Foundation.framework */; };
 		4382791515429010002E0A53 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382791415429010002E0A53 /* CoreGraphics.framework */; };
@@ -101,6 +104,10 @@
 		4318A052154338D50004540E /* missing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missing.png; sourceTree = "<group>"; };
 		437DB9D1155D9C9F00ADF727 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = 46px/Testflight/libTestFlight.a; sourceTree = "<group>"; };
 		437DB9D4155D9C9F00ADF727 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		437DB9DD155DBAF800ADF727 /* RectTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RectTool.h; sourceTree = "<group>"; };
+		437DB9DE155DBAF800ADF727 /* RectTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RectTool.m; sourceTree = "<group>"; };
+		437DB9E1155DBCBF00ADF727 /* tool-ellipse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tool-ellipse.png"; path = "Resources/tool-ellipse.png"; sourceTree = SOURCE_ROOT; };
+		437DB9E2155DBCBF00ADF727 /* tool-rect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tool-rect.png"; path = "Resources/tool-rect.png"; sourceTree = SOURCE_ROOT; };
 		4382790C15429010002E0A53 /* 46px.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 46px.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4382791015429010002E0A53 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4382791215429010002E0A53 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -359,6 +366,8 @@
 				43C32D211544A5CF006E6895 /* post_background.png */,
 				43C32D1B1544769C006E6895 /* tool-default.png */,
 				43EB9D7E154393280040C04E /* tool-paintbucket.png */,
+				437DB9E1155DBCBF00ADF727 /* tool-ellipse.png */,
+				437DB9E2155DBCBF00ADF727 /* tool-rect.png */,
 				43C32D0F1544670C006E6895 /* icon_flip_x.png */,
 				43C32D101544670C006E6895 /* icon_flip_y.png */,
 				43C32D1315446752006E6895 /* icon_redo.png */,
@@ -473,6 +482,8 @@
 				813E1AF81545AAD10004FBB5 /* PixelTool.m */,
 				813E1AF91545AAD10004FBB5 /* ShapeTool.h */,
 				813E1AFA1545AAD10004FBB5 /* ShapeTool.m */,
+				437DB9DD155DBAF800ADF727 /* RectTool.h */,
+				437DB9DE155DBAF800ADF727 /* RectTool.m */,
 				813E1AEF1545AAD10004FBB5 /* EllipseTool.h */,
 				813E1AF01545AAD10004FBB5 /* EllipseTool.m */,
 				813E1AF11545AAD10004FBB5 /* LinePixelTool.h */,
@@ -607,6 +618,8 @@
 				43C32D2015447AFD006E6895 /* icon144.png in Resources */,
 				43C32D221544A5CF006E6895 /* post_background.png in Resources */,
 				81F6E70415460EAD00E468CA /* FBDialog.bundle in Resources */,
+				437DB9E3155DBCBF00ADF727 /* tool-ellipse.png in Resources */,
+				437DB9E4155DBCBF00ADF727 /* tool-rect.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,6 +672,7 @@
 				81F6E70D15460EAD00E468CA /* SBJsonParser.m in Sources */,
 				81F6E70E15460EAD00E468CA /* SBJsonWriter.m in Sources */,
 				810F68F8154623C700AB815D /* FacebookManager.m in Sources */,
+				437DB9DF155DBAF800ADF727 /* RectTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

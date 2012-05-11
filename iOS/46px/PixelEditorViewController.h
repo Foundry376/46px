@@ -50,6 +50,8 @@
 - (void)toolToggled:(UIButton*)toolButton;
 - (IBAction)undo:(id)sender;
 - (IBAction)redo:(id)sender;
+- (IBAction)zoomToFit:(id)sender;
+
 - (void)drawingModified;
 
 - (void)dealloc;

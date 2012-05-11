@@ -28,6 +28,10 @@ typedef struct {
 {
     Transforms  camera;
     Transforms  pending;
+    
+    NSTimer * zoomToFitTimer;
+    Transforms zoomToFitTargetTransforms;
+    float zoomToFitFraction;
 }
 
 @property (nonatomic, assign) PixelDrawing * drawing;
@@ -35,6 +39,7 @@ typedef struct {
 - (id)initWithFrame:(CGRect)frame;
 - (id)initWithCoder:(NSCoder *)aDecoder;
 - (void)setup;
+- (void)zoomToFit;
 - (void)dealloc;
 
 #pragma mark -

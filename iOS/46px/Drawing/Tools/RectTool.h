@@ -8,7 +8,7 @@
 
 #import "ShapeTool.h"
 
-@interface EllipseTool : ShapeTool
+@interface RectTool : ShapeTool
 
 
 - (UIImage*)icon;

@@ -14,5 +14,5 @@
     TouchProperties end;
 }
 
--(void)drawToolOverlayInContext:(CGContextRef)context withDrawing:(PixelDrawing*)d;
+-(void)drawShapeInContext:(CGContextRef)context withDrawing:(PixelDrawing*)d;
 @end

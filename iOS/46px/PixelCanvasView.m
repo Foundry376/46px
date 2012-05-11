@@ -47,6 +47,41 @@
     pending.zoom = 1;
 }
 
+- (void)zoomToFit
+{
+    zoomToFitTargetTransforms.x = camera.x * camera.zoom;
+    zoomToFitTargetTransforms.y = camera.y * camera.zoom;
+    zoomToFitTargetTransforms.zoom = 1 / camera.zoom;
+    zoomToFitFraction = 0;
+    
+    [self setUserInteractionEnabled: NO];
+    zoomToFitTimer = [[NSTimer scheduledTimerWithTimeInterval:1 / 30.0 target:self selector:@selector(zoomToFitStep) userInfo:nil repeats:YES] retain];
+}
+
+- (void)zoomToFitStep
+{
+    pending.zoom = zoomToFitTargetTransforms.zoom * zoomToFitFraction;
+    pending.x = zoomToFitTargetTransforms.x * zoomToFitFraction;
+    pending.y = zoomToFitTargetTransforms.y * zoomToFitFraction;
+    zoomToFitFraction += 0.05;
+    
+    if (zoomToFitFraction >= 1) {
+        camera.x = 0;
+        camera.y = 0;
+        camera.zoom = 1;
+        pending.x = 0;
+        pending.y = 0;
+        pending.zoom = 1;
+        [zoomToFitTimer invalidate];
+        [zoomToFitTimer release];
+        zoomToFitTimer = nil;
+        
+        [self setUserInteractionEnabled: YES];
+    }
+    
+    [self setNeedsDisplay];
+}
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver: self];
@@ -71,9 +106,6 @@
     // zooming and then when you release the screen, we "commit" that value by 
     // multiplying it into the camera zoom and reseting the pending zoom. 
     
-    // When we go to draw, step 1 is to shift the canvas by whatever the X/Y translation is:
-    CGContextTranslateCTM(c, -camera.x -pending.x, -camera.y - pending.y);
-    
     // Next, we want to zoom in or out based on the current zoom level (pending.zoom * camera.zoom).
     // This is a bit tricky becaues we don't want to zoom from the top left, we want to zoom from
     // the CENTER. To make that happen, we first need to shift everything in by 1/2 the screen
@@ -81,6 +113,9 @@
     CGContextTranslateCTM(c, rect.size.width / 2, rect.size.height / 2);
     CGContextScaleCTM(c, pending.zoom * camera.zoom, pending.zoom * camera.zoom);
     CGContextTranslateCTM(c, -rect.size.width / 2, -rect.size.height / 2);
+    
+    // When we go to draw, step 1 is to shift the canvas by whatever the X/Y translation is:
+    CGContextTranslateCTM(c, -camera.x -pending.x, -camera.y - pending.y);
     
     // Note that we apply 1) translation and 2) zoom in that order. It's important to keep
     // that consistent throughout! To go from screen pixel to canvas pixel, do that order.
@@ -125,6 +160,8 @@
     if (self.bounds.size.width > [drawing size].width * 4) {
         // draw little hairlines over each pixel
         CGContextSetStrokeColorWithColor(c, [[UIColor lightGrayColor] CGColor]);
+        CGContextSetLineWidth(c, 1 / (pending.zoom * camera.zoom));
+        
         float pixelWidth = [self bounds].size.width / [drawing size].width;
         float pixelHeight = [self bounds].size.height / [drawing size].height;
         
@@ -153,9 +190,12 @@
 
 - (void)pan:(UIPanGestureRecognizer*)r
 {
+    if ([[drawing tool] down])
+        [[drawing tool] cancel: drawing];
+        
     CGPoint p = [r translationInView: self];
-    pending.x = -p.x;
-    pending.y = -p.y;
+    pending.x = -p.x / camera.zoom;
+    pending.y = -p.y / camera.zoom;
     
     if (r.state == UIGestureRecognizerStateEnded) {
         camera.x += pending.x;
@@ -169,6 +209,9 @@
 
 - (void)zoom:(UIPinchGestureRecognizer*)r
 {
+    if ([[drawing tool] down])
+        [[drawing tool] cancel: drawing];
+    
     pending.zoom = fmaxf(1 / camera.zoom, [r scale]);
     
     if (r.state == UIGestureRecognizerStateEnded) {
@@ -202,10 +245,10 @@
     float xOffset = pending.x + camera.x;
     float yOffset = pending.y + camera.y;
     CGSize displayedRegionSize = CGSizeMake(self.frame.size.width / (pixelWidth * zoom), self.frame.size.height / (pixelHeight * zoom));
-    CGPoint displayedOffset = CGPointMake(([drawing size].width - displayedRegionSize.width) / 2 + xOffset / (pixelWidth * zoom), ([drawing size].height - displayedRegionSize.height) / 2 + yOffset / (pixelHeight * zoom));
+    CGPoint displayedOffset = CGPointMake(([drawing size].width - displayedRegionSize.width) / 2 + xOffset / pixelWidth, ([drawing size].height - displayedRegionSize.height) / 2 + yOffset / pixelWidth);
     
-    p.pixelInView = CGPointMake(p.locationInView.x / (pixelWidth * zoom) + displayedOffset.x, p.locationInView.y / (pixelWidth * zoom) + displayedOffset.y);
-    p.prevPixelInView = CGPointMake(p.prevLocationInView.x / (pixelWidth * zoom) + displayedOffset.x, p.prevLocationInView.y / (pixelWidth * zoom) + displayedOffset.y);
+    p.pixelInView = CGPointMake((p.locationInView.x) / (pixelWidth * zoom) + displayedOffset.x, (p.locationInView.y) / (pixelWidth * zoom) + displayedOffset.y);
+    p.prevPixelInView = CGPointMake((p.prevLocationInView.x) / (pixelWidth * zoom) + displayedOffset.x, (p.prevLocationInView.y) / (pixelWidth * zoom) + displayedOffset.y);
     
     return p;
 }

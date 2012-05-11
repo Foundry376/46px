@@ -24,6 +24,7 @@
 
 - (void)drawInContext:(CGContextRef)c;
 
+- (void)cancel:(PixelDrawing*)d;
 - (BOOL)down;
 - (UIImage*)icon;
 

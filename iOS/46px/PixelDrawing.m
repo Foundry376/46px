@@ -13,6 +13,8 @@
 #import "PixelTool.h"
 #import "LinePixelTool.h"
 #import "PaintBucketPixelTool.h"
+#import "RectTool.h"
+#import "EllipseTool.h"
 
 @implementation PixelDrawing
 
@@ -58,6 +60,8 @@
     [tools addObject: [[[PenPixelTool alloc] init] autorelease]];
     [tools addObject: [[[LinePixelTool alloc] init] autorelease]];
     [tools addObject: [[[PaintBucketPixelTool alloc] init] autorelease]];
+    [tools addObject: [[[RectTool alloc] init] autorelease]];
+    [tools addObject: [[[EllipseTool alloc] init] autorelease]];
     
     // setup some colors
     colors = [[NSMutableArray alloc] init];

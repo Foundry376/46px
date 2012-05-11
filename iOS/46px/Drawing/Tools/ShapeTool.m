@@ -31,9 +31,9 @@
     
     CGLayerRef l = [d operationLayer];
     CGContextRef c = CGLayerGetContext(l);
-    [self drawToolOverlayInContext:c withDrawing:d];
     CGContextClearRect(c, CGRectMake(0, 0, d.size.width, d.size.height));
-        
+ 
+    [self drawShapeInContext:c withDrawing:d]; 
     [super touchMoved: touch inDrawing: d];
 }
 
@@ -45,11 +45,8 @@
     CGContextRef c = CGLayerGetContext(l);
     
     CGContextClearRect(c, CGRectMake(0, 0, d.size.width, d.size.height));
-    CGContextMoveToPoint(c, start.pixelInView.x, start.pixelInView.y);
-    CGContextAddLineToPoint(c, touch.pixelInView.x, touch.pixelInView.y);
-    CGContextSetStrokeColorWithColor(c, [d.color CGColor]);
-    CGContextStrokePath(c);
-    
+    [self drawShapeInContext:c withDrawing:d]; 
+
     CGRect startRect = CGRectMake(start.pixelInView.x, start.pixelInView.y, 1, 1);
     CGRect endRect = CGRectMake(touch.pixelInView.x, touch.pixelInView.y, 1, 1); 
     CGRect drawnRect = CGRectUnion(startRect, endRect);
@@ -63,13 +60,9 @@
     return [UIImage imageNamed:@"tool-line.png"];
 }
 
-- (void)drawToolOverlayInContext:(CGContextRef)context withDrawing:(PixelDrawing *)d
+- (void)drawShapeInContext:(CGContextRef)context withDrawing:(PixelDrawing *)d
 {
     //for subclasses to implement
 }
--(void)drawToolOverlayInContext
-{
-    //for subclasses to implement 
-    //this is called during the 
-}
+
 @end
