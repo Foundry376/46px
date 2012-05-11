@@ -44,11 +44,13 @@
 
 - (IBAction)cancel:(id)sender 
 {
+    [TestFlight passCheckpoint:@"PostViewController-UserCancelled"];
     [self dismissModalViewControllerAnimated: YES];
 }
 
 - (IBAction)post:(id)sender 
 {
+    [TestFlight passCheckpoint:@"PostViewController-UserPosted"];
     [self.drawing setCaption: [captionTextView text]];
     [[APIConnector shared] postDrawing: self.drawing];
     [spinner startAnimating];

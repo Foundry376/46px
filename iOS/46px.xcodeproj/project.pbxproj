@@ -12,6 +12,7 @@
 		4318A04B154322C00004540E /* ColorGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4318A04A154322C00004540E /* ColorGridView.m */; };
 		4318A0511543329C0004540E /* APIConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4318A0501543329C0004540E /* APIConnector.m */; };
 		4318A053154338D50004540E /* missing.png in Resources */ = {isa = PBXBuildFile; fileRef = 4318A052154338D50004540E /* missing.png */; };
+		437DB9D5155D9C9F00ADF727 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 437DB9D1155D9C9F00ADF727 /* libTestFlight.a */; };
 		4382791115429010002E0A53 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382791015429010002E0A53 /* UIKit.framework */; };
 		4382791315429010002E0A53 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382791215429010002E0A53 /* Foundation.framework */; };
 		4382791515429010002E0A53 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382791415429010002E0A53 /* CoreGraphics.framework */; };
@@ -98,6 +99,8 @@
 		4318A04F1543329C0004540E /* APIConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIConnector.h; sourceTree = "<group>"; };
 		4318A0501543329C0004540E /* APIConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIConnector.m; sourceTree = "<group>"; };
 		4318A052154338D50004540E /* missing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missing.png; sourceTree = "<group>"; };
+		437DB9D1155D9C9F00ADF727 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = 46px/Testflight/libTestFlight.a; sourceTree = "<group>"; };
+		437DB9D4155D9C9F00ADF727 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		4382790C15429010002E0A53 /* 46px.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 46px.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4382791015429010002E0A53 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4382791215429010002E0A53 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -239,12 +242,21 @@
 				4382791115429010002E0A53 /* UIKit.framework in Frameworks */,
 				4382791315429010002E0A53 /* Foundation.framework in Frameworks */,
 				4382791515429010002E0A53 /* CoreGraphics.framework in Frameworks */,
+				437DB9D5155D9C9F00ADF727 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		437DB9D0155D9C9F00ADF727 /* Testflight */ = {
+			isa = PBXGroup;
+			children = (
+				437DB9D4155D9C9F00ADF727 /* TestFlight.h */,
+			);
+			path = Testflight;
+			sourceTree = "<group>";
+		};
 		4382790115429010002E0A53 = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +277,7 @@
 		4382790F15429010002E0A53 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				437DB9D1155D9C9F00ADF727 /* libTestFlight.a */,
 				43EB9D81154399DE0040C04E /* QuartzCore.framework */,
 				43EB9D7B154390A30040C04E /* libxml2.dylib */,
 				43EB9CD515437FB10040C04E /* libz.dylib */,
@@ -281,6 +294,7 @@
 		4382791615429010002E0A53 /* 46px */ = {
 			isa = PBXGroup;
 			children = (
+				437DB9D0155D9C9F00ADF727 /* Testflight */,
 				4382791F15429010002E0A53 /* AppDelegate.h */,
 				4382792015429010002E0A53 /* AppDelegate.m */,
 				4318A04F1543329C0004540E /* APIConnector.h */,
@@ -721,6 +735,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "46px/46px-Prefix.pch";
 				INFOPLIST_FILE = "46px/46px-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/46px/Testflight\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -732,6 +750,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "46px/46px-Prefix.pch";
 				INFOPLIST_FILE = "46px/46px-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/46px/Testflight\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

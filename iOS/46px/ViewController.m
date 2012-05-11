@@ -114,6 +114,8 @@
 
 - (IBAction)start:(id)sender
 {    
+    [TestFlight passCheckpoint:@"NewDrawingOpened"];
+
     // ask for a folder that we can put our new drawing into
     NSString * dir = [[APIConnector shared] pathForNewDrawing];
     
@@ -130,6 +132,8 @@
 
 - (IBAction)draftSelected:(id)sender {
     
+    [TestFlight passCheckpoint:@"ExistingDrawingOpened"];
+
     int drawingToLoad = 0;
     
     if (sender == draftTwo)
@@ -168,16 +172,19 @@
 
 - (IBAction)loginPressed:(id)sender 
 {
+    [TestFlight passCheckpoint:@"UserStartedLogin"];
     [[FacebookManager sharedManager] login];
     profilePicture.hidden = NO;
 }
 
-- (IBAction)logoutPressed:(id)sender {
+- (IBAction)logoutPressed:(id)sender 
+{
     [[FacebookManager sharedManager] logout];
     profilePicture.hidden = YES;
 }
 
-- (IBAction)clearPressed:(id)sender {
+- (IBAction)clearPressed:(id)sender 
+{
     APIConnector *curDrafts = [APIConnector shared];
     
     if ([[curDrafts drafts] count] != 0) {
