@@ -49,29 +49,32 @@
 
 - (void)zoomToFit
 {
-    zoomToFitTargetTransforms.x = camera.x * camera.zoom;
-    zoomToFitTargetTransforms.y = camera.y * camera.zoom;
+    if ((camera.zoom == 1) && (camera.x == 0) && (camera.y == 0))
+        return;
+        
+    zoomToFitTargetTransforms.x = -camera.x;
+    zoomToFitTargetTransforms.y = -camera.y;
     zoomToFitTargetTransforms.zoom = 1 / camera.zoom;
     zoomToFitFraction = 0;
     
     [self setUserInteractionEnabled: NO];
+    
+    [zoomToFitTimer invalidate];
+    [zoomToFitTimer release];
     zoomToFitTimer = [[NSTimer scheduledTimerWithTimeInterval:1 / 30.0 target:self selector:@selector(zoomToFitStep) userInfo:nil repeats:YES] retain];
 }
 
 - (void)zoomToFitStep
 {
-    pending.zoom = zoomToFitTargetTransforms.zoom * zoomToFitFraction;
-    pending.x = zoomToFitTargetTransforms.x * zoomToFitFraction;
-    pending.y = zoomToFitTargetTransforms.y * zoomToFitFraction;
+    camera.zoom = camera.zoom * (1 - zoomToFitFraction) + (1/camera.zoom) * zoomToFitFraction;
+    camera.x = camera.x * (1-zoomToFitFraction) +  (-camera.x) * zoomToFitFraction;
+    camera.y = camera.y * (1-zoomToFitFraction) +  (-camera.y) * zoomToFitFraction;
     zoomToFitFraction += 0.05;
     
     if (zoomToFitFraction >= 1) {
         camera.x = 0;
         camera.y = 0;
         camera.zoom = 1;
-        pending.x = 0;
-        pending.y = 0;
-        pending.zoom = 1;
         [zoomToFitTimer invalidate];
         [zoomToFitTimer release];
         zoomToFitTimer = nil;
