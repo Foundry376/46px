@@ -61,6 +61,8 @@
 #pragma mark Representing on Disk
 
 - (UIImage*)image;
+- (NSData *)animatedGif;
+
 - (NSString*)imagePath;
 - (NSString*)statePath;
 

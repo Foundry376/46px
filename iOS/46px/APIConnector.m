@@ -118,6 +118,8 @@ static APIConnector * sharedConnector;
     [req addPostValue:[d caption] forKey:@"caption"];
     [req addPostValue:[NSString stringWithFormat:@"%d", [d threadID]] forKey:@"threadID"];
     [req addData:UIImagePNGRepresentation(d.image) withFileName:@"image.png" andContentType: @"image/png" forKey:@"image"];
+    [req addData:[d animatedGif] withFileName:@"image.gif" andContentType: @"image/gif" forKey:@"gif"];
+    
     [req setUserAgent:@"46px App"];
     [req addRequestHeader:@"Expect" value:@"100-Continue"];
     [req addRequestHeader:@"Content-Encoding" value:@"identity"];

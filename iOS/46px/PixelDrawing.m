@@ -15,6 +15,9 @@
 #import "PaintBucketPixelTool.h"
 #import "RectTool.h"
 #import "EllipseTool.h"
+#import <QuartzCore/QuartzCore.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+#import <ImageIO/ImageIO.h>
 
 @implementation PixelDrawing
 
@@ -289,6 +292,50 @@
     }
 
     return [UIImage imageNamed: @"missing.png"];
+}
+
+- (NSData *)animatedGif
+{
+    // measure the length of the redo stack right now
+    int redoStackInitialLength = [redoStack count];
+    int ii;
+    
+    // redo all the way back
+    while ([operationStack count] > 0) {
+        [self performUndo];
+    }
+    
+    // redo one operation at a time until it's the length we started with
+    int imageCount = [redoStack count] - redoStackInitialLength;
+    double duration = fmaxf(5.0 / imageCount, 0.04);
+    int advance = fmaxf(1, floorf(imageCount / 500));
+    
+    NSString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"animated.gif"];
+    [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+    
+    CGImageDestinationRef destination = CGImageDestinationCreateWithURL((CFURLRef)[NSURL fileURLWithPath:path], kUTTypeGIF, floorf(imageCount / advance) + 1, NULL);
+    NSDictionary *frameProperties = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble: duration] forKey:(NSString *)kCGImagePropertyGIFDelayTime] forKey:(NSString *)kCGImagePropertyGIFDictionary];
+    NSDictionary *gifProperties = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:0] forKey:(NSString *)kCGImagePropertyGIFLoopCount] forKey:(NSString *)kCGImagePropertyGIFDictionary];
+    
+    for (ii = 0; ii < imageCount; ii+= advance) {
+        CGImageDestinationAddImage(destination, [[self image] CGImage], (CFDictionaryRef)frameProperties);
+        [self performRedo];
+    }
+
+    // make sure we get the last frame in there...
+    while (ii < imageCount) {
+        [self performRedo];
+        ii++;
+    }
+    CGImageDestinationAddImage(destination, [[self image] CGImage], (CFDictionaryRef)frameProperties);
+    
+    CGImageDestinationSetProperties(destination, (CFDictionaryRef)gifProperties);
+    CGImageDestinationFinalize(destination);
+    CFRelease(destination);
+
+    NSLog(@"animated GIF file created at %@", path);
+    
+    return [NSData dataWithContentsOfFile: path];
 }
 
 - (NSString*)imagePath
