@@ -24,6 +24,13 @@
     return self;
 }
 
+- (void)setFrame:(CGRect)frame
+{
+    // need to redraw after an orientation / frame size change to re-layout squares
+    [super setFrame: frame];
+    [self setNeedsDisplay];
+}
+
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef c = UIGraphicsGetCurrentContext();
@@ -56,10 +63,18 @@
             CGContextFillRect(c, r);
         }
         
-        r.origin.x += r.size.width + COLOR_CELL_PADDING;
-        if (r.origin.x + r.size.width > rect.size.width) {
-            r.origin.x = COLOR_CELL_PADDING;
+        if (rect.size.height > rect.size.width) {
+            r.origin.x += r.size.width + COLOR_CELL_PADDING;
+            if (r.origin.x + r.size.width > rect.size.width) {
+                r.origin.x = COLOR_CELL_PADDING;
+                r.origin.y += r.size.height + COLOR_CELL_PADDING;
+            }
+        } else {
             r.origin.y += r.size.height + COLOR_CELL_PADDING;
+            if (r.origin.y + r.size.height > rect.size.height) {
+                r.origin.y = COLOR_CELL_PADDING;
+                r.origin.x += r.size.width + COLOR_CELL_PADDING;
+            }
         }
     }
 }
@@ -68,7 +83,10 @@
 {
     int hx = floor(p.x / (COLOR_CELL_SIZE + COLOR_CELL_PADDING));
     int hy = floor(p.y / (COLOR_CELL_SIZE + COLOR_CELL_PADDING));
-    highlightedColorIndex = hy * roundf(self.bounds.size.width / (COLOR_CELL_SIZE + COLOR_CELL_PADDING)) + hx;
+    if (self.bounds.size.height > self.bounds.size.width)
+        highlightedColorIndex = hy * roundf(self.bounds.size.width / (COLOR_CELL_SIZE + COLOR_CELL_PADDING)) + hx;
+    else
+        highlightedColorIndex = hx * roundf(self.bounds.size.height / (COLOR_CELL_SIZE + COLOR_CELL_PADDING)) + hy;
     
     if ((highlightedColorIndex < 0) || (highlightedColorIndex >= [drawing.colors count]))
         highlightedColorIndex = NSNotFound;

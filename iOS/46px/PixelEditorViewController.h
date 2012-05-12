@@ -31,9 +31,11 @@
 @property (nonatomic, retain) PixelDrawing * drawing;
 @property (retain, nonatomic) IBOutlet ColorGridView *colorsView;
 @property (retain, nonatomic) IBOutlet UIView *toolsView;
+@property (retain, nonatomic) IBOutlet UIImageView *backgroundView;
 
 @property (retain, nonatomic) IBOutlet PixelCanvasView *canvasView;
 @property (retain, nonatomic) IBOutlet PixelCanvasView *canvasThumbnailView;
+@property (retain, nonatomic) IBOutlet UIButton *zoomToFitButton;
 
 @property (retain, nonatomic) IBOutlet UIButton *undoButton;
 @property (retain, nonatomic) IBOutlet UIButton *redoButton;

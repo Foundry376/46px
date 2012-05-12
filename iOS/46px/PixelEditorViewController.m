@@ -20,8 +20,10 @@
 
 @synthesize colorsView;
 @synthesize toolsView;
+@synthesize backgroundView;
 @synthesize canvasView;
 @synthesize canvasThumbnailView;
+@synthesize zoomToFitButton;
 @synthesize undoButton;
 @synthesize redoButton;
 @synthesize mirrorXButton;
@@ -48,9 +50,8 @@
     [self.drawing setupForEditing];
     
     // attach the tool "buttons" to the sidebar so we can have lots of tools
-    CGRect r = CGRectMake(4, TOOL_PADDING, 60, 60);
     for (PixelTool * t in self.drawing.tools) {
-        OrangeButton * b = [[[OrangeButton alloc] initWithFrame: r] autorelease];
+        OrangeButton * b = [[[OrangeButton alloc] initWithFrame: CGRectMake(0, 0, 60, 60)] autorelease];
         [b setImage:[t icon] forState:UIControlStateNormal];
         [b setTag: [self.drawing.tools indexOfObject: t]];
         [b addTarget:self action:@selector(toolToggled:) forControlEvents:UIControlEventTouchUpInside];
@@ -61,13 +62,8 @@
             [b setSelected: YES];
             
         [toolsView addSubview: b];
-        
-        r.origin.x += r.size.width + TOOL_PADDING;
-        if (r.origin.x + r.size.width > toolsView.bounds.size.width) {
-            r.origin.x = 4;
-            r.origin.y += r.size.height + TOOL_PADDING;
-        }
     }
+    [self layoutToolButtons];
     
     // attach the drawing to the canvas
     [canvasView setDrawing: self.drawing];
@@ -91,6 +87,19 @@
     [self.navigationItem setRightBarButtonItem:b animated:YES];
 }
 
+- (void)layoutToolButtons
+{
+    CGRect r = CGRectMake(4, TOOL_PADDING, 60, 60);
+    for (UIButton * b in toolsView.subviews) {
+        [b setFrame: r];
+        r.origin.x += r.size.width + TOOL_PADDING;
+        if (r.origin.x + r.size.width > toolsView.bounds.size.width) {
+            r.origin.x = 4;
+            r.origin.y += r.size.height + TOOL_PADDING;
+        }
+    }
+}
+
 - (void)viewDidUnload
 {
     [[NSNotificationCenter defaultCenter] removeObserver: self];
@@ -103,6 +112,8 @@
     [self setRedoButton:nil];
     [self setMirrorXButton:nil];
     [self setMirrorYButton:nil];
+    [self setZoomToFitButton:nil];
+    [self setBackgroundView:nil];
     [super viewDidUnload];
 }
 
@@ -213,11 +224,43 @@
     [toolsView release];
     [mirrorXButton release];
     [mirrorYButton release];
+    [zoomToFitButton release];
+    [backgroundView release];
     [super dealloc];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+    return YES;
 }
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
+{
+    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+        [undoButton setFrame: CGRectMake(632, 894, 60, 60)];
+        [redoButton setFrame: CGRectMake(700, 894, 60, 60)];
+        [canvasView setFrame: CGRectMake(34, 174, 704, 704)];
+        [canvasThumbnailView setFrame: CGRectMake(601, 13, 138, 138)];
+        [zoomToFitButton setFrame: CGRectMake(601, 13, 138, 138)];
+        [colorsView setFrame: CGRectMake(28, 8, 602, 150)];
+        [toolsView setFrame: CGRectMake(0, 889, 488, 133)];
+        [mirrorXButton setFrame: CGRectMake(350, 894, 125, 60)];
+        [mirrorYButton setFrame: CGRectMake(481, 894, 125, 60)];
+        [backgroundView setImage: [UIImage imageNamed: @"drawing_background_portrait.png"]];
+        
+    } else {
+        [undoButton setFrame: CGRectMake(5, 639, 60, 60)];
+        [redoButton setFrame: CGRectMake(70, 639, 60, 60)];
+        [canvasView setFrame: CGRectMake(141, 0, 704, 704)];
+        [canvasThumbnailView setFrame: CGRectMake(872, 13, 138, 138)];
+        [zoomToFitButton setFrame: CGRectMake(872, 13, 138, 138)];
+        [colorsView setFrame: CGRectMake(865, 166, 150, 540)];
+        [toolsView setFrame: CGRectMake(0, 0, 133, 488)];
+        [mirrorXButton setFrame: CGRectMake(5, 506, 125, 60)];
+        [mirrorYButton setFrame: CGRectMake(5, 573, 125, 60)];
+        [backgroundView setImage: [UIImage imageNamed: @"drawing_background.png"]];
+    }
+    [self layoutToolButtons];
+}
+
 @end

@@ -16,6 +16,7 @@
 		437DB9DF155DBAF800ADF727 /* RectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 437DB9DE155DBAF800ADF727 /* RectTool.m */; };
 		437DB9E3155DBCBF00ADF727 /* tool-ellipse.png in Resources */ = {isa = PBXBuildFile; fileRef = 437DB9E1155DBCBF00ADF727 /* tool-ellipse.png */; };
 		437DB9E4155DBCBF00ADF727 /* tool-rect.png in Resources */ = {isa = PBXBuildFile; fileRef = 437DB9E2155DBCBF00ADF727 /* tool-rect.png */; };
+		437DB9E6155E451A00ADF727 /* drawing_background_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 437DB9E5155E451A00ADF727 /* drawing_background_portrait.png */; };
 		4382791115429010002E0A53 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382791015429010002E0A53 /* UIKit.framework */; };
 		4382791315429010002E0A53 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382791215429010002E0A53 /* Foundation.framework */; };
 		4382791515429010002E0A53 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382791415429010002E0A53 /* CoreGraphics.framework */; };
@@ -108,6 +109,7 @@
 		437DB9DE155DBAF800ADF727 /* RectTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RectTool.m; sourceTree = "<group>"; };
 		437DB9E1155DBCBF00ADF727 /* tool-ellipse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tool-ellipse.png"; path = "Resources/tool-ellipse.png"; sourceTree = SOURCE_ROOT; };
 		437DB9E2155DBCBF00ADF727 /* tool-rect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tool-rect.png"; path = "Resources/tool-rect.png"; sourceTree = SOURCE_ROOT; };
+		437DB9E5155E451A00ADF727 /* drawing_background_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = drawing_background_portrait.png; path = Resources/drawing_background_portrait.png; sourceTree = SOURCE_ROOT; };
 		4382790C15429010002E0A53 /* 46px.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 46px.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4382791015429010002E0A53 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4382791215429010002E0A53 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -359,6 +361,7 @@
 				43C32CFE15446257006E6895 /* button_background_down.png */,
 				43C32CFF15446257006E6895 /* button_background.png */,
 				43C32D171544689D006E6895 /* drawing_background.png */,
+				437DB9E5155E451A00ADF727 /* drawing_background_portrait.png */,
 				43C32D0315446360006E6895 /* button_background_highlighted.png */,
 				4318A0441543152C0004540E /* redo.png */,
 				4318A0451543152C0004540E /* undo.png */,
@@ -620,6 +623,7 @@
 				81F6E70415460EAD00E468CA /* FBDialog.bundle in Resources */,
 				437DB9E3155DBCBF00ADF727 /* tool-ellipse.png in Resources */,
 				437DB9E4155DBCBF00ADF727 /* tool-rect.png in Resources */,
+				437DB9E6155E451A00ADF727 /* drawing_background_portrait.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
