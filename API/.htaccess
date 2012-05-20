@@ -1,1 +1,5 @@
 AddHandler php-stable .php
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ Backendindex.php [QSA,L]

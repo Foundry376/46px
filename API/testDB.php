@@ -15,13 +15,18 @@
             "development" => "mysql://db75591_46px:hacknashville@external-db.s75591.gridserver.com/db75591_46px_dev"));
     });
  
-
-    if ($user1 = Users::find(2)) {
+    // Create a new record in the Users table, and specify a userName and userEmail.
+     //$user = Users::create(array("id" => "1", "first_name" => "Test","last_name" => "User", "picUrl" => "http://images2.wikia.nocookie.net/__cb20091229130906/wario/images/d/d6/Bowser-jr-test.png"));
+    // Return record with primary ID of 3.
+    if ($user1 = Users::find(1)) {
         print("<p>" . $user1->first_name . $user1->last_name . "</p>");
     } else {
         print("<p>Cannot find <em>userID(1)</em>.</p>");
-
     }
+    
+//   Flight::route('/', function(){
+//    echo 'hello world!';
+//});
  
 ?>
  
