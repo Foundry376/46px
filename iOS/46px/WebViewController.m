@@ -11,6 +11,8 @@
 
 @implementation WebViewController
 @synthesize webView;
+@synthesize backgroundView;
+@synthesize otherBackgroundView;
 
 - (id)initWithPage:(NSURL*)u
 {
@@ -32,6 +34,9 @@
 - (void)viewDidUnload
 {
     [self setWebView:nil];
+    [self setBackgroundView:nil];
+    [self setOtherBackgroundView:nil];
+    [self setOtherBackgroundView:nil];
     [super viewDidUnload];
 }
 
@@ -40,15 +45,30 @@
     [webView reload];
 }
 
+- (void)viewWillLayoutSubviews {
+    
+    if (UIInterfaceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
+        [self.backgroundView setFrame:CGRectMake(0, 0, 768, 1060)];
+        self.otherBackgroundView.hidden = YES;
+    }
+    else {
+        [self.backgroundView setFrame:CGRectMake(0, 0, 784, 704)];
+        self.otherBackgroundView.hidden = NO;
+    }
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+    return YES;
 }
 
 - (void)dealloc 
 {
     [url release];
     [webView release];
+    [backgroundView release];
+    [otherBackgroundView release];
+    [otherBackgroundView release];
     [super dealloc];
 }
 

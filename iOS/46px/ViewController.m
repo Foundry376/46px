@@ -22,6 +22,9 @@
 @implementation ViewController
 
 @synthesize webView;
+@synthesize sideBar;
+@synthesize backgroundView;
+@synthesize drawButton;
 @synthesize draftOne;
 @synthesize draftTwo;
 @synthesize draftThree;
@@ -32,6 +35,8 @@
 @synthesize userName;
 @synthesize loginButton;
 @synthesize logoutButton;
+@synthesize draftLabel;
+@synthesize clearButton;
 @synthesize userPostCount;
 
 - (void)viewDidLoad
@@ -59,39 +64,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-//    NSMutableArray *buttonArray = [NSMutableArray arrayWithCapacity:6];
-//    [buttonArray addObject:draftOne];
-//    [buttonArray addObject:draftTwo];
-//    [buttonArray addObject:draftThree];
-//    [buttonArray addObject:draftFour];
-//    [buttonArray addObject:draftFive];
-//    [buttonArray addObject:draftSix];
-//    size_t increment = 0;
-//    
-//    UIButton *curButton;
-//    
-//    for (size_t i = 0; i < [[[APIConnector shared] drafts] count]; ++i) {
-//        if (i >= 6) {
-//            break;
-//        }
-//        increment++;
-//        PixelDrawing *d = [[[APIConnector shared] drafts] objectAtIndex:i];
-//        
-//        curButton = [buttonArray objectAtIndex:i];
-//        
-//        curButton.layer.cornerRadius = 9;
-//        curButton.clipsToBounds = YES;
-//        
-//        curButton.layer.borderColor = [[UIColor grayColor] CGColor];
-//        curButton.layer.borderWidth = .5;
-//        [curButton setImage:[d image] forState:UIControlStateNormal];
-//        [curButton setImage:[d image] forState:UIControlStateHighlighted];
-//        curButton.adjustsImageWhenHighlighted = NO;
-//    }
-//    for (size_t i = increment; i < [buttonArray count]; ++i) {
-//        curButton = [buttonArray objectAtIndex:i];
-//        curButton.hidden = YES;
-//    }
 
     [self manageDrafts];
     
@@ -100,6 +72,36 @@
     [facebook requestWithGraphPath:@"me" andDelegate:self];
     [webView reload];
     
+}
+
+- (void)viewWillLayoutSubviews {
+    
+    if (UIInterfaceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
+        [self.sideBar setImage:[UIImage imageNamed:@"home_sidebar_background_portrait.png"]];
+        [self.backgroundView setFrame:CGRectMake(0, 240, 784, 784)];
+        [self.sideBar setFrame:CGRectMake(0, 0, 768, 240)];
+        [self.profilePicture setFrame:CGRectMake(14, 14, 80, 80)];
+        [self.loginButton setFrame:CGRectMake(5, 8, 240, 92)];
+        [self.userName setFrame:CGRectMake(111, 14, 128, 26)];
+        [self.logoutButton setFrame:CGRectMake(111, 48, 79, 37)];
+        [self.drawButton setFrame:CGRectMake(26, 154, 206, 60)];
+        [self.draftLabel setFrame:CGRectMake(423, 35, 167, 21)];
+        [self.clearButton setFrame:CGRectMake(446, 182, 120, 37)];
+    }
+    else {
+        
+        [self.loginButton setFrame:CGRectMake(784, 0, 240, 92)];
+        [self.userName setFrame:CGRectMake(880, 11, 128, 26)];
+        [self.logoutButton setFrame:CGRectMake(880, 48, 79, 37)];
+        [self.drawButton setFrame:CGRectMake(802, 115, 206, 60)];
+        [self.draftLabel setFrame:CGRectMake(821, 352, 167, 21)];
+        [self.clearButton setFrame:CGRectMake(844, 650, 120, 37)];
+        [self.sideBar setImage:[UIImage imageNamed:@"home_sidebar_background.png"]];
+        [self.backgroundView setFrame:CGRectMake(0, 0, 784, 704)];
+        [self.sideBar setFrame:CGRectMake(784, 0, 240, 704)];
+        [self.profilePicture setFrame:CGRectMake(795, 5, 80, 80)];
+        
+    }
 }
 
 - (void)applicationDidEnterForeground
@@ -268,12 +270,17 @@
     [self setLogoutButton:nil];
     [self setUserName:nil];
     [self setUserPostCount:nil];
+    [self setSideBar:nil];
+    [self setBackgroundView:nil];
+    [self setDrawButton:nil];
+    [self setDraftLabel:nil];
+    [self setClearButton:nil];
     [super viewDidUnload];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+    return YES;
 }
 
 - (void)dealloc 
@@ -289,13 +296,16 @@
     [logoutButton release];
     [userName release];
     [userPostCount release];
+    [sideBar release];
+    [backgroundView release];
+    [drawButton release];
+    [draftLabel release];
+    [clearButton release];
     [super dealloc];
 }
 
 #pragma mark -
 #pragma mark UIWebView Delegate Functionality
-
-
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {

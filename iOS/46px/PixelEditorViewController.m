@@ -234,9 +234,10 @@
     return YES;
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
+//- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
+- (void)viewWillLayoutSubviews
 {
-    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+    if (UIInterfaceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
         [undoButton setFrame: CGRectMake(632, 894, 60, 60)];
         [redoButton setFrame: CGRectMake(700, 894, 60, 60)];
         [canvasView setFrame: CGRectMake(34, 174, 704, 704)];

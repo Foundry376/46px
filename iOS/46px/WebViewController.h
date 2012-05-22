@@ -16,6 +16,8 @@
 }
 
 @property (retain, nonatomic) IBOutlet UIWebView *webView;
+@property (retain, nonatomic) IBOutlet UIImageView *backgroundView;
+@property (retain, nonatomic) IBOutlet UIImageView *otherBackgroundView;
 
 - (id)initWithPage:(NSURL*)u;
 

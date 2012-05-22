@@ -13,6 +13,9 @@
 @interface ViewController : UIViewController <UIWebViewDelegate, PixelEditorDelegate, FBRequestDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
+@property (retain, nonatomic) IBOutlet UIImageView *sideBar;
+@property (retain, nonatomic) IBOutlet UIImageView *backgroundView;
+@property (retain, nonatomic) IBOutlet UIImageView *drawButton;
 
 @property (retain, nonatomic) IBOutlet UIButton *draftOne;
 @property (retain, nonatomic) IBOutlet UIButton *draftTwo;
@@ -24,6 +27,8 @@
 @property (retain, nonatomic) IBOutlet UIImageView *profilePicture;
 @property (retain, nonatomic) IBOutlet UIButton *loginButton;
 @property (retain, nonatomic) IBOutlet UIButton *logoutButton;
+@property (retain, nonatomic) IBOutlet UILabel *draftLabel;
+@property (retain, nonatomic) IBOutlet UIButton *clearButton;
 
 @property (retain, nonatomic) IBOutlet UILabel *userName;
 @property (retain, nonatomic) IBOutlet UILabel *userPostCount;
