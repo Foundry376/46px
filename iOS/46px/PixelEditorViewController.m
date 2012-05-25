@@ -85,6 +85,8 @@
 
     UIBarButtonItem * b = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleDone target:self action:@selector(finished:)];
     [self.navigationItem setRightBarButtonItem:b animated:YES];
+    
+    self.title = @"Draw!";
 }
 
 - (void)layoutToolButtons

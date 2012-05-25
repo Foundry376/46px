@@ -76,6 +76,7 @@
     Facebook * facebook = [FacebookManager sharedManager].facebook;
     [facebook requestWithGraphPath:@"me" andDelegate:self];
     [webView reload];
+    self.title = @"46px";
     
 }
 
