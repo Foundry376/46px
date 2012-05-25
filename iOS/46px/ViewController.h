@@ -17,13 +17,6 @@
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundView;
 @property (retain, nonatomic) IBOutlet UIImageView *drawButton;
 
-@property (retain, nonatomic) IBOutlet UIButton *draftOne;
-@property (retain, nonatomic) IBOutlet UIButton *draftTwo;
-@property (retain, nonatomic) IBOutlet UIButton *draftThree;
-@property (retain, nonatomic) IBOutlet UIButton *draftFour;
-@property (retain, nonatomic) IBOutlet UIButton *draftFive;
-@property (retain, nonatomic) IBOutlet UIButton *draftSix;
-
 @property (retain, nonatomic) IBOutlet UIImageView *profilePicture;
 @property (retain, nonatomic) IBOutlet UIButton *loginButton;
 @property (retain, nonatomic) IBOutlet UIButton *logoutButton;
@@ -31,7 +24,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *clearButton;
 
 @property (retain, nonatomic) IBOutlet UILabel *userName;
-@property (retain, nonatomic) IBOutlet UILabel *userPostCount;
+@property (retain, nonatomic) IBOutlet UIScrollView *draftScrollView;
 
 - (void)manageDrafts;
 

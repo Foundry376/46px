@@ -17,6 +17,8 @@
 
 @interface ViewController ()
 
+@property (retain, nonatomic) NSMutableOrderedSet *drafts;
+
 @end
 
 @implementation ViewController
@@ -25,19 +27,22 @@
 @synthesize sideBar;
 @synthesize backgroundView;
 @synthesize drawButton;
-@synthesize draftOne;
-@synthesize draftTwo;
-@synthesize draftThree;
-@synthesize draftFour;
-@synthesize draftFive;
-@synthesize draftSix;
 @synthesize profilePicture;
 @synthesize userName;
 @synthesize loginButton;
 @synthesize logoutButton;
 @synthesize draftLabel;
 @synthesize clearButton;
-@synthesize userPostCount;
+@synthesize draftScrollView;
+@synthesize drafts = _drafts;
+
+- (NSMutableOrderedSet *)drafts {
+    if (!_drafts) {
+        _drafts = [[NSMutableOrderedSet alloc] init];
+    }
+    return _drafts;
+}
+
 
 - (void)viewDidLoad
 {
@@ -94,7 +99,7 @@
         [self.userName setFrame:CGRectMake(880, 11, 128, 26)];
         [self.logoutButton setFrame:CGRectMake(880, 48, 79, 37)];
         [self.drawButton setFrame:CGRectMake(802, 115, 206, 60)];
-        [self.draftLabel setFrame:CGRectMake(821, 352, 167, 21)];
+        [self.draftLabel setFrame:CGRectMake(821, 217, 167, 21)];
         [self.clearButton setFrame:CGRectMake(844, 650, 120, 37)];
         [self.sideBar setImage:[UIImage imageNamed:@"home_sidebar_background.png"]];
         [self.backgroundView setFrame:CGRectMake(0, 0, 784, 704)];
@@ -135,19 +140,8 @@
 - (IBAction)draftSelected:(id)sender {
     
     [TestFlight passCheckpoint:@"ExistingDrawingOpened"];
-
-    int drawingToLoad = 0;
     
-    if (sender == draftTwo)
-        drawingToLoad = 1;
-    else if (sender == draftThree)
-        drawingToLoad = 2;
-    else if (sender == draftFour)
-        drawingToLoad = 3;
-    else if (sender == draftFive)
-        drawingToLoad = 4;
-    else if (sender == draftSix)
-        drawingToLoad = 5;
+    NSUInteger drawingToLoad = [self.drafts indexOfObject:sender];
     
     // create the new drawing, and add it to our drafts
     PixelDrawing * d = [[[APIConnector shared] drafts] objectAtIndex:drawingToLoad];
@@ -188,13 +182,18 @@
 - (IBAction)clearPressed:(id)sender 
 {
     APIConnector *curDrafts = [APIConnector shared];
-    
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"drafts"];
     if ([[curDrafts drafts] count] != 0) {
         for (int i = [[curDrafts drafts] count] - 1; [[curDrafts drafts] count] != 0; i--) {
+            UIButton * button = [self.drafts objectAtIndex:i];
+            button.hidden = YES;
             [curDrafts removeFromCache:[[curDrafts drafts] objectAtIndex:i]];
         }
-        [self manageDrafts];
     }
+    self.drafts = nil;
+    [self reloadInputViews];
+    [self manageDrafts];
+
 }
 
 - (void)updateUser:(NSNotification*)notif
@@ -218,63 +217,80 @@
 }
 
 - (void)manageDrafts 
-{    
-    NSMutableArray *buttonArray = [NSMutableArray arrayWithCapacity:6];
-    [buttonArray addObject:draftOne];
-    [buttonArray addObject:draftTwo];
-    [buttonArray addObject:draftThree];
-    [buttonArray addObject:draftFour];
-    [buttonArray addObject:draftFive];
-    [buttonArray addObject:draftSix];
+{   
+    
     size_t increment = 0;
     
-    UIButton *curButton;
+    BOOL left = YES;
     
-    for (size_t i = 0; i < [[[APIConnector shared] drafts] count]; ++i) {
-        if (i >= 6) {
-            break;
-        }
-        increment++;
-        PixelDrawing *d = [[[APIConnector shared] drafts] objectAtIndex:i];
+    UIButton * curButton;
     
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"drafts"]) {
+        self.drafts = nil;
+        CGFloat xspace = 10;
+        CGFloat yspace = 10;
+        for (increment = 0; increment < 20; ++increment) {
         
-        curButton = [buttonArray objectAtIndex:i];
-        curButton.hidden = NO;
-//        
-//        curButton.layer.cornerRadius = 9;
-        curButton.clipsToBounds = YES;
-//        
-//        curButton.layer.borderColor = [[UIColor grayColor] CGColor];
-//        curButton.layer.borderWidth = .5;
+            curButton = [[UIButton alloc] initWithFrame:CGRectMake(xspace, yspace, 100, 100)];
+            
+            if (left) {
+                xspace += 120;
+                left = NO;
+            }
+            else {
+                xspace -= 120;
+                left = YES;
+            }
+            
+            if (increment % 2) {
+                yspace += 100;
+            }
+            
+            curButton.hidden = YES;
+            curButton.clipsToBounds = YES;
+            
+            [curButton addTarget:self action:@selector(draftSelected:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [self.drafts addObject:curButton];
+            [self.draftScrollView addSubview:curButton];
+            [[NSUserDefaults standardUserDefaults] setObject:self.drafts forKey:@"drafts"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            
+        }
+    }
+    else {
+        self.drafts = [[NSUserDefaults standardUserDefaults] objectForKey:@"drafts"];
+    }
+        
+    for (increment = 0; increment < [[[APIConnector shared] drafts] count]; ++increment) {
+        curButton = [self.drafts objectAtIndex:increment];
+        PixelDrawing *d = [[[APIConnector shared] drafts] objectAtIndex:increment];
+
         [curButton setImage:[d image] forState:UIControlStateNormal];
         [curButton setImage:[d image] forState:UIControlStateHighlighted];
         curButton.adjustsImageWhenHighlighted = NO;
+        curButton.hidden = NO;
     }
-    for (size_t i = increment; i < [buttonArray count]; ++i) {
-        curButton = [buttonArray objectAtIndex:i];
-        curButton.hidden = YES;
-    }
+//    for (size_t i = increment; i < [buttonArray count]; ++i) {
+//        curButton = [buttonArray objectAtIndex:i];
+//        curButton.hidden = YES;
+//    }
 
 }
 
 - (void)viewDidUnload
 {
-    [self setDraftOne:nil];
-    [self setDraftTwo:nil];
-    [self setDraftThree:nil];
-    [self setDraftFour:nil];
-    [self setDraftFive:nil];
-    [self setDraftSix:nil];
     [self setProfilePicture:nil];
     [self setLoginButton:nil];
     [self setLogoutButton:nil];
     [self setUserName:nil];
-    [self setUserPostCount:nil];
     [self setSideBar:nil];
     [self setBackgroundView:nil];
     [self setDrawButton:nil];
     [self setDraftLabel:nil];
     [self setClearButton:nil];
+    [self setDraftScrollView:nil];
     [super viewDidUnload];
 }
 
@@ -285,22 +301,16 @@
 
 - (void)dealloc 
 {
-    [draftOne release];
-    [draftTwo release];
-    [draftThree release];
-    [draftFour release];
-    [draftFive release];
-    [draftSix release];
     [profilePicture release];
     [loginButton release];
     [logoutButton release];
     [userName release];
-    [userPostCount release];
     [sideBar release];
     [backgroundView release];
     [drawButton release];
     [draftLabel release];
     [clearButton release];
+    [draftScrollView release];
     [super dealloc];
 }
 
