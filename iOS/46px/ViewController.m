@@ -14,6 +14,7 @@
 #import "FacebookManager.h"
 #import "PostViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Reachability.h"
 
 @interface ViewController ()
 
@@ -35,6 +36,10 @@
 @synthesize clearButton;
 @synthesize draftScrollView;
 @synthesize drafts = _drafts;
+@synthesize internetReachable = _internetReachable;
+@synthesize hostReachable = _hostReachable;
+@synthesize internetActive;
+@synthesize hostActive;
 
 - (NSMutableOrderedSet *)drafts {
     if (!_drafts) {
@@ -70,13 +75,39 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 
-//    [self manageDrafts];
+    [self viewWillLayoutSubviews];
     
     // Load in facebook user information
     Facebook * facebook = [FacebookManager sharedManager].facebook;
     [facebook requestWithGraphPath:@"me" andDelegate:self];
     [webView reload];
     self.title = @"46px";
+    
+    // Reachability stuff:
+    // check for internet connection
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
+    
+    self.internetReachable = [[Reachability reachabilityForInternetConnection] retain];
+    [self.internetReachable startNotifier];
+    
+    // check if a pathway to a random host exists
+    self.hostReachable = [[Reachability reachabilityWithHostName: @"www.apple.com"] retain];
+    [self.hostReachable startNotifier];
+    
+//    BOOL webViewActive = YES;
+//    if (![[self.view subviews] containsObject:self.webView]) {
+//        webViewActive = NO;
+//    }
+//    if (!self.internetActive || !self.hostActive) {
+//        if (webViewActive) {
+//            [self.webView removeFromSuperview];
+//        }
+//    }
+//    else {
+//        if (!webViewActive) {
+//            [self.view addSubview:self.webView];
+//        }
+//    }
     
 }
 
@@ -209,13 +240,14 @@
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"drafts"];
     if ([[curDrafts drafts] count] != 0) {
         for (int i = [[curDrafts drafts] count] - 1; [[curDrafts drafts] count] != 0; i--) {
-            UIButton * button = [self.drafts objectAtIndex:i];
-            button.hidden = YES;
             [curDrafts removeFromCache:[[curDrafts drafts] objectAtIndex:i]];
         }
     }
+    for (UIButton *button in self.drafts) {
+        [button removeFromSuperview];
+    }
     self.drafts = nil;
-    [self reloadInputViews];
+    //[self reloadInputViews];
     [self manageDrafts];
 
 }
@@ -335,6 +367,62 @@
         self.draftScrollView.contentSize = tempFrame.size;
     }
 
+}
+
+- (void)checkNetworkStatus:(NSNotification *)notice
+{
+    // called after network status changes
+    NetworkStatus internetStatus = [self.internetReachable currentReachabilityStatus];
+    switch (internetStatus)
+    {
+        case NotReachable:
+        {
+            NSLog(@"The internet is down.");
+            self.internetActive = NO;
+            
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            NSLog(@"The internet is working via WIFI.");
+            self.internetActive = YES;
+            
+            break;
+        }
+        case ReachableViaWWAN:
+        {
+            NSLog(@"The internet is working via WWAN.");
+            self.internetActive = YES;
+            
+            break;
+        }
+    }
+    
+    NetworkStatus hostStatus = [self.hostReachable currentReachabilityStatus];
+    switch (hostStatus)
+    {
+        case NotReachable:
+        {
+            NSLog(@"A gateway to the host server is down.");
+            self.hostActive = NO;
+            
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            NSLog(@"A gateway to the host server is working via WIFI.");
+            self.hostActive = YES;
+            
+            break;
+        }
+        case ReachableViaWWAN:
+        {
+            NSLog(@"A gateway to the host server is working via WWAN.");
+            self.hostActive = YES;
+            
+            break;
+        }
+    }
 }
 
 - (void)viewDidUnload

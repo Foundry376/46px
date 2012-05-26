@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PixelEditorViewController.h"
 #import "FBConnect.h"
+#import "Reachability.h"
 
 @interface ViewController : UIViewController <UIWebViewDelegate, PixelEditorDelegate, FBRequestDelegate, UIScrollViewDelegate>
 
@@ -24,8 +25,15 @@
 @property (retain, nonatomic) IBOutlet UIButton *clearButton;
 
 @property (retain, nonatomic) IBOutlet UILabel *userName;
+
 @property (retain, nonatomic) IBOutlet UIScrollView *draftScrollView;
 
+@property (retain, nonatomic) Reachability *internetReachable;
+@property (retain, nonatomic) Reachability *hostReachable;
+@property BOOL internetActive;
+@property BOOL hostActive;
+
 - (void)manageDrafts;
+- (void)checkNetworkStatus:(NSNotification *)notice;
 
 @end
