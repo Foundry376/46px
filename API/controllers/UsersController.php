@@ -12,9 +12,9 @@ class UsersController {
 
     public static function user($idNum) {
         
-        echo"hello : " . $idNum ;
+        echo"hello : " . $idNum . "";
 
-        if ($user = Users::find($id)) {
+        if ($user = Users::find($idNum)) {
             print_r($user->to_json());
         }
         else
