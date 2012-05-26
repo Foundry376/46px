@@ -296,6 +296,8 @@
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<bool key="IBUIPagingEnabled">YES</bool>
+						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
+						<bool key="IBUIShowsVerticalScrollIndicator">NO</bool>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 64}, {1024, 704}}</string>
@@ -616,7 +618,6 @@
 						<string key="loginButton">UIButton</string>
 						<string key="logoutButton">UIButton</string>
 						<string key="profilePicture">UIImageView</string>
-						<string key="scrollPageControl">UIPageControl</string>
 						<string key="sideBar">UIImageView</string>
 						<string key="userName">UILabel</string>
 						<string key="webView">UIWebView</string>
@@ -653,10 +654,6 @@
 						<object class="IBToOneOutletInfo" key="profilePicture">
 							<string key="name">profilePicture</string>
 							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="scrollPageControl">
-							<string key="name">scrollPageControl</string>
-							<string key="candidateClassName">UIPageControl</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="sideBar">
 							<string key="name">sideBar</string>

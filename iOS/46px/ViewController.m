@@ -70,7 +70,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 
-    [self manageDrafts];
+//    [self manageDrafts];
     
     // Load in facebook user information
     Facebook * facebook = [FacebookManager sharedManager].facebook;
@@ -82,6 +82,11 @@
 
 - (void)viewWillLayoutSubviews {
     
+    // Grab the content size of the current draft scrollview
+    CGSize scrollContentSize;
+    scrollContentSize = self.draftScrollView.contentSize;
+    
+    // If portrait, change subviews
     if (UIInterfaceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
         [self.sideBar setImage:[UIImage imageNamed:@"home_sidebar_background_portrait.png"]];
         [self.backgroundView setFrame:CGRectMake(0, 240, 784, 784)];
@@ -91,9 +96,14 @@
         [self.userName setFrame:CGRectMake(111, 14, 128, 26)];
         [self.logoutButton setFrame:CGRectMake(111, 48, 79, 37)];
         [self.drawButton setFrame:CGRectMake(26, 154, 206, 60)];
-        [self.draftLabel setFrame:CGRectMake(423, 35, 167, 21)];
-        [self.clearButton setFrame:CGRectMake(446, 182, 120, 37)];
+        [self.draftLabel setFrame:CGRectMake(423, 10, 167, 21)];
+        [self.clearButton setFrame:CGRectMake(270, 116, 120, 37)];
+
+
+        [self.draftScrollView setFrame:CGRectMake(360, 15, 400, 200)];
+        [self.draftScrollView setContentSize:CGSizeMake(scrollContentSize.height, scrollContentSize.width)];
     }
+    // Else, lock in subviews for landscape or change to landscape.
     else {
         
         [self.loginButton setFrame:CGRectMake(784, 0, 240, 92)];
@@ -107,7 +117,13 @@
         [self.sideBar setFrame:CGRectMake(784, 0, 240, 704)];
         [self.profilePicture setFrame:CGRectMake(795, 5, 80, 80)];
         
+        [self.draftScrollView setFrame:CGRectMake(784, 225, 240, 400)];
+        [self.draftScrollView setContentSize:CGSizeMake(scrollContentSize.height, scrollContentSize.width)];
+        
     }
+    
+    // Manage the drafts
+    [self manageDrafts];
 }
 
 - (void)applicationDidEnterForeground
@@ -226,34 +242,51 @@
 
 - (void)manageDrafts 
 {   
-    
     size_t increment = 0;
     
     BOOL left = YES;
     
     UIButton * curButton;
     
-    // Create 20 buttons, hide all, save in NSUserDefaults
+    // Create 24 buttons, hide all, save in NSUserDefaults
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"drafts"]) {
+        for (UIButton * button in self.drafts) {
+            [button removeFromSuperview];
+        }
         self.drafts = nil;
         CGFloat xspace = 10;
         CGFloat yspace = 10;
-        
         for (increment = 0; increment < 24; ++increment) {
             curButton = [[UIButton alloc] initWithFrame:CGRectMake(xspace, yspace, 100, 100)];
             
-            if (left) {
-                xspace += 120;
-                left = NO;
-            }
-            else {
-                xspace -= 120;
-                left = YES;
+            if (UIInterfaceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
+                if (left) {
+                    yspace += 120;
+                    left = NO;
+                }
+                else {
+                    yspace -= 120;
+                    left = YES;
+                }
+                if (increment % 2) {
+                    xspace += 100;
+                }
             }
             
-            if (increment % 2) {
-                yspace += 100;
+            else {
+                if (left) {
+                    xspace += 120;
+                    left = NO;
+                }
+                else {
+                    xspace -= 120;
+                    left = YES;
+                }
+                if (increment % 2) {
+                    yspace += 100;
+                }
             }
+            
             
             curButton.hidden = YES;
             curButton.clipsToBounds = YES;
@@ -265,6 +298,8 @@
             [[NSUserDefaults standardUserDefaults] setObject:self.drafts forKey:@"drafts"];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
+
+
     }
     else {
         self.drafts = [[NSUserDefaults standardUserDefaults] objectForKey:@"drafts"];
@@ -281,11 +316,20 @@
         curButton.hidden = NO;
     }
     CGRect tempFrame = self.draftScrollView.frame;
+    
     // Add more space in the ScrollView if the count exceeds 8
     if ([[[APIConnector shared] drafts] count] > 8) {
-        CGSize content = CGSizeMake(tempFrame.size.width, (tempFrame.size.height + ([[[APIConnector shared] drafts] count] / 2 * 100)));
-        self.draftScrollView.contentSize = content;
-        [self.draftScrollView scrollRectToVisible:CGRectMake(0, tempFrame.size.height, tempFrame.size.width, (self.draftScrollView.contentSize.height - tempFrame.size.height)) animated:YES];
+        if (UIInterfaceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
+            CGSize content = CGSizeMake((tempFrame.size.width +([[[APIConnector shared] drafts] count] / 2 * 100)), tempFrame.size.height);
+            self.draftScrollView.contentSize = content;
+            [self.draftScrollView scrollRectToVisible:CGRectMake(0, tempFrame.size.height, (self.draftScrollView.contentSize.width - tempFrame.size.width), tempFrame.size.height) animated:YES];
+        }
+        else {
+            CGSize content = CGSizeMake(tempFrame.size.width, (tempFrame.size.height + ([[[APIConnector shared] drafts] count] / 2 * 100)));
+            self.draftScrollView.contentSize = content;
+            [self.draftScrollView scrollRectToVisible:CGRectMake(0, tempFrame.size.height, tempFrame.size.width, (self.draftScrollView.contentSize.height - tempFrame.size.height)) animated:YES];
+        }
+
     }
     else {
         self.draftScrollView.contentSize = tempFrame.size;
