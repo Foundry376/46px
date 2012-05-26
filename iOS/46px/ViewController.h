@@ -10,7 +10,7 @@
 #import "PixelEditorViewController.h"
 #import "FBConnect.h"
 
-@interface ViewController : UIViewController <UIWebViewDelegate, PixelEditorDelegate, FBRequestDelegate>
+@interface ViewController : UIViewController <UIWebViewDelegate, PixelEditorDelegate, FBRequestDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 @property (retain, nonatomic) IBOutlet UIImageView *sideBar;

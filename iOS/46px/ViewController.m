@@ -100,7 +100,7 @@
         [self.userName setFrame:CGRectMake(880, 11, 128, 26)];
         [self.logoutButton setFrame:CGRectMake(880, 48, 79, 37)];
         [self.drawButton setFrame:CGRectMake(802, 115, 206, 60)];
-        [self.draftLabel setFrame:CGRectMake(821, 217, 167, 21)];
+        [self.draftLabel setFrame:CGRectMake(821, 196, 167, 21)];
         [self.clearButton setFrame:CGRectMake(844, 650, 120, 37)];
         [self.sideBar setImage:[UIImage imageNamed:@"home_sidebar_background.png"]];
         [self.backgroundView setFrame:CGRectMake(0, 0, 784, 704)];
@@ -152,6 +152,13 @@
     [self.navigationController pushViewController:pevc animated:YES];
     [pevc autorelease];
 }
+
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    self.draftScrollView.delegate = self;
+//    CGFloat pageWidth = self.draftScrollView.frame.size.width;
+//    int page = floor((self.draftScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+//    self.scrollPageControl.currentPage = page;
+//}
 
 - (void)postSuccess:(NSNotification*)n
 { 
@@ -226,12 +233,13 @@
     
     UIButton * curButton;
     
+    // Create 20 buttons, hide all, save in NSUserDefaults
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"drafts"]) {
         self.drafts = nil;
         CGFloat xspace = 10;
         CGFloat yspace = 10;
-        for (increment = 0; increment < 20; ++increment) {
         
+        for (increment = 0; increment < 24; ++increment) {
             curButton = [[UIButton alloc] initWithFrame:CGRectMake(xspace, yspace, 100, 100)];
             
             if (left) {
@@ -256,14 +264,13 @@
             [self.draftScrollView addSubview:curButton];
             [[NSUserDefaults standardUserDefaults] setObject:self.drafts forKey:@"drafts"];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            
-            
         }
     }
     else {
         self.drafts = [[NSUserDefaults standardUserDefaults] objectForKey:@"drafts"];
     }
-        
+    
+    // Unhide active buttons
     for (increment = 0; increment < [[[APIConnector shared] drafts] count]; ++increment) {
         curButton = [self.drafts objectAtIndex:increment];
         PixelDrawing *d = [[[APIConnector shared] drafts] objectAtIndex:increment];
@@ -273,10 +280,16 @@
         curButton.adjustsImageWhenHighlighted = NO;
         curButton.hidden = NO;
     }
-//    for (size_t i = increment; i < [buttonArray count]; ++i) {
-//        curButton = [buttonArray objectAtIndex:i];
-//        curButton.hidden = YES;
-//    }
+    CGRect tempFrame = self.draftScrollView.frame;
+    // Add more space in the ScrollView if the count exceeds 8
+    if ([[[APIConnector shared] drafts] count] > 8) {
+        CGSize content = CGSizeMake(tempFrame.size.width, (tempFrame.size.height + ([[[APIConnector shared] drafts] count] / 2 * 100)));
+        self.draftScrollView.contentSize = content;
+        [self.draftScrollView scrollRectToVisible:CGRectMake(0, tempFrame.size.height, tempFrame.size.width, (self.draftScrollView.contentSize.height - tempFrame.size.height)) animated:YES];
+    }
+    else {
+        self.draftScrollView.contentSize = tempFrame.size;
+    }
 
 }
 

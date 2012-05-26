@@ -137,7 +137,7 @@
 					<object class="IBUILabel" id="506458266">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{821, 217}, {167, 21}}</string>
+						<string key="NSFrame">{{821, 196}, {167, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="771188114"/>
@@ -148,9 +148,9 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<string key="IBUIText">Drafts</string>
-						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
+						<object class="NSColor" key="IBUITextColor" id="257422622">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MCAwIDAAA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<object class="NSColor" key="IBUIShadowColor">
@@ -223,10 +223,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<string key="IBUIText">First Last</string>
-						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAAA</bytes>
-						</object>
+						<reference key="IBUITextColor" ref="257422622"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
@@ -245,10 +242,9 @@
 					<object class="IBUIButton" id="844732811">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{844, 650}, {120, 37}}</string>
+						<string key="NSFrame">{{845, 647}, {120, 37}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:241</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -291,14 +287,15 @@
 					<object class="IBUIScrollView" id="771188114">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{784, 256}, {240, 379}}</string>
+						<string key="NSFrame">{{784, 225}, {240, 404}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="844732811"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<bool key="IBUIPagingEnabled">YES</bool>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 64}, {1024, 704}}</string>
@@ -465,6 +462,14 @@
 					</object>
 					<int key="connectionID">54</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="771188114"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">66</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -493,13 +498,13 @@
 							<reference ref="637788666"/>
 							<reference ref="82932434"/>
 							<reference ref="189111543"/>
-							<reference ref="844732811"/>
 							<reference ref="174809280"/>
 							<reference ref="813653309"/>
 							<reference ref="497902073"/>
 							<reference ref="506510851"/>
-							<reference ref="771188114"/>
 							<reference ref="506458266"/>
+							<reference ref="771188114"/>
+							<reference ref="844732811"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -587,7 +592,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">62</int>
+			<int key="maxID">66</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -605,18 +610,13 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="backgroundView">UIImageView</string>
 						<string key="clearButton">UIButton</string>
-						<string key="draftFive">UIButton</string>
-						<string key="draftFour">UIButton</string>
 						<string key="draftLabel">UILabel</string>
-						<string key="draftOne">UIButton</string>
 						<string key="draftScrollView">UIScrollView</string>
-						<string key="draftSix">UIButton</string>
-						<string key="draftThree">UIButton</string>
-						<string key="draftTwo">UIButton</string>
 						<string key="drawButton">UIImageView</string>
 						<string key="loginButton">UIButton</string>
 						<string key="logoutButton">UIButton</string>
 						<string key="profilePicture">UIImageView</string>
+						<string key="scrollPageControl">UIPageControl</string>
 						<string key="sideBar">UIImageView</string>
 						<string key="userName">UILabel</string>
 						<string key="webView">UIWebView</string>
@@ -630,37 +630,13 @@
 							<string key="name">clearButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="draftFive">
-							<string key="name">draftFive</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="draftFour">
-							<string key="name">draftFour</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="draftLabel">
 							<string key="name">draftLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="draftOne">
-							<string key="name">draftOne</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="draftScrollView">
 							<string key="name">draftScrollView</string>
 							<string key="candidateClassName">UIScrollView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="draftSix">
-							<string key="name">draftSix</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="draftThree">
-							<string key="name">draftThree</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="draftTwo">
-							<string key="name">draftTwo</string>
-							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="drawButton">
 							<string key="name">drawButton</string>
@@ -677,6 +653,10 @@
 						<object class="IBToOneOutletInfo" key="profilePicture">
 							<string key="name">profilePicture</string>
 							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="scrollPageControl">
+							<string key="name">scrollPageControl</string>
+							<string key="candidateClassName">UIPageControl</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="sideBar">
 							<string key="name">sideBar</string>
