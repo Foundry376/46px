@@ -1,10 +1,8 @@
 <?php
 /**
- * 
- *
  * @author Grayson Carroll
  */
-class UserController {
+class ProfilePageController {
     
     
 }
