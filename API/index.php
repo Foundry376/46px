@@ -2,6 +2,7 @@
 
 require 'flight/Flight.php';
 require_once "php-activerecord/ActiveRecord.php";
+require 'controllers/UsersController.php';
 ActiveRecord\Config::initialize(function($cfg) {
             $cfg->set_model_directory("models");
             $cfg->set_connections(array(
@@ -16,10 +17,9 @@ Flight::route('/', function() {
             echo 'hello world again!';
         });
 
-Flight::route('/user/@id:[0-9]+', function($id) {
+Flight::route('/user/@id:[0-9]+', array('UsersController', 'user'));
 
-            header("Location: http://dev.46px.com/user.html?id=" . $id);
-        });
+Flight::route('/', array('Greeting','hello'));
 
 Flight::route('/thread/@id:[0-9]+', function($id) {
 
