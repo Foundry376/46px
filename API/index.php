@@ -17,7 +17,7 @@ Flight::route('/', function() {
             echo 'hello world again!';
         });
 
-Flight::route('/user/@id:[0-9]+', array('UsersController', 'user'));
+Flight::route('/user/@id:[0-9]+', array('UsersController', 'numLikes'));
 
 Flight::route('/', array('Greeting','hello'));
 
