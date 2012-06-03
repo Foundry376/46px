@@ -24,6 +24,22 @@ class UsersController {
         echo "done";
     }
 
+	#Returns the number of posts that a given user has created. 
+	public static function numPosts($idNum){
+		$num = Posts::count(array('conditions' => 'user_id = '. $idNum));
+		echo $num;
+	}
+
+
+	#Returns the number of Likes a user has made. 
+	public static function numLikes($idNum){
+		#static $table_name = "like_lists";
+		$num = Like_list::count(array('conditions' => 'user_id = '. $idNum));
+		echo $num;
+	}
+
+	#We can't actually do this function until we add a joinDate field to our db.
+	#public static function joinDate($idNum)
 }
 
 ?>
