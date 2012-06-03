@@ -127,9 +127,8 @@
         [self.userName setFrame:CGRectMake(111, 14, 128, 26)];
         [self.logoutButton setFrame:CGRectMake(111, 48, 79, 37)];
         [self.drawButton setFrame:CGRectMake(26, 154, 206, 60)];
-        [self.draftLabel setFrame:CGRectMake(423, 10, 167, 21)];
-        [self.clearButton setFrame:CGRectMake(270, 116, 120, 37)];
-
+        [self.draftLabel setFrame:CGRectMake(270, 50, 90, 21)];
+        [self.clearButton setFrame:CGRectMake(270, 116, 90, 37)];
 
         [self.draftScrollView setFrame:CGRectMake(360, 15, 400, 200)];
         [self.draftScrollView setContentSize:CGSizeMake(scrollContentSize.height, scrollContentSize.width)];
@@ -148,9 +147,8 @@
         [self.sideBar setFrame:CGRectMake(784, 0, 240, 704)];
         [self.profilePicture setFrame:CGRectMake(795, 5, 80, 80)];
         
-        [self.draftScrollView setFrame:CGRectMake(784, 225, 240, 400)];
+        [self.draftScrollView setFrame:CGRectMake(794, 225, 240, 400)];
         [self.draftScrollView setContentSize:CGSizeMake(scrollContentSize.height, scrollContentSize.width)];
-        
     }
     
     // Manage the drafts
@@ -286,18 +284,20 @@
             [button removeFromSuperview];
         }
         self.drafts = nil;
-        CGFloat xspace = 10;
+        CGFloat xspace = 20;
         CGFloat yspace = 10;
         for (increment = 0; increment < 24; ++increment) {
-            curButton = [[UIButton alloc] initWithFrame:CGRectMake(xspace, yspace, 100, 100)];
+//            curButton = [[UIButton alloc] initWithFrame:CGRectMake(xspace, yspace, 100, 100)];
+            curButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            curButton.frame = CGRectMake(xspace, yspace, 80, 80);
             
             if (UIInterfaceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
                 if (left) {
-                    yspace += 120;
+                    yspace += 100;
                     left = NO;
                 }
                 else {
-                    yspace -= 120;
+                    yspace -= 100;
                     left = YES;
                 }
                 if (increment % 2) {
@@ -307,11 +307,11 @@
             
             else {
                 if (left) {
-                    xspace += 120;
+                    xspace += 100;
                     left = NO;
                 }
                 else {
-                    xspace -= 120;
+                    xspace -= 100;
                     left = YES;
                 }
                 if (increment % 2) {
@@ -319,7 +319,9 @@
                 }
             }
             
-            
+            curButton.layer.cornerRadius = 11;
+            curButton.layer.borderColor = [[UIColor grayColor] CGColor];
+            curButton.layer.borderWidth = .5;
             curButton.hidden = YES;
             curButton.clipsToBounds = YES;
             
@@ -342,8 +344,8 @@
         curButton = [self.drafts objectAtIndex:increment];
         PixelDrawing *d = [[[APIConnector shared] drafts] objectAtIndex:increment];
 
-        [curButton setImage:[d image] forState:UIControlStateNormal];
-        [curButton setImage:[d image] forState:UIControlStateHighlighted];
+        [curButton setBackgroundImage:[d image] forState:UIControlStateNormal];
+        [curButton setBackgroundImage:[d image] forState:UIControlStateHighlighted];
         curButton.adjustsImageWhenHighlighted = NO;
         curButton.hidden = NO;
     }
