@@ -15,6 +15,8 @@
 #import "PostViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Reachability.h"
+#import "SVProgressHUD.h"
+#import "UserProfileViewController.h"
 
 @interface ViewController ()
 
@@ -61,6 +63,7 @@
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     
     // Load the request in the UIWebView.
+    [SVProgressHUD showWithStatus:@"Loading pixels..."];
     [webView loadRequest:requestObj];
     [[webView scrollView] setBounces: NO];
     
@@ -70,6 +73,20 @@
     
     // update the interface to show the currently logged in user (if there is one)
     [self updateUser: nil];
+    
+    // Customize User Panel UI
+    self.profilePicture.layer.cornerRadius = 3;
+    self.profilePicture.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.profilePicture.layer.borderWidth = 3;
+    self.profilePicture.clipsToBounds = YES;
+    self.userName.textColor = [UIColor colorWithWhite:0.2 alpha:1];
+    self.draftLabel.textColor = [UIColor colorWithWhite:0.2 alpha:1];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    if ([SVProgressHUD isVisible]) {
+        [SVProgressHUD dismiss];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -104,6 +121,7 @@
 //        }
 //    }
 //    else {
+//
 //        if (!webViewActive) {
 //            [self.view addSubview:self.webView];
 //        }
@@ -119,16 +137,16 @@
     
     // If portrait, change subviews
     if (UIInterfaceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
-        [self.sideBar setImage:[UIImage imageNamed:@"home_sidebar_background_portrait.png"]];
+        [self.sideBar setImage:[UIImage imageNamed:@"home_sidebar_background_portrait_2.png"]];
         [self.backgroundView setFrame:CGRectMake(0, 240, 784, 784)];
-        [self.sideBar setFrame:CGRectMake(0, 0, 768, 240)];
+        [self.sideBar setFrame:CGRectMake(0, 0, 768, 260)];
         [self.profilePicture setFrame:CGRectMake(14, 14, 80, 80)];
         [self.loginButton setFrame:CGRectMake(5, 8, 240, 92)];
         [self.userName setFrame:CGRectMake(111, 14, 128, 26)];
         [self.logoutButton setFrame:CGRectMake(111, 48, 79, 37)];
         [self.drawButton setFrame:CGRectMake(26, 154, 206, 60)];
-        [self.draftLabel setFrame:CGRectMake(270, 50, 90, 21)];
-        [self.clearButton setFrame:CGRectMake(270, 116, 90, 37)];
+        [self.draftLabel setFrame:CGRectMake(264, 50, 90, 21)];
+        [self.clearButton setFrame:CGRectMake(264, 140, 90, 37)];
 
         [self.draftScrollView setFrame:CGRectMake(360, 15, 400, 200)];
         [self.draftScrollView setContentSize:CGSizeMake(scrollContentSize.height, scrollContentSize.width)];
@@ -142,9 +160,9 @@
         [self.drawButton setFrame:CGRectMake(802, 115, 206, 60)];
         [self.draftLabel setFrame:CGRectMake(821, 196, 167, 21)];
         [self.clearButton setFrame:CGRectMake(844, 650, 120, 37)];
-        [self.sideBar setImage:[UIImage imageNamed:@"home_sidebar_background.png"]];
+        [self.sideBar setImage:[UIImage imageNamed:@"home_sidebar_background_2.png"]];
         [self.backgroundView setFrame:CGRectMake(0, 0, 784, 704)];
-        [self.sideBar setFrame:CGRectMake(784, 0, 240, 704)];
+        [self.sideBar setFrame:CGRectMake(764, 0, 260, 704)];
         [self.profilePicture setFrame:CGRectMake(795, 5, 80, 80)];
         
         [self.draftScrollView setFrame:CGRectMake(794, 225, 240, 400)];
@@ -153,6 +171,15 @@
     
     // Manage the drafts
     [self manageDrafts];
+    if ([SVProgressHUD isVisible]) {
+        [SVProgressHUD dismiss];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    if ([SVProgressHUD isVisible]) {
+        [SVProgressHUD dismiss];
+    }
 }
 
 - (void)applicationDidEnterForeground
@@ -160,9 +187,14 @@
     NSLog(@"DidReturn");
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-
+- (IBAction)profilePressed:(id)sender {
+    [TestFlight passCheckpoint:@"ProfileOpened"];
+    
+    // add new profile view controller to nav stack
+    UserProfileViewController *upvc = [[UserProfileViewController alloc] init];
+    upvc.userName = self.userName.text;
+    [self.navigationController pushViewController:upvc animated:YES];
+    [upvc autorelease];
 }
 
 - (IBAction)start:(id)sender
@@ -293,11 +325,11 @@
             
             if (UIInterfaceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
                 if (left) {
-                    yspace += 100;
+                    yspace += 96;
                     left = NO;
                 }
                 else {
-                    yspace -= 100;
+                    yspace -= 96;
                     left = YES;
                 }
                 if (increment % 2) {
@@ -307,11 +339,11 @@
             
             else {
                 if (left) {
-                    xspace += 100;
+                    xspace += 96;
                     left = NO;
                 }
                 else {
-                    xspace -= 100;
+                    xspace -= 96;
                     left = YES;
                 }
                 if (increment % 2) {
