@@ -72,22 +72,28 @@ Flight::route('/api/post/@id:[0-9]+', function($id) {
         Flight::route('/api/stream/top/@pgNum:[0-9]+', function($pgNum) {
             //echo 'UserID:' . $id . "";
             
+            
+            $test_thread = Thread::first();
+            $test_thread_array = $test_thread->to_array();
             $threads = Thread::recentThreads($pgNum);
             //print_r($threads);
             
-            $threads_json;
+            $threads_array;
             
             $threads_post;
             
             for($i = 0; $i < 6; $i++)
             {
                 $threads_post[$i] = $threads[$i]->post;
-                $threads_json[$i] = $threads[$i]->to_json();
+                //$threads_array[$i] = $threads[$i]->to_array();
             }
             
-            $json_data = json_encode($threads_json);
+            $json_data = json_encode($threads_array);
           
+            print_r($json_data);
+            echo '\r ~~~~~~~~~~~~~~~~~~~~~~ \r';
             print_r($threads_post);
+            
         });
 Flight::start();
 ?>
