@@ -68,32 +68,37 @@ Flight::route('/api/post/@id:[0-9]+', function($id) {
                 print("<p>Cannot find <em>userID(1)</em>.</p>");
             }
         });
-        
-        Flight::route('/api/stream/top/@pgNum:[0-9]+', function($pgNum) {
+
+Flight::route('/api/stream/top/@pgNum:[0-9]+', function($pgNum) {
             //echo 'UserID:' . $id . "";
-            
-            
-            $test_thread = Thread::first();
-            $test_thread_array = $test_thread->to_array();
+
+
+
             $threads = Thread::recentThreads($pgNum);
-            //print_r($threads);
-            
+
+
             $threads_array;
+
             
-            $threads_post;
-            
-            for($i = 0; $i < 6; $i++)
-            {
-                $threads_post[$i] = $threads[$i]->post;
-                //$threads_array[$i] = $threads[$i]->to_array();
+            $test_user_from_post;
+            for ($i = 0; $i < 6; $i++) {
+                $thread_posts_full = $threads[$i]->post;
+                $threads_array[$i] = $threads[$i]->to_array();
+                $threads_array[$i]['post'] = $thread_posts_full[0]->to_array();
+                $threads_array[$i]['user'] = $thread_posts_full[0]->user->to_array();
+                // $test_user_from_post[$i] = $thread_posts_full[0]->user->to_array();
             }
             
-            $json_data = json_encode($threads_array);
-          
-            print_r($json_data);
-            echo '\r ~~~~~~~~~~~~~~~~~~~~~~ \r';
-            print_r($threads_post);
             
+            $stream ['threads'] = $threads_array;
+            
+            
+            $json_data = json_encode($stream);
+            
+            //$json_data_users = json_encode($test_user_from_post);
+
+            print_r($json_data);
+
         });
 Flight::start();
 ?>
