@@ -13,13 +13,9 @@ ActiveRecord\Config::initialize(function($cfg) {
 /* * This is the frontend section of the routes. None of the database interaction
  * should happen here; all of the calls to ORM
  */
-Flight::route('/', function() {
-            echo 'hello world again!';
-        });
+
 
 Flight::route('/user/@id:[0-9]+', array('UsersController', 'user'));
-
-Flight::route('/', array('Greeting','hello'));
 
 Flight::route('/thread/@id:[0-9]+', function($id) {
 
@@ -45,7 +41,7 @@ Flight::route('/api', function() {
 Flight::route('/api/user/@id:[0-9]+', function($id) {
             //echo 'UserID:' . $id . "";
 
-            if ($user = Users::find($id)) {
+            if ($user = User::find($id)) {
                 print_r($user->to_json());
             } else {
                 print("<p>Cannot find <em>userID(1)</em>.</p>");
@@ -55,7 +51,7 @@ Flight::route('/api/user/@id:[0-9]+', function($id) {
 Flight::route('/api/thread/@id:[0-9]+', function($id) {
             //echo 'UserID:' . $id . "";
 
-            if ($thread = Threads::find($id)) {
+            if ($thread = Thread::find($id)) {
                 print_r($thread->to_json());
             } else {
                 print("<p>Cannot find <em>userID(1)</em>.</p>");
@@ -66,11 +62,32 @@ Flight::route('/api/thread/@id:[0-9]+', function($id) {
 Flight::route('/api/post/@id:[0-9]+', function($id) {
             //echo 'UserID:' . $id . "";
 
-            if ($post = Posts::find($id)) {
+            if ($post = Post::find($id)) {
                 print_r($post->to_json());
             } else {
                 print("<p>Cannot find <em>userID(1)</em>.</p>");
             }
+        });
+        
+        Flight::route('/api/stream/top/@pgNum:[0-9]+', function($pgNum) {
+            //echo 'UserID:' . $id . "";
+            
+            $threads = Thread::recentThreads($pgNum);
+            //print_r($threads);
+            
+            $threads_json;
+            
+            $threads_post;
+            
+            for($i = 0; $i < 6; $i++)
+            {
+                $threads_post[$i] = $threads[$i]->post;
+                $threads_json[$i] = $threads[$i]->to_json();
+            }
+            
+            $json_data = json_encode($threads_json);
+          
+            print_r($threads_post);
         });
 Flight::start();
 ?>
