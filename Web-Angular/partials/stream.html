@@ -1,0 +1,34 @@
+<div id='content'>
+	
+	<script language="javascript">
+		var zoom = 5;
+	</script>
+	
+	<script src="js/images.js" language="javascript"></script>
+	
+	<ul id='threads' >
+		<li class='post' ng:repeat="thread in stream.threads">
+			<a ng-href="#/thread/{{ thread.id }}">
+				<canvas ng-href='{{ thread.post.image_url }}' id='canvas{{ $index }}'></canvas>
+			</a>
+
+			<div class="caption">
+			<img style="float:left; padding-right:5px;" ng-src="http://graph.facebook.com/{{ thread.user.id }}/picture">
+			<div id="postheader">
+				<b>{{thread.user.first_name}} {{thread.user.last_name}}</b><br>
+				{{thread.post.caption}}<br>
+				<span id="timestamp">{{thread.timestamp}}</span><br>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+		</li>
+	</ul>	
+
+	<div style="width: 100%; text-align:center;">	
+		<button ng-click="shiftPage(1)">next</button>
+		<button ng-click="shiftPage(-1)">prev</button>
+	</div>
+   
+</div>
+</body>
+</html>
