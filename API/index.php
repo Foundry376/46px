@@ -100,5 +100,37 @@ Flight::route('/api/stream/top/@pgNum:[0-9]+', function($pgNum) {
             print_r($json_data);
 
         });
+        
+        Flight::route('/api/stream/user/@pgNum:[0-9]+', function($pgNum) {
+            //echo 'UserID:' . $id . "";
+
+
+
+            $threads = Thread::recentThreads($pgNum);
+
+
+            $threads_array;
+
+            
+            $test_user_from_post;
+            for ($i = 0; $i < 6; $i++) {
+                $thread_posts_full = $threads[$i]->post;
+                $threads_array[$i] = $threads[$i]->to_array();
+                $threads_array[$i]['post'] = $thread_posts_full[0]->to_array();
+                $threads_array[$i]['user'] = $thread_posts_full[0]->user->to_array();
+                // $test_user_from_post[$i] = $thread_posts_full[0]->user->to_array();
+            }
+            
+            
+            $stream ['threads'] = $threads_array;
+            
+            
+            $json_data = json_encode($stream);
+            
+            //$json_data_users = json_encode($test_user_from_post);
+
+            print_r($json_data);
+
+        });
 Flight::start();
 ?>
