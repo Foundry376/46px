@@ -1,0 +1,106 @@
+* {
+	padding: 0;
+	margin:  0;
+	font-family: arial;
+}
+
+body {
+	text-align:center;
+	margin: 2.6em 0 0 0;
+	vertical-align:middle;
+}
+
+#wrapper{
+ 	width:770px; margin:auto;
+}
+
+#buttonspan{
+	 padding-left:10px; padding-right:4px; font-size:30px; position:relative; top:-10px;
+}
+
+#thread {
+	width: 		595px;
+	text-align: center;
+	margin: 	0 auto;
+	list-style: none;
+}
+
+.post1{
+ 	border-bottom:6px dashed rgba(0,0,0,0.2); padding-bottom:30px; margin-bottom:30px;
+}
+
+.imgframe{
+	 background:url('/images/post_frame.png') top left no-repeat; width:588px; height:530px;
+}
+
+.captionframe{
+	 background:url('/images/caption_frame.png') top left no-repeat; width:588px; height: 77px; margin-top:15px;
+}
+
+.captionframe .picture{
+ 	float:left; z-index:3; position:relative; left: 44px; top:6px;
+}
+
+.captionframe .response{
+ 	float:left; z-index:2; position:relative; left: 65px; top:10px; text-align:left; width:290px; word-wrap: break-word;
+}
+
+.captionframe .like{
+ 	float:left; z-index:4; position:relative; left: 93px; top:17px;
+}
+
+.captionframe .like span{
+ 	text-align:center; width:40px; padding-right:4px; font-size:30px; font-weight:bold; position:relative; top:-5px;
+}
+
+.captionframe .timestamp1{
+	 font-size:0.9em; color:gray;
+}
+
+.captionframe .edit{
+	 float:left; z-index:4; position:relative; left: 112px; top:17px;
+}
+
+#newreply{
+	margin:auto; width: 300px; padding-bottom:50px;
+}
+
+#newreply .button{
+ width: 300px;
+}
+
+.imgframe canvas{
+ 	padding-left:18px; padding-top:6px;
+	width:515px;
+	height:515px;
+}
+
+.details{
+	padding-left: 20px;
+}
+
+.username {
+	float: left;
+}
+
+.timestamp {
+	margin-left: 10px;
+	float:  	 left;
+}
+
+.caption {
+	clear: left;
+	text-align: left;
+}
+
+
+#content{
+	width: 760px;
+	text-align:left;
+	margin:0 auto;
+}
+
+#posts{
+	list-style-type:none;
+	
+}
