@@ -40,8 +40,8 @@
 				</li>
 			</ul>	
 			<div style="width: 100%; text-align:center;">	
-				<button ng-click="shiftPage(1)">next</button>
 				<button ng-click="shiftPage(-1)">prev</button>
+				<button ng-click="shiftPage(1)">next</button>
 			</div>
 		<!-- End Ben's thread list code -->
 		</div>
@@ -57,7 +57,12 @@
 					</a>
 					<p id="post_caption" style="float:left;">{{posts.post.caption}}</p>
 				</li>
+				<div style="clear:both;"/>
 			</ul>
+			<div style="width: 100%; text-align:center;">	
+				<button ng-click="shiftPage(-1)">prev</button>
+				<button ng-click="shiftPage(1)">next</button>
+			</div>
 		<!-- End Richard's stuff -->
 		</div>
 	</div>
