@@ -91,7 +91,7 @@
 
 - (void)layoutToolButtons
 {
-    CGRect r = CGRectMake(4, TOOL_PADDING, 60, 60);
+    CGRect r = CGRectMake(4, 10 + TOOL_PADDING, 60, 60);
     for (UIButton * b in toolsView.subviews) {
         [b setFrame: r];
         r.origin.x += r.size.width + TOOL_PADDING;

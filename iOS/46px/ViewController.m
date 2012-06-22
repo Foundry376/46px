@@ -37,6 +37,7 @@
 @synthesize draftLabel;
 @synthesize clearButton;
 @synthesize draftScrollView;
+@synthesize scrollPageControl;
 @synthesize drafts = _drafts;
 @synthesize internetReachable = _internetReachable;
 @synthesize hostReachable = _hostReachable;
@@ -53,6 +54,7 @@
 
 - (void)viewDidLoad
 {
+    self.scrollPageControl.hidden = YES;
     [super viewDidLoad];
     NSString *urlAddress = [NSString stringWithFormat: @"http://46px.com/index.php?46px_user_id=%@", [[FacebookManager sharedManager] facebookUserID]];
     
@@ -76,8 +78,8 @@
     
     // Customize User Panel UI
     self.profilePicture.layer.cornerRadius = 3;
-    self.profilePicture.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.profilePicture.layer.borderWidth = 3;
+    self.profilePicture.layer.borderColor = [[UIColor colorWithRed:0.859 green:0.859 blue:0.859 alpha:1] CGColor];
+    self.profilePicture.layer.borderWidth = 5;
     self.profilePicture.clipsToBounds = YES;
     self.userName.textColor = [UIColor colorWithWhite:0.2 alpha:1];
     self.draftLabel.textColor = [UIColor colorWithWhite:0.2 alpha:1];
@@ -140,33 +142,35 @@
         [self.sideBar setImage:[UIImage imageNamed:@"home_sidebar_background_portrait_2.png"]];
         [self.backgroundView setFrame:CGRectMake(0, 240, 784, 784)];
         [self.sideBar setFrame:CGRectMake(0, 0, 768, 260)];
-        [self.profilePicture setFrame:CGRectMake(14, 14, 80, 80)];
-        [self.loginButton setFrame:CGRectMake(5, 8, 240, 92)];
-        [self.userName setFrame:CGRectMake(111, 14, 128, 26)];
-        [self.logoutButton setFrame:CGRectMake(111, 48, 79, 37)];
+        [self.profilePicture setFrame:CGRectMake(14, 34, 80, 80)];
+        [self.loginButton setFrame:CGRectMake(5, 28, 240, 92)];
+        [self.userName setFrame:CGRectMake(111, 34, 128, 26)];
+        [self.logoutButton setFrame:CGRectMake(111, 68, 79, 37)];
         [self.drawButton setFrame:CGRectMake(26, 154, 206, 60)];
         [self.draftLabel setFrame:CGRectMake(264, 50, 90, 21)];
         [self.clearButton setFrame:CGRectMake(264, 140, 90, 37)];
 
         [self.draftScrollView setFrame:CGRectMake(360, 15, 400, 200)];
         [self.draftScrollView setContentSize:CGSizeMake(scrollContentSize.height, scrollContentSize.width)];
+        [self.backgroundView setImage:[UIImage imageNamed:@"home_gallery_background_portrait_2.png"]];
     }
     // Else, lock in subviews for landscape or change to landscape.
     else {
         
-        [self.loginButton setFrame:CGRectMake(784, 0, 240, 92)];
-        [self.userName setFrame:CGRectMake(880, 11, 128, 26)];
+        [self.loginButton setFrame:CGRectMake(784, 5, 240, 92)];
+        [self.userName setFrame:CGRectMake(880, 16, 128, 26)];
         [self.logoutButton setFrame:CGRectMake(880, 48, 79, 37)];
         [self.drawButton setFrame:CGRectMake(802, 115, 206, 60)];
-        [self.draftLabel setFrame:CGRectMake(821, 196, 167, 21)];
+        [self.draftLabel setFrame:CGRectMake(818, 196, 167, 21)];
         [self.clearButton setFrame:CGRectMake(844, 650, 120, 37)];
         [self.sideBar setImage:[UIImage imageNamed:@"home_sidebar_background_2.png"]];
         [self.backgroundView setFrame:CGRectMake(0, 0, 784, 704)];
         [self.sideBar setFrame:CGRectMake(764, 0, 260, 704)];
-        [self.profilePicture setFrame:CGRectMake(795, 5, 80, 80)];
+        [self.profilePicture setFrame:CGRectMake(795, 10, 80, 80)];
         
         [self.draftScrollView setFrame:CGRectMake(794, 225, 240, 400)];
         [self.draftScrollView setContentSize:CGSizeMake(scrollContentSize.height, scrollContentSize.width)];
+        [self.backgroundView setImage:[UIImage imageNamed:@"home_gallery_background_2.png"]];
     }
     
     // Manage the drafts
@@ -230,12 +234,19 @@
     [pevc autorelease];
 }
 
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    self.draftScrollView.delegate = self;
-//    CGFloat pageWidth = self.draftScrollView.frame.size.width;
-//    int page = floor((self.draftScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-//    self.scrollPageControl.currentPage = page;
-//}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    self.draftScrollView.delegate = self;
+    CGFloat pageWidth;
+    int page;
+    if (UIInterfaceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
+        pageWidth = self.draftScrollView.frame.size.width;
+        page = floor((self.draftScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    } else {
+        pageWidth = self.draftScrollView.frame.size.height;
+        page = floor((self.draftScrollView.contentOffset.y - pageWidth / 2) / pageWidth) + 1;
+    }
+    self.scrollPageControl.currentPage = page;
+}
 
 - (void)postSuccess:(NSNotification*)n
 { 
@@ -282,6 +293,24 @@
 
 }
 
+- (IBAction)removeDraftPressed:(id)sender {
+    UIButton *curButton = sender;
+    [self.drafts removeObject:curButton];
+    curButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    curButton.frame = CGRectMake(0, 0, 80, 80);
+    curButton.layer.cornerRadius = 4;
+    curButton.layer.borderColor = [[UIColor colorWithRed:0.859 green:0.859 blue:0.859 alpha:1] CGColor];
+    curButton.layer.borderWidth = 5;
+    curButton.hidden = YES;
+    curButton.clipsToBounds = YES;
+    
+    [curButton addTarget:self action:@selector(draftSelected:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.drafts addObject:curButton];
+    [self.draftScrollView addSubview:curButton];
+    [self manageDrafts];
+}
+
 - (void)updateUser:(NSNotification*)notif
 {
     NSDictionary * userDict =[[FacebookManager sharedManager] facebookUserDictionary];
@@ -304,6 +333,7 @@
 
 - (void)manageDrafts 
 {   
+    [SVProgressHUD showWithStatus:@"Pixelating drafts..."];
     size_t increment = 0;
     
     BOOL left = YES;
@@ -351,9 +381,9 @@
                 }
             }
             
-            curButton.layer.cornerRadius = 11;
-            curButton.layer.borderColor = [[UIColor grayColor] CGColor];
-            curButton.layer.borderWidth = .5;
+            curButton.layer.cornerRadius = 4;
+            curButton.layer.borderColor = [[UIColor colorWithRed:0.859 green:0.859 blue:0.859 alpha:1] CGColor];
+            curButton.layer.borderWidth = 5;
             curButton.hidden = YES;
             curButton.clipsToBounds = YES;
             
@@ -386,20 +416,21 @@
     // Add more space in the ScrollView if the count exceeds 8
     if ([[[APIConnector shared] drafts] count] > 8) {
         if (UIInterfaceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
-            CGSize content = CGSizeMake((tempFrame.size.width +([[[APIConnector shared] drafts] count] / 2 * 100)), tempFrame.size.height);
+            CGSize content = CGSizeMake((tempFrame.size.width + ([[[APIConnector shared] drafts] count] / 8 * tempFrame.size.width)), tempFrame.size.height);
             self.draftScrollView.contentSize = content;
-            [self.draftScrollView scrollRectToVisible:CGRectMake(0, tempFrame.size.height, (self.draftScrollView.contentSize.width - tempFrame.size.width), tempFrame.size.height) animated:YES];
+            [self.draftScrollView scrollRectToVisible:CGRectMake(0, tempFrame.size.height, tempFrame.size.width * ([[[APIConnector shared] drafts] count] / 8), tempFrame.size.height) animated:YES];
         }
         else {
-            CGSize content = CGSizeMake(tempFrame.size.width, (tempFrame.size.height + ([[[APIConnector shared] drafts] count] / 2 * 100)));
+            CGSize content = CGSizeMake(tempFrame.size.width, (tempFrame.size.height + ([[[APIConnector shared] drafts] count] / 8 * tempFrame.size.height)));
             self.draftScrollView.contentSize = content;
-            [self.draftScrollView scrollRectToVisible:CGRectMake(0, tempFrame.size.height, tempFrame.size.width, (self.draftScrollView.contentSize.height - tempFrame.size.height)) animated:YES];
+            [self.draftScrollView scrollRectToVisible:CGRectMake(0, tempFrame.size.height, tempFrame.size.width, tempFrame.size.height * ([[[APIConnector shared] drafts] count] / 8)) animated:YES];
         }
 
     }
     else {
         self.draftScrollView.contentSize = tempFrame.size;
     }
+    [SVProgressHUD dismiss];
 
 }
 
@@ -471,6 +502,7 @@
     [self setDraftLabel:nil];
     [self setClearButton:nil];
     [self setDraftScrollView:nil];
+    [self setScrollPageControl:nil];
     [super viewDidUnload];
 }
 
@@ -491,6 +523,7 @@
     [draftLabel release];
     [clearButton release];
     [draftScrollView release];
+    [scrollPageControl release];
     [super dealloc];
 }
 

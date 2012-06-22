@@ -33,7 +33,9 @@
     self.viewController = [[[UINavigationController alloc] initWithRootViewController: v] autorelease];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
-    
+
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage imageNamed:@"46pxNavBar2"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 80, 0, 80)] forBarMetrics:UIBarMetricsDefault];
+
     // force load the APIConnector
     NSLog(@"%@", [[APIConnector shared] description]);
     

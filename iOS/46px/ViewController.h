@@ -27,6 +27,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *userName;
 
 @property (retain, nonatomic) IBOutlet UIScrollView *draftScrollView;
+@property (retain, nonatomic) IBOutlet UIPageControl *scrollPageControl;
 
 @property (retain, nonatomic) Reachability *internetReachable;
 @property (retain, nonatomic) Reachability *hostReachable;
