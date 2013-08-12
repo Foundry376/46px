@@ -26,7 +26,7 @@ if (($result === false) || ($result->num_rows == 0)) {
 </head>
 <body>
 
-<div id='wrapper' style="width:770px; margin:auto;">
+<div id='wrapper'>
 
 	<script language="javascript">
 		var zoom = 11.2;
@@ -34,7 +34,7 @@ if (($result === false) || ($result->num_rows == 0)) {
 	<script src="js/images.js" language="javascript"></script>
 
 	<div style="float:right;">
-		<a class="button" href="#replies"><img src="/images/icon_comments.png"><span style="padding-left:10px; padding-right:4px; font-size:30px; position:relative; top:-10px;">
+		<a class="button" href="#replies"><img src="/images/icon_comments.png"><span id="buttonspan">
 			<?= $result->num_rows - 1 ?>
 		</span></a>
 	</div>
@@ -55,9 +55,9 @@ if (($result === false) || ($result->num_rows == 0)) {
 		$like_count = $db->query("SELECT * FROM like_list WHERE post_id = '".$row['id']."'")->num_rows;
 		
 		?>
-		<li style="border-bottom:6px dashed rgba(0,0,0,0.2); padding-bottom:30px; margin-bottom:30px;">
-			<div style="background:url('/images/post_frame.png') top left no-repeat; width:588px; height:530px;">
-			   <canvas style="padding-left:18px; padding-top:6px;" id='canvas<?= $i ?>'></canvas>
+		<li class="post1">
+			<div class="imgframe">
+			   <canvas id='canvas<?= $i ?>'></canvas>
 			   <script>
 			   var i = new Image();
 			   i.canvas = "canvas<?= $i ?>";
@@ -66,26 +66,26 @@ if (($result === false) || ($result->num_rows == 0)) {
 			   </script>
 			</div>
 			
-			<div style="background:url('/images/caption_frame.png') top left no-repeat; width:588px; height: 77px; margin-top:15px;">
+			<div class="captionframe">
 			
-				<div style="float:left; z-index:3; position:relative; left: 44px; top:6px;">
+				<div class="picture">
 					<img src="http://graph.facebook.com/<?=$row["user_id"]?>/picture" style="width:65px; height:65px;" />
 				</div>
 				
-				<div style="float:left; z-index:2; position:relative; left: 65px; top:10px; text-align:left; width:290px; word-wrap: break-word;">
-					<b><?=$row["first_name"]. " ". $row["last_name"] ?></b> <span style="font-size:0.9em; color:gray;"><?= date('D, M jS, g:iA', strtotime($row['timestamp'])) ?></span>
-					<br><?=$row['caption']?>
+				<div class="response">
+					<b><?=$row["first_name"]. " ". $row["last_name"] ?></b> <span class="timestamp1"><?= date('D, M jS, g:iA', strtotime($row['timestamp'])) ?></span>
+					<br><?=stripcslashes($row['caption'])?>
 				</div>
 				
 				
-				<div style="float:left; z-index:4; position:relative; left: 93px; top:17px;">
+				<div class="like">
 					<a href="like.php?post_id=<?echo $row['id'] . "&thread_id=" . $row['thread_id']. "&46px_user_id=" . $_GET['46px_user_id']?>">
 					<? if ($liked == true) { ?><img src="/images/icon_like_down.png"><? } else { ?><img src="/images/icon_like.png"><?}?></a>
-					<span style="text-align:center; width:40px; padding-right:4px; font-size:30px; font-weight:bold; position:relative; top:-5px;">
+					<span>
 						<?=$like_count ?>
 					</span>
 				</div>
-				<div style="float:left; z-index:4; position:relative; left: 112px; top:17px;">
+				<div class="edit">
 					<a href="fortysix://edit---<?=$row['image_url']?>---<?=$row['thread_id']?>"><img src="/images/icon_draw.png"></a>
 				</div>
 			</div>
@@ -102,8 +102,8 @@ if (($result === false) || ($result->num_rows == 0)) {
 $db->close();
 ?>
 
-	<div style="margin:auto; width: 300px; padding-bottom:50px;">
-		<a class="button" style="width: 300px;" href='fortysix://edit---<?=$row['thread_id']?>'>Create Blank Reply</a>
+	<div id="newreply">
+		<a class="button" href='fortysix://edit---<?=$row['thread_id']?>'>Create Blank Reply</a>
 	</div>
     
 </div>

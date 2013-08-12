@@ -1,0 +1,33 @@
+<div id="thread_content">
+
+	 <ul id="post_list">
+
+	 		<li class="thread_post" ng:repeat="post in thread.posts">
+	 			
+	 			<div class="image_frame">
+
+	 				<canvas id="canvas{{ $index }}"></canvas>
+
+	 			</div> 
+
+	 			<div class="caption_frame">
+
+	 				<div class="user_picture">
+	 					<img src="http://graph.facebook.com/{{post.userId}}/picture"/>
+	 				</div>
+
+	 				<div class="response">
+
+	 				</div>
+	 				<div class="like">
+
+	 					<span>
+						<?=$like_count ?>
+					</span>
+	 				</div>
+	 				<div class="edit">
+	 				</div>
+	 			</div>
+	 		</li>
+	 </ul>
+</div> <!--End wrapper>

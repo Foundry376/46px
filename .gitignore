@@ -9,3 +9,5 @@ iOS/46px.xcodeproj/project.xcworkspace/xcuserdata/
 iOS/46px.xcodeproj/xcuserdata/Scott.xcuserdatad/
 Web/users
 /iOS/DerivedData/
+.DS_Store
+Web/.DS_Store

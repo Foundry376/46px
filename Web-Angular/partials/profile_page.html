@@ -1,0 +1,71 @@
+<div id='content'>
+	<link rel="stylesheet" type="text/css" href="css/profile_style.css" media="screen" />
+	<script language="javascript">
+		var zoom = 5;
+	</script>
+	<script src="js/images.js" language="javascript"></script>
+	
+	<div id='user_header' style='overflow:auto; width:100%'>
+		<canvas id='user_pic' style='float:left;' ng-href='{{user_pic}}'></canvas>
+		<div id='user_info' style='float:right;'>
+			<p>User Name</p>
+			<p># of Posts</p>
+			<p># of Likes</p>
+			<p>Join Date</p>
+		</div>
+	</div>
+
+
+	<div style='clear:both;'/>
+
+	
+	<div id='user_posts_and_threads' style='width:100%; overflow:auto;'>
+		<div class='user_thread_list' style='float:left; width:50%;'>
+		<!-- Start modified Ben's thread list code -->
+			<ul id='threads'>
+				<li class='thread' ng:repeat="thread in stream.threads">
+					<a id ="{{ $index }}" ng-click="openThread($index)">
+						<canvas ng-href='{{ thread.post.image_url }}' id='canvas{{ $index }}'></canvas>
+					</a>
+
+					<div class="caption">
+						<img style="float:left; padding-right:5px;" ng-src="http://graph.facebook.com/{{ thread.user.id }}/picture">
+						<div id="postheader">
+							<span id="timestamp">{{thread.timestamp | date:'medium'}}</span>
+							<br>
+							{{thread.post.caption}}<br>
+						</div>
+						<div style="clear:both;"/>
+					</div>
+				</li>
+			</ul>	
+			<div style="width: 100%; text-align:center;">	
+				<button ng-click="shiftPage(-1)">prev</button>
+				<button ng-click="shiftPage(1)">next</button>
+			</div>
+		<!-- End Ben's thread list code -->
+		</div>
+
+		<div class='user_post_list' style='float:right; width:50%;'>
+		<!-- Start Richard's hacked version of Ben's thread code -->
+		<!-- Note that I have no idea what to put into the handlebar calls yet :/ -->
+			<ul id='posts'>
+				<li class='post' ng:repeat="post in stream.posts">
+					<p id="post_timestamp" style="float:left;">{{post.timestamp | date:'medium'}}</p>	
+					<a id="{{ $index }}" ng-click="openThread($index)" style="float:left;">
+						<canvas ng-href='{{posts.post.image_url}}' id='canvas{{$index}}'></canvas>
+					</a>
+					<p id="post_caption" style="float:left;">{{posts.post.caption}}</p>
+				</li>
+				<div style="clear:both;"/>
+			</ul>
+			<div style="width: 100%; text-align:center;">	
+				<button ng-click="shiftPage(-1)">prev</button>
+				<button ng-click="shiftPage(1)">next</button>
+			</div>
+		<!-- End Richard's stuff -->
+		</div>
+	</div>
+</div>
+</body>
+</html>
