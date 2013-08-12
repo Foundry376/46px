@@ -10,9 +10,15 @@ function StreamController($scope, $resource, $browser, $location)
         {pageId:'%pageId'},
         {get:{method:'GET'}});
 
-	// Set the page number to the first page, and load the first stream
+	// Set the page number to the first page, and load the first stream. Note that we store
+	// the stream contents into $scope.$root rather than just $scope. This means that the
+	// stream is preserved as you move forward and backward through the interface—it's not
+	// just stored for the current view. That means if you view the stream, drill down to a 
+	// thread, and then press back, the stream that was last fetched is still there!
 	$scope.pageNumber = 1;
-    $scope.stream = $scope.StreamModel.get({pageId: $scope.pageNumber});
+    $scope.StreamModel.get({pageId: $scope.pageNumber}, function($obj) {
+    	$scope.$root.stream = $obj
+    });
 	  
 	// Add ourselves as listeners for interface updates. Usually the watch function
 	// takes a notification name (so we'd be notified when "X" event occurred), but
@@ -36,7 +42,7 @@ function StreamController($scope, $resource, $browser, $location)
 
 		// for some reason we have to bake the page number into a local variable...
 		var p = this.pageNumber;
-        this.stream = $scope.Stream.get({pageId: p});
+        $scope.$root.stream = $scope.Stream.get({pageId: p});
     };
     
     // Function bound to the thread click event. This function moves the tapped thread

@@ -9,6 +9,7 @@
 #import "FacebookManager.h"
 #import "ASIFormDataRequest.h"
 #import "APIConnector.h"
+
 static FacebookManager * sharedManager;
 
 @implementation FacebookManager
