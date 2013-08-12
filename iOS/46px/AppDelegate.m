@@ -55,10 +55,6 @@
     // initialize testflight
     [TestFlight takeOff:@"558dd705e65f522ccbeba78269d7716e_ODk1MDgyMDEyLTA1LTExIDE1OjE1OjU1LjYxNjY1OQ"];
 
-    #ifdef TESTING
-        [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-    #endif
-
 
     //initialization of singleton
     FacebookManager * manager = [FacebookManager sharedManager];
