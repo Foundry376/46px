@@ -1,6 +1,6 @@
 body{
 	display:block;
-	font-family:"Arial", sans-serif;
+	font-family:"Helvetica","Arial", sans-serif;
 }
 
 #content{
@@ -95,6 +95,29 @@ float:left; padding-right:5px;
 	border-left:3px solid white;
 	text-shadow: 0px 1px 0px #ffffff;
 	filter: dropshadow(color=#ffffff, offx=, offy=1);	
+}
+
+
+/*Thread Styling*/
+#thread_content{
+
+	margin: auto;
+  width: 770px;
+
+}
+
+.image_frame{
+	background:url('/images/post_frame.png') top left no-repeat;
+	width:588px;
+	height:530px;
+}
+.image_frame canvas{
+
+ 	padding-left:18px; padding-top:6px;
+	width:515px;
+	height:515px;
+}
+
 }
 
 # PHP-recovered stylings
