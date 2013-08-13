@@ -26,6 +26,7 @@
 @interface PixelEditorViewController : UIViewController
 {
     UIColor * _originalNavTint;
+    UIPopoverController * _activityPopover;
 }
 
 @property (nonatomic, weak) NSObject<PixelEditorDelegate> * delegate;

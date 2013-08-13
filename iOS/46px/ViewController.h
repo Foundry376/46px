@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIImageView *webViewBackground;
+@property (weak, nonatomic) IBOutlet UIImageView *sidebarShadowView;
 @property (weak, nonatomic) IBOutlet UIView *sidebarContainerView;
 @property (weak, nonatomic) IBOutlet UIImageView *sidebarBackgroundView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;

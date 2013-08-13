@@ -69,6 +69,7 @@
 
     // attach the drawing to the canvas
     [canvasView setDrawing: self.drawing];
+    [canvasThumbnailView setDrawing: self.drawing];
     
     // setup the color view for the first time
     [colorsView setDrawing: self.drawing];
@@ -83,8 +84,9 @@
     if ([delegate respondsToSelector:@selector(commitButtonTitleForPixelEditor:)])
         title = [delegate commitButtonTitleForPixelEditor: self];
 
+    UIBarButtonItem * export = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(export:)];
     UIBarButtonItem * b = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleDone target:self action:@selector(finished:)];
-    [self.navigationItem setRightBarButtonItem:b animated:YES];
+    [self.navigationItem setRightBarButtonItems:@[b, export] animated:YES];
 }
 
 - (void)layoutForOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -151,8 +153,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self layoutForOrientation: self.interfaceOrientation];
-    
-    [canvasThumbnailView setDrawing: self.drawing];
     [canvasThumbnailView setNeedsDisplay];
     [canvasView setNeedsDisplay];
     [colorsView setNeedsDisplay];
@@ -184,7 +184,9 @@
     CGContextTranslateCTM(c, 0, -i.size.height);
     CGContextDrawImage(c, CGRectMake(0, 0, [i size].width, [i size].height), [i CGImage]);
     CGContextRestoreGState(c);
+    
     [canvasView setNeedsDisplay];
+    [canvasThumbnailView setNeedsDisplay];
 }
 
 - (void)toolToggled:(UIButton*)toolButton
@@ -198,6 +200,27 @@
     
     // update the drawing's current tool
     [self.drawing setTool: [[self.drawing tools] objectAtIndex: [toolButton tag]]];
+}
+
+- (void)export:(id)sender
+{
+    [_activityPopover dismissPopoverAnimated: NO];
+    _activityPopover = nil;
+    
+    UIGraphicsBeginImageContext(CGSizeMake(566, 500));
+    CGContextRef c = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(c, 0, 500);
+    CGContextScaleCTM(c, 1, -1);
+    CGContextSetInterpolationQuality(c, kCGInterpolationNone);
+    CGContextDrawImage(c, CGRectMake(20, 20, 460, 460), [[self.drawing image] CGImage]);
+    CGContextDrawImage(c, CGRectMake(500, 20, 46, 46), [[self.drawing image] CGImage]);
+    CGContextDrawImage(c, CGRectMake(500, 434, 46, 46), [[UIImage imageNamed: @"export_watermark.png"] CGImage]);
+    UIImage * finished = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    UIActivityViewController * activity = [[UIActivityViewController alloc] initWithActivityItems:@[finished] applicationActivities:nil];
+    _activityPopover = [[UIPopoverController alloc] initWithContentViewController: activity];
+    [_activityPopover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 - (void)finished:(id)sender

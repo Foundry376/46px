@@ -33,16 +33,7 @@
     [self.collectionView registerClass:[DrawingCollectionViewCell class] forCellWithReuseIdentifier:@"DrawingCollectionViewCell"];
     [self.collectionView setAlwaysBounceVertical: YES];
     
-    NSString *urlAddress = [NSString stringWithFormat: @"http://46px.com/index.php?46px_user_id=%@", [[FacebookManager sharedManager] facebookUserID]];
-    
-    // Create a URL object.
-    NSURL *url = [NSURL URLWithString:urlAddress];
-    
-    // URL Requst Object
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    
-    // Load the request in the UIWebView.
-    [webView loadRequest:requestObj];
+    [self gotoHome];
     [[webView scrollView] setBounces: NO];
     
     // Listen for images being posted successfully
@@ -68,17 +59,32 @@
     [_collectionView reloadData];
 }
 
+- (void)gotoHome
+{
+    NSString *urlAddress = [NSString stringWithFormat: @"http://46px.com/index.php?46px_user_id=%@", [[FacebookManager sharedManager] facebookUserID]];
+    NSURL *url = [NSURL URLWithString:urlAddress];
+    [webView loadRequest:[NSURLRequest requestWithURL:url]];
+}
+
+- (void)gotoMyDrawings
+{
+    NSString *urlAddress = [NSString stringWithFormat: @"http://46px.com/index.php?46px_user_id=%@&mine=true", [[FacebookManager sharedManager] facebookUserID]];
+    NSURL *url = [NSURL URLWithString:urlAddress];
+    [webView loadRequest:[NSURLRequest requestWithURL:url]];
+}
 
 - (void)layoutForOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-        [_sidebarContainerView setFrame: CGRectMake(0, 0, self.view.frame.size.width, 205)];
+        [_sidebarContainerView setFrame: CGRectMake(0, self.view.frame.size.height - 205, self.view.frame.size.width, 205)];
         [_sidebarBackgroundView setFrame: _sidebarContainerView.bounds];
         [_sidebarBackgroundView setImage: [UIImage imageNamed: @"home_sidebar_background_portrait.png"]];
-        [_collectionView setFrame: CGRectMake(295, 0, self.view.frame.size.width - 290, 205)];
-        [webView setFrame: CGRectMake(0, 205, self.view.frame.size.width, self.view.frame.size.height - 205)];
+        [_collectionView setFrame: CGRectMake(292, 0, self.view.frame.size.width - 290, 205)];
+        [webView setFrame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 205)];
         [_webViewBackground setFrame: webView.frame];
         [_startDrawingButton setFrame: CGRectMake(13, 120, 270, 60)];
+        [_sidebarShadowView setFrame: CGRectMake(0, self.view.frame.size.height - 205 - 20, 768, 20)];
+        [_sidebarShadowView setHidden:NO];
     } else {
         [_sidebarContainerView setFrame: CGRectMake(0, 0, 300, self.view.frame.size.height)];
         [_sidebarBackgroundView setFrame: _sidebarContainerView.bounds];
@@ -87,6 +93,7 @@
         [webView setFrame: CGRectMake(300, 0, self.view.frame.size.width-300, self.view.frame.size.height)];
         [_webViewBackground setFrame: webView.frame];
         [_startDrawingButton setFrame: CGRectMake(13, 114, 273, 60)];
+        [_sidebarShadowView setHidden:YES];
     }
 }
 
@@ -146,11 +153,16 @@
         
         [userName setText: [NSString stringWithFormat:@"%@ %@", fn, ln]];
         [loginButton setHidden: YES];
+        [self gotoHome];
+        
+        UIBarButtonItem * myDrawings = [[UIBarButtonItem alloc] initWithTitle:@"My Published Drawings" style:UIBarButtonItemStyleBordered target:self action:@selector(gotoMyDrawings)];
+        [self.navigationItem setRightBarButtonItem:myDrawings animated:YES];
         
     } else {
         [userName setText: @"Anonymous"];
         [profilePicture setImage: [UIImage imageNamed:@"anonymous.png"]];
         [loginButton setHidden: NO];
+        [self.navigationItem setRightBarButtonItem:nil animated:YES];
     }
 }
 
@@ -166,6 +178,7 @@
     [self setSidebarBackgroundView:nil];
     [self setWebViewBackground:nil];
     [self setStartDrawingButton:nil];
+    [self setSidebarShadowView:nil];
     [super viewDidUnload];
 }
 
