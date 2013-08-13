@@ -162,6 +162,7 @@
 {
     // save the drawing to drafts!!
     [drawing save];
+    [_activityPopover dismissPopoverAnimated:NO];
     
     [[self.navigationController navigationBar] setTintColor: _originalNavTint];
 }

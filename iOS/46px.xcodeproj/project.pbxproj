@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4318A04B154322C00004540E /* ColorGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4318A04A154322C00004540E /* ColorGridView.m */; };
 		4318A0511543329C0004540E /* APIConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4318A0501543329C0004540E /* APIConnector.m */; };
-		437DB9D5155D9C9F00ADF727 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 437DB9D1155D9C9F00ADF727 /* libTestFlight.a */; };
 		437DB9DF155DBAF800ADF727 /* RectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 437DB9DE155DBAF800ADF727 /* RectTool.m */; };
 		437DB9E8155E4C7B00ADF727 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437DB9E7155E4C7B00ADF727 /* ImageIO.framework */; };
 		4382791115429010002E0A53 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382791015429010002E0A53 /* UIKit.framework */; };
@@ -126,8 +125,6 @@
 		4318A04A154322C00004540E /* ColorGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorGridView.m; sourceTree = "<group>"; };
 		4318A04F1543329C0004540E /* APIConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIConnector.h; sourceTree = "<group>"; };
 		4318A0501543329C0004540E /* APIConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIConnector.m; sourceTree = "<group>"; };
-		437DB9D1155D9C9F00ADF727 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = 46px/Testflight/libTestFlight.a; sourceTree = "<group>"; };
-		437DB9D4155D9C9F00ADF727 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		437DB9DD155DBAF800ADF727 /* RectTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RectTool.h; sourceTree = "<group>"; };
 		437DB9DE155DBAF800ADF727 /* RectTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RectTool.m; sourceTree = "<group>"; };
 		437DB9E7155E4C7B00ADF727 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -305,21 +302,12 @@
 				4382791115429010002E0A53 /* UIKit.framework in Frameworks */,
 				4382791315429010002E0A53 /* Foundation.framework in Frameworks */,
 				4382791515429010002E0A53 /* CoreGraphics.framework in Frameworks */,
-				437DB9D5155D9C9F00ADF727 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		437DB9D0155D9C9F00ADF727 /* Testflight */ = {
-			isa = PBXGroup;
-			children = (
-				437DB9D4155D9C9F00ADF727 /* TestFlight.h */,
-			);
-			path = Testflight;
-			sourceTree = "<group>";
-		};
 		4382790115429010002E0A53 = {
 			isa = PBXGroup;
 			children = (
@@ -341,7 +329,6 @@
 			isa = PBXGroup;
 			children = (
 				437DB9E7155E4C7B00ADF727 /* ImageIO.framework */,
-				437DB9D1155D9C9F00ADF727 /* libTestFlight.a */,
 				43EB9D81154399DE0040C04E /* QuartzCore.framework */,
 				43EB9D7B154390A30040C04E /* libxml2.dylib */,
 				43EB9CD515437FB10040C04E /* libz.dylib */,
@@ -358,7 +345,6 @@
 		4382791615429010002E0A53 /* 46px */ = {
 			isa = PBXGroup;
 			children = (
-				437DB9D0155D9C9F00ADF727 /* Testflight */,
 				4382791F15429010002E0A53 /* AppDelegate.h */,
 				4382792015429010002E0A53 /* AppDelegate.m */,
 				4318A04F1543329C0004540E /* APIConnector.h */,
@@ -812,7 +798,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -837,7 +822,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -859,6 +843,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "46px/46px-Prefix.pch";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "46px/46px-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -873,14 +858,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "46px/46px-Prefix.pch";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "46px/46px-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/46px/Testflight\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

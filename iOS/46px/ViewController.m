@@ -100,8 +100,6 @@
 
 - (IBAction)start:(id)sender
 {    
-    [TestFlight passCheckpoint:@"NewDrawingOpened"];
-
     // ask for a folder that we can put our new drawing into
     NSString * dir = [[APIConnector shared] pathForNewDrawing];
     
@@ -130,7 +128,6 @@
 
 - (IBAction)loginPressed:(id)sender 
 {
-    [TestFlight passCheckpoint:@"UserStartedLogin"];
     [[FacebookManager sharedManager] login];
 }
 

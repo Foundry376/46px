@@ -11,8 +11,6 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
-    #import "TestFlight.h"
-    #define TESTING 1
 
 #define FACEBOOK_APP_ID @"364788460224900"
 #endif
