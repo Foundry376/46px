@@ -55,30 +55,32 @@
     [self setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [[self titleLabel] setShadowOffset: CGSizeMake(0, 1)];
     
-    [self addObserver:self forKeyPath:@"selected" options:NSKeyValueChangeSetting context:nil];
-    [self addObserver:self forKeyPath:@"highlighted" options:NSKeyValueChangeSetting context:nil];
-    
     baseImageInsets = [self imageEdgeInsets];
     baseTitleInsets = [self titleEdgeInsets];
 }
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)setSelected:(BOOL)selected
 {
-    if([keyPath isEqualToString:@"selected"] || [keyPath isEqualToString:@"highlighted"]){   
-        if(self.selected || self.highlighted){
-            [self setTitleEdgeInsets: UIEdgeInsetsMake(baseTitleInsets.top + 3, baseTitleInsets.left + 3, baseTitleInsets.bottom - 3, baseTitleInsets.right - 3)];
-            [self setImageEdgeInsets: UIEdgeInsetsMake(baseImageInsets.top + 3, baseImageInsets.left + 3, baseImageInsets.bottom - 3, baseImageInsets.right - 3)];   
-            
-        } else {
-            [self setTitleEdgeInsets: baseTitleInsets];
-            [self setImageEdgeInsets: baseImageInsets];   
-        }
-    } 
+    [super setSelected: selected];
+    [self updateState];
 }
 
-- (void)dealloc
+- (void)setHighlighted:(BOOL)highlighted
 {
-    [super dealloc];
+    [super setHighlighted: highlighted];
+    [self updateState];
+}
+
+-(void)updateState
+{
+    if(self.selected || self.highlighted){
+        [self setTitleEdgeInsets: UIEdgeInsetsMake(baseTitleInsets.top + 3, baseTitleInsets.left + 3, baseTitleInsets.bottom - 3, baseTitleInsets.right - 3)];
+        [self setImageEdgeInsets: UIEdgeInsetsMake(baseImageInsets.top + 3, baseImageInsets.left + 3, baseImageInsets.bottom - 3, baseImageInsets.right - 3)];   
+        
+    } else {
+        [self setTitleEdgeInsets: baseTitleInsets];
+        [self setImageEdgeInsets: baseImageInsets];   
+    }
 }
 
 @end

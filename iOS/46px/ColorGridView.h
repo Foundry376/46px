@@ -11,12 +11,12 @@
 
 @interface ColorGridView : UIView
 {
-    PixelDrawing * drawing;
+    PixelDrawing * __weak drawing;
     
     int highlightedColorIndex;
 }
 
-@property (nonatomic, assign) PixelDrawing * drawing;
+@property (nonatomic, weak) PixelDrawing * drawing;
 
 - (id)initWithCoder:(NSCoder *)aDecoder;
 

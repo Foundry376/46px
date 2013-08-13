@@ -45,7 +45,7 @@ NSString *const kASIOAuthVersionKey           = @"oauth_version";
     
     // NSURL's path method has an unfortunate side-effect of unescaping the path,
     // but CFURLCopyPath does not
-    CFStringRef cfPath = CFURLCopyPath((__bridge CFURLRef)theURL);
+    CFStringRef cfPath = CFURLCopyPath(( CFURLRef)theURL);
     NSString *path = [NSMakeCollectable(cfPath) autorelease];
     
     // include only non-standard ports for http or https
@@ -229,7 +229,7 @@ NSString *const kASIOAuthVersionKey           = @"oauth_version";
 + (NSString *)encodedOAuthParameterForString:(NSString *)str {
     // http://oauth.net/core/1.0a/#encoding_parameters
     
-    CFStringRef originalString = (__bridge CFStringRef) str;
+    CFStringRef originalString = ( CFStringRef) str;
     
     CFStringRef leaveUnescaped = CFSTR("ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                                        "abcdefghijklmnopqrstuvwxyz"
@@ -243,10 +243,10 @@ NSString *const kASIOAuthVersionKey           = @"oauth_version";
                                                              leaveUnescaped,
                                                              forceEscaped,
                                                              kCFStringEncodingUTF8);
-        [(__bridge id)CFMakeCollectable(escapedStr) autorelease];
+        [( id)CFMakeCollectable(escapedStr) autorelease];
     }
     
-    return (__bridge NSString *)escapedStr;
+    return ( NSString *)escapedStr;
 }
 
 + (NSString *)stringWithBase64ForData:(NSData *)data {

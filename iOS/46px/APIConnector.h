@@ -16,17 +16,13 @@
     NSMutableArray *        drafts;
 }
 
-@property (nonatomic, retain) NSMutableArray * drafts;
+@property (nonatomic, strong) NSMutableArray * drafts;
 
 #pragma mark Singleton Implementation
 
 + (APIConnector*)shared;
 + (id)allocWithZone:(NSZone *)zone;
 - (id)copyWithZone:(NSZone *)zone;
-- (id)retain;
-- (unsigned)retainCount;
-- (oneway void)release;
-- (id)autorelease;
 
 - (void)removeFromCache:(PixelDrawing*)d;
 - (NSString*)pathForNewDrawing;

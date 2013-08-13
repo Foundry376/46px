@@ -10,7 +10,7 @@
 
 @implementation PenPixelTool
 
-- (void)touchBegan:(TouchProperties)touch inDrawing:(PixelDrawing*)d
+- (void)touchBegan:(TouchProperties*)touch inDrawing:(PixelDrawing*)d
 {
     [super touchBegan: touch inDrawing: d];
     
@@ -28,7 +28,7 @@
     [operation setChangeRegion: pixelRect];
 }
 
-- (void)touchMoved:(TouchProperties)touch inDrawing:(PixelDrawing*)d
+- (void)touchMoved:(TouchProperties*)touch inDrawing:(PixelDrawing*)d
 {
     [super touchMoved: touch inDrawing: d];
     
@@ -47,7 +47,7 @@
     [operation setChangeRegion: CGRectUnion([operation changeRegion], drawnRect)];
 }
 
-- (void)touchEnded:(TouchProperties)touch inDrawing:(PixelDrawing*)d
+- (void)touchEnded:(TouchProperties*)touch inDrawing:(PixelDrawing*)d
 {
     [super touchEnded: touch inDrawing: d];
 }

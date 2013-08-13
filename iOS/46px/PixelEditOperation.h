@@ -12,8 +12,8 @@
 {
 }
 
-@property (nonatomic, retain) UIImage * original;
-@property (nonatomic, retain) UIImage * changed;
+@property (nonatomic, strong) UIImage * original;
+@property (nonatomic, strong) UIImage * changed;
 @property (nonatomic, assign) CGRect changeRegion;
 
 

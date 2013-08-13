@@ -9,25 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "PixelEditorViewController.h"
 #import "FBConnect.h"
+#import "DrawingCollectionViewCell.h"
 
-@interface ViewController : UIViewController <UIWebViewDelegate, PixelEditorDelegate, FBRequestDelegate>
+@interface ViewController : UIViewController <UIWebViewDelegate, PixelEditorDelegate, FBRequestDelegate, UIAlertViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+{
+    int _pendingDeleteIndex;
+}
 
-@property (nonatomic, retain) IBOutlet UIWebView *webView;
+@property (nonatomic, strong) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) IBOutlet UIImageView *profilePicture;
+@property (strong, nonatomic) IBOutlet UIButton *loginButton;
+@property (strong, nonatomic) IBOutlet UIButton *logoutButton;
+@property (strong, nonatomic) IBOutlet UILabel *userName;
+@property (strong, nonatomic) IBOutlet UILabel *userPostCount;
 
-@property (retain, nonatomic) IBOutlet UIButton *draftOne;
-@property (retain, nonatomic) IBOutlet UIButton *draftTwo;
-@property (retain, nonatomic) IBOutlet UIButton *draftThree;
-@property (retain, nonatomic) IBOutlet UIButton *draftFour;
-@property (retain, nonatomic) IBOutlet UIButton *draftFive;
-@property (retain, nonatomic) IBOutlet UIButton *draftSix;
-
-@property (retain, nonatomic) IBOutlet UIImageView *profilePicture;
-@property (retain, nonatomic) IBOutlet UIButton *loginButton;
-@property (retain, nonatomic) IBOutlet UIButton *logoutButton;
-
-@property (retain, nonatomic) IBOutlet UILabel *userName;
-@property (retain, nonatomic) IBOutlet UILabel *userPostCount;
-
-- (void)manageDrafts;
 
 @end

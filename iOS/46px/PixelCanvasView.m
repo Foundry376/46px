@@ -9,6 +9,10 @@
 #import "PixelCanvasView.h"
 #import "PixelTool.h"
 
+@implementation TouchProperties
+
+@end
+
 @implementation PixelCanvasView
 
 @synthesize drawing;
@@ -36,11 +40,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setNeedsDisplay) name:@"PixelDrawingChanged" object:nil];
     
     // add gesture recognizers for pinching and scrolling
-    UIPanGestureRecognizer * g = [[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)] autorelease];
+    UIPanGestureRecognizer * g = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     [g setMinimumNumberOfTouches: 2];
     [self addGestureRecognizer: g];
     
-    UIPinchGestureRecognizer * z = [[[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(zoom:)] autorelease];
+    UIPinchGestureRecognizer * z = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(zoom:)];
     [self addGestureRecognizer: z];
     
     camera.zoom = 1;
@@ -60,8 +64,7 @@
     [self setUserInteractionEnabled: NO];
     
     [zoomToFitTimer invalidate];
-    [zoomToFitTimer release];
-    zoomToFitTimer = [[NSTimer scheduledTimerWithTimeInterval:1 / 30.0 target:self selector:@selector(zoomToFitStep) userInfo:nil repeats:YES] retain];
+    zoomToFitTimer = [NSTimer scheduledTimerWithTimeInterval:1 / 30.0 target:self selector:@selector(zoomToFitStep) userInfo:nil repeats:YES];
 }
 
 - (void)zoomToFitStep
@@ -76,7 +79,6 @@
         camera.y = 0;
         camera.zoom = 1;
         [zoomToFitTimer invalidate];
-        [zoomToFitTimer release];
         zoomToFitTimer = nil;
         
         [self setUserInteractionEnabled: YES];
@@ -88,7 +90,6 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver: self];
-    [super dealloc];
 }
 
 - (void)drawRect:(CGRect)rect
@@ -229,9 +230,9 @@
 #pragma mark -
 #pragma mark Touch Input
 
-- (TouchProperties)touchPropertiesForTouch:(UITouch*)t
+- (TouchProperties*)touchPropertiesForTouch:(UITouch*)t
 {
-    TouchProperties p;
+    TouchProperties * p = [[TouchProperties alloc] init];
     p.touch = t;
     p.locationInView = [t locationInView: self];
     p.prevLocationInView = [t previousLocationInView: self];
@@ -258,21 +259,21 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    TouchProperties p = [self touchPropertiesForTouch: [touches anyObject]];
+    TouchProperties * p = [self touchPropertiesForTouch: [touches anyObject]];
     [drawing.tool touchBegan: p inDrawing:drawing];
     [self setNeedsDisplay];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    TouchProperties p = [self touchPropertiesForTouch: [touches anyObject]];
+    TouchProperties * p = [self touchPropertiesForTouch: [touches anyObject]];
     [drawing.tool touchMoved: p inDrawing:drawing];
     [self setNeedsDisplay];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    TouchProperties p = [self touchPropertiesForTouch: [touches anyObject]];
+    TouchProperties * p = [self touchPropertiesForTouch: [touches anyObject]];
     [drawing.tool touchEnded: p inDrawing:drawing];
     [self setNeedsDisplay];
 }

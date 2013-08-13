@@ -51,7 +51,7 @@
     
     // attach the tool "buttons" to the sidebar so we can have lots of tools
     for (PixelTool * t in self.drawing.tools) {
-        OrangeButton * b = [[[OrangeButton alloc] initWithFrame: CGRectMake(0, 0, 60, 60)] autorelease];
+        OrangeButton * b = [[OrangeButton alloc] initWithFrame: CGRectMake(0, 0, 60, 60)];
         [b setImage:[t icon] forState:UIControlStateNormal];
         [b setTag: [self.drawing.tools indexOfObject: t]];
         [b addTarget:self action:@selector(toolToggled:) forControlEvents:UIControlEventTouchUpInside];
@@ -79,7 +79,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(drawingModified) name:@"PixelDrawingChanged" object:nil];
 
     // add the publish / save button to the upper right
-    NSString * title = @"Save";
+    NSString * title = @"Publish Drawing";
     if ([delegate respondsToSelector:@selector(commitButtonTitleForPixelEditor:)])
         title = [delegate commitButtonTitleForPixelEditor: self];
 
@@ -131,7 +131,7 @@
 
 - (void)downloadAndAddImage:(NSString*)path
 {
-    ASIHTTPRequest * req = [[[ASIHTTPRequest alloc] initWithURL: [NSURL URLWithString: path]] autorelease];
+    ASIHTTPRequest * req = [[ASIHTTPRequest alloc] initWithURL: [NSURL URLWithString: path]];
     [req setDelegate:self];
     [req setDidFinishSelector:@selector(downloadAndAddImageFinished:)];
     [req startAsynchronous];
@@ -167,7 +167,7 @@
 {
     if ([[[FacebookManager sharedManager] facebookUserID] length] > 0) {
         // okay. so the user is done! let's fire back to the delegate
-        PostViewController * pvc = [[[PostViewController alloc] init] autorelease];
+        PostViewController * pvc = [[PostViewController alloc] init];
         [pvc setDrawing: drawing];
         [pvc setModalTransitionStyle: UIModalTransitionStyleCoverVertical];
         [pvc setModalPresentationStyle: UIModalPresentationFormSheet];
@@ -175,7 +175,6 @@
     } else {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Not Logged In" message:@"Before you can post your drawings, you need to sign in to Facebook on the home screen. Don't worry, you can re-open this drawing!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
-        [alert release];
     }
 }
 
@@ -212,22 +211,6 @@
     [redoButton setEnabled: [self.drawing canRedo]];
 }
 
-- (void)dealloc
-{
-    self.drawing = nil;
-    
-    [undoButton release];
-    [redoButton release];
-    [canvasView release];
-    [canvasThumbnailView release];
-    [colorsView release];
-    [toolsView release];
-    [mirrorXButton release];
-    [mirrorYButton release];
-    [zoomToFitButton release];
-    [backgroundView release];
-    [super dealloc];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

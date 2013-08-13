@@ -15,7 +15,7 @@
     BOOL editing;
 }
 
-@property (retain, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
 
 - (id)initWithPage:(NSURL*)u;
 

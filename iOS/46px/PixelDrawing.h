@@ -21,13 +21,13 @@
     NSMutableArray    * redoStack;
 }
 
-@property (nonatomic, retain) NSMutableArray * tools;
-@property (nonatomic, assign) PixelTool * tool;
+@property (nonatomic, strong) NSMutableArray * tools;
+@property (nonatomic, weak) PixelTool * tool;
 
-@property (nonatomic, retain) NSMutableArray * colors;
-@property (nonatomic, assign) UIColor * color;
+@property (nonatomic, strong) NSMutableArray * colors;
+@property (nonatomic, weak) UIColor * color;
 
-@property (nonatomic, retain) NSString * caption;
+@property (nonatomic, strong) NSString * caption;
 
 @property (nonatomic, assign) CGLayerRef baseLayer;
 @property (nonatomic, assign) CGLayerRef operationLayer;
@@ -36,7 +36,7 @@
 @property (nonatomic, assign) BOOL mirroringY;
 
 @property (nonatomic, assign) int threadID;
-@property (nonatomic, retain) NSString * directory;
+@property (nonatomic, strong) NSString * directory;
 
 - (id)initWithSize:(CGSize)s andDirectory:(NSString*)d;
 - (id)initWithDirectory:(NSString*)d;

@@ -18,9 +18,9 @@
     BOOL down;
 }
 
-- (void)touchBegan:(TouchProperties)touch inDrawing:(PixelDrawing*)d;
-- (void)touchMoved:(TouchProperties)touch inDrawing:(PixelDrawing*)d;
-- (void)touchEnded:(TouchProperties)touch inDrawing:(PixelDrawing*)d;
+- (void)touchBegan:(TouchProperties*)touch inDrawing:(PixelDrawing*)d;
+- (void)touchMoved:(TouchProperties*)touch inDrawing:(PixelDrawing*)d;
+- (void)touchEnded:(TouchProperties*)touch inDrawing:(PixelDrawing*)d;
 
 - (void)drawInContext:(CGContextRef)c;
 

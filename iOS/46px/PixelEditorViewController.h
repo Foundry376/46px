@@ -27,20 +27,20 @@
 {
 }
 
-@property (nonatomic, assign) NSObject<PixelEditorDelegate> * delegate;
-@property (nonatomic, retain) PixelDrawing * drawing;
-@property (retain, nonatomic) IBOutlet ColorGridView *colorsView;
-@property (retain, nonatomic) IBOutlet UIView *toolsView;
-@property (retain, nonatomic) IBOutlet UIImageView *backgroundView;
+@property (nonatomic, weak) NSObject<PixelEditorDelegate> * delegate;
+@property (nonatomic, strong) PixelDrawing * drawing;
+@property (strong, nonatomic) IBOutlet ColorGridView *colorsView;
+@property (strong, nonatomic) IBOutlet UIView *toolsView;
+@property (strong, nonatomic) IBOutlet UIImageView *backgroundView;
 
-@property (retain, nonatomic) IBOutlet PixelCanvasView *canvasView;
-@property (retain, nonatomic) IBOutlet PixelCanvasView *canvasThumbnailView;
-@property (retain, nonatomic) IBOutlet UIButton *zoomToFitButton;
+@property (strong, nonatomic) IBOutlet PixelCanvasView *canvasView;
+@property (strong, nonatomic) IBOutlet PixelCanvasView *canvasThumbnailView;
+@property (strong, nonatomic) IBOutlet UIButton *zoomToFitButton;
 
-@property (retain, nonatomic) IBOutlet UIButton *undoButton;
-@property (retain, nonatomic) IBOutlet UIButton *redoButton;
-@property (retain, nonatomic) IBOutlet UIButton *mirrorXButton;
-@property (retain, nonatomic) IBOutlet UIButton *mirrorYButton;
+@property (strong, nonatomic) IBOutlet UIButton *undoButton;
+@property (strong, nonatomic) IBOutlet UIButton *redoButton;
+@property (strong, nonatomic) IBOutlet UIButton *mirrorXButton;
+@property (strong, nonatomic) IBOutlet UIButton *mirrorYButton;
 
 - (id)initWithDrawing:(PixelDrawing*)d andDelegate:(NSObject<PixelEditorDelegate>*)del;
 
@@ -55,7 +55,5 @@
 - (IBAction)zoomToFit:(id)sender;
 
 - (void)drawingModified;
-
-- (void)dealloc;
 
 @end

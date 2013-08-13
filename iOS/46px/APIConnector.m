@@ -46,27 +46,6 @@ static APIConnector * sharedConnector;
     return self;
 }
 
-- (id)retain
-{
-    return self;
-}
-
-- (unsigned)retainCount
-{
-    //denotes an object that cannot be released
-    return UINT_MAX;
-}
-
-- (oneway void)release
-{
-    //do nothing
-}
-
-- (id)autorelease
-{
-    return self;
-}
-
 #pragma mark Standard Functionality
 
 - (id)init
@@ -82,7 +61,7 @@ static APIConnector * sharedConnector;
         NSArray * draftFilenames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:draftsFolder error:nil];
         for (NSString * f in draftFilenames) {
             PixelDrawing * d = [[PixelDrawing alloc] initWithDirectory: [draftsFolder stringByAppendingPathComponent: f]];
-            [drafts addObject: [d autorelease]];
+            [drafts addObject: d];
         }
         
         NSLog(@"Loaded %d Saved Drawings: ", [drafts count]);
@@ -102,7 +81,6 @@ static APIConnector * sharedConnector;
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"EEEE MMMM d, YYYY h.mm.ss a"];
     NSString *dateString = [dateFormat stringFromDate:today];
-    [dateFormat release];
     
     NSString * draftsFolder = [@"~/Documents/Drafts" stringByExpandingTildeInPath];
     return [draftsFolder stringByAppendingPathComponent: dateString];
@@ -112,7 +90,7 @@ static APIConnector * sharedConnector;
 {
     NSURL * url = [NSURL URLWithString:@"http://46px.com/upload.php"];
     
-    ASIFormDataRequest * req = [[[ASIFormDataRequest alloc] initWithURL: url] autorelease];
+    ASIFormDataRequest * req = [[ASIFormDataRequest alloc] initWithURL: url];
     
     [req addPostValue:[[FacebookManager sharedManager] facebookUserID] forKey:@"userID"];
     [req addPostValue:[d caption] forKey:@"caption"];
@@ -132,7 +110,7 @@ static APIConnector * sharedConnector;
 - (void)updateUserTableWithUserID:(NSString *)userID
 {
     NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.46px.com/updateUser.php?accessToken=%@&id=%@",[FacebookManager sharedManager].facebook.accessToken, userID]];
-    ASIHTTPRequest * req = [[[ASIHTTPRequest alloc] initWithURL: url] autorelease];
+    ASIHTTPRequest * req = [[ASIHTTPRequest alloc] initWithURL: url];
     [req setUserAgent:@"46px App"];
     [req setDidFinishSelector:@selector(userUpdateFinished:)];
     [req setDidFailSelector:@selector(userUpdateFailed:)];

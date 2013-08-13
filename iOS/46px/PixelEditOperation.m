@@ -16,8 +16,8 @@
 {
     self = [super init];
     if (self) {
-        original = [[UIImage imageWithData: [aDecoder decodeObjectForKey:@"original"]] retain];
-        changed = [[UIImage imageWithData: [aDecoder decodeObjectForKey:@"changed"]] retain];
+        original = [UIImage imageWithData: [aDecoder decodeObjectForKey:@"original"]];
+        changed = [UIImage imageWithData: [aDecoder decodeObjectForKey:@"changed"]];
         changeRegion = [[aDecoder decodeObjectForKey:@"changeRegion"] CGRectValue];
     }
     return self;
@@ -32,10 +32,4 @@
     [aCoder encodeObject:[NSValue valueWithCGRect:changeRegion] forKey:@"changeRegion"];
 }
 
-- (void)dealloc
-{
-    [changed release];
-    [original release];
-    [super dealloc];
-}
 @end

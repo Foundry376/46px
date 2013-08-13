@@ -45,27 +45,6 @@ static FacebookManager * sharedManager;
     return self;
 }
 
-- (id)retain
-{
-    return self;
-}
-
-- (unsigned)retainCount
-{
-    //denotes an object that cannot be released
-    return UINT_MAX;
-}
-
-- (oneway void)release
-{
-    //do nothing
-}
-
-- (id)autorelease
-{
-    return self;
-}
-
 -(id)init
 {
     if((self = [super init]))
@@ -124,7 +103,6 @@ static FacebookManager * sharedManager;
         [defaults removeObjectForKey:@"facebookUserDictionary"];
         [defaults synchronize];
         
-        [facebookUserDictionary release];
         facebookUserDictionary = nil;
     }
     
@@ -146,7 +124,7 @@ static FacebookManager * sharedManager;
 
 - (void)request:(FBRequest *)request didLoad:(id)result
 {
-    facebookUserDictionary = [(NSDictionary*) result retain];
+    facebookUserDictionary = (NSDictionary*) result;
     [[APIConnector shared] updateUserTableWithUserID: [self facebookUserID]];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

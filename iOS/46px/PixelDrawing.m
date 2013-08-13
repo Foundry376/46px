@@ -60,11 +60,11 @@
 
     // setup some tools
     tools = [[NSMutableArray alloc] init];
-    [tools addObject: [[[PenPixelTool alloc] init] autorelease]];
-    [tools addObject: [[[LinePixelTool alloc] init] autorelease]];
-    [tools addObject: [[[PaintBucketPixelTool alloc] init] autorelease]];
-    [tools addObject: [[[RectTool alloc] init] autorelease]];
-    [tools addObject: [[[EllipseTool alloc] init] autorelease]];
+    [tools addObject: [[PenPixelTool alloc] init]];
+    [tools addObject: [[LinePixelTool alloc] init]];
+    [tools addObject: [[PaintBucketPixelTool alloc] init]];
+    [tools addObject: [[RectTool alloc] init]];
+    [tools addObject: [[EllipseTool alloc] init]];
     
     // setup some colors
     colors = [[NSMutableArray alloc] init];
@@ -90,8 +90,8 @@
     // load operations and redo...
     if ([[NSFileManager defaultManager] fileExistsAtPath: [self statePath]]) {
         NSDictionary * state = [NSKeyedUnarchiver unarchiveObjectWithFile: [self statePath]];
-        operationStack = [[state objectForKey:@"operationStack"] retain];
-        redoStack = [[state objectForKey:@"redoStack"] retain];
+        operationStack = [state objectForKey:@"operationStack"];
+        redoStack = [state objectForKey:@"redoStack"];
     }
 
     if (operationStack == nil)
@@ -144,12 +144,6 @@
     return (baseLayer != nil);
 }
 
-- (void)dealloc
-{
-    [operationStack release];
-    [redoStack release];
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Handling Operations
@@ -313,12 +307,12 @@
     NSString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"animated.gif"];
     [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
     
-    CGImageDestinationRef destination = CGImageDestinationCreateWithURL((CFURLRef)[NSURL fileURLWithPath:path], kUTTypeGIF, floorf(imageCount / advance) + 1, NULL);
+    CGImageDestinationRef destination = CGImageDestinationCreateWithURL((__bridge CFURLRef)[NSURL fileURLWithPath:path], kUTTypeGIF, floorf(imageCount / advance) + 1, NULL);
     NSDictionary *frameProperties = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble: duration] forKey:(NSString *)kCGImagePropertyGIFDelayTime] forKey:(NSString *)kCGImagePropertyGIFDictionary];
     NSDictionary *gifProperties = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:0] forKey:(NSString *)kCGImagePropertyGIFLoopCount] forKey:(NSString *)kCGImagePropertyGIFDictionary];
     
     for (ii = 0; ii < imageCount; ii+= advance) {
-        CGImageDestinationAddImage(destination, [[self image] CGImage], (CFDictionaryRef)frameProperties);
+        CGImageDestinationAddImage(destination, [[self image] CGImage], (__bridge CFDictionaryRef)frameProperties);
         [self performRedo];
     }
 
@@ -327,9 +321,9 @@
         [self performRedo];
         ii++;
     }
-    CGImageDestinationAddImage(destination, [[self image] CGImage], (CFDictionaryRef)frameProperties);
+    CGImageDestinationAddImage(destination, [[self image] CGImage], (__bridge CFDictionaryRef)frameProperties);
     
-    CGImageDestinationSetProperties(destination, (CFDictionaryRef)gifProperties);
+    CGImageDestinationSetProperties(destination, (__bridge CFDictionaryRef)gifProperties);
     CGImageDestinationFinalize(destination);
     CFRelease(destination);
 

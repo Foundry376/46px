@@ -10,8 +10,8 @@
 
 @interface ShapeTool : PixelTool
 {
-    TouchProperties start;
-    TouchProperties end;
+    TouchProperties * start;
+    TouchProperties * end;
 }
 
 -(void)drawShapeInContext:(CGContextRef)context withDrawing:(PixelDrawing*)d;

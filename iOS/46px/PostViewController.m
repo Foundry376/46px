@@ -65,7 +65,6 @@
     if (error) {
         UIAlertView * a = [[UIAlertView alloc] initWithTitle:@"Post Failed!" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [a show];
-        [a release];
     } else {
         [self dismissModalViewControllerAnimated: YES];
     }
@@ -76,13 +75,6 @@
     return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
-- (void)dealloc 
-{
-    [previewImage release];
-    [captionTextView release];
-    [postButton release];
-    [super dealloc];
-}
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {

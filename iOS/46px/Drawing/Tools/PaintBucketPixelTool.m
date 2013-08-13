@@ -12,19 +12,19 @@
 @implementation PaintBucketPixelTool
 
 
-- (void)touchBegan:(TouchProperties)touch inDrawing:(PixelDrawing*)d
+- (void)touchBegan:(TouchProperties*)touch inDrawing:(PixelDrawing*)d
 {
     operation = [[PixelEditOperation alloc] init];
     
     [super touchBegan: touch inDrawing: d];
 }
 
-- (void)touchMoved:(TouchProperties)touch inDrawing:(PixelDrawing*)d
+- (void)touchMoved:(TouchProperties*)touch inDrawing:(PixelDrawing*)d
 {
     [super touchMoved: touch inDrawing: d];
 }
 
-- (void)touchEnded:(TouchProperties)touch inDrawing:(PixelDrawing*)d
+- (void)touchEnded:(TouchProperties*)touch inDrawing:(PixelDrawing*)d
 {
     // alright—here's what we need to do. We want to do a breadth-first search
     // from the start pixel out to all the same-colored pixels. To explore the pixels,

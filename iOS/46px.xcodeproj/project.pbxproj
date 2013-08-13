@@ -22,7 +22,7 @@
 		4382791315429010002E0A53 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382791215429010002E0A53 /* Foundation.framework */; };
 		4382791515429010002E0A53 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4382791415429010002E0A53 /* CoreGraphics.framework */; };
 		4382791B15429010002E0A53 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4382791915429010002E0A53 /* InfoPlist.strings */; };
-		4382791D15429010002E0A53 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4382791C15429010002E0A53 /* main.m */; };
+		4382791D15429010002E0A53 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4382791C15429010002E0A53 /* main.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4382792115429010002E0A53 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4382792015429010002E0A53 /* AppDelegate.m */; };
 		4382792415429010002E0A53 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4382792315429010002E0A53 /* ViewController.m */; };
 		4382792715429010002E0A53 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4382792515429010002E0A53 /* ViewController.xib */; };
@@ -32,6 +32,8 @@
 		43827944154296D7002E0A53 /* PixelDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 43827943154296D6002E0A53 /* PixelDrawing.m */; };
 		4382794A15429701002E0A53 /* PixelEditOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4382794915429701002E0A53 /* PixelEditOperation.m */; };
 		4382794C15429CF4002E0A53 /* CGHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4382794B15429CF4002E0A53 /* CGHelpers.m */; };
+		43A3A68117BA8F990078D3EA /* header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43A3A68017BA8F990078D3EA /* header@2x.png */; };
+		43A3A68417BA95C90078D3EA /* DrawingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A3A68317BA95C90078D3EA /* DrawingCollectionViewCell.m */; };
 		43C32CFC15446200006E6895 /* OrangeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C32CFB15446200006E6895 /* OrangeButton.m */; };
 		43C32D0015446257006E6895 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32CFD15446257006E6895 /* background.png */; };
 		43C32D0115446257006E6895 /* button_background_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C32CFE15446257006E6895 /* button_background_down.png */; };
@@ -58,18 +60,18 @@
 		43EB9CD615437FB10040C04E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB9CD515437FB10040C04E /* libz.dylib */; };
 		43EB9CDA154381F70040C04E /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CD8154381F70040C04E /* PostViewController.m */; };
 		43EB9CDB154381F70040C04E /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43EB9CD9154381F70040C04E /* PostViewController.xib */; };
-		43EB9D4D15438FEE0040C04E /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CF115438FEE0040C04E /* ASIAuthenticationDialog.m */; };
-		43EB9D4E15438FEE0040C04E /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CF415438FEE0040C04E /* ASIDataCompressor.m */; };
-		43EB9D4F15438FEE0040C04E /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CF615438FEE0040C04E /* ASIDataDecompressor.m */; };
-		43EB9D5015438FEE0040C04E /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CF815438FEE0040C04E /* ASIDownloadCache.m */; };
-		43EB9D5115438FEE0040C04E /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CFA15438FEE0040C04E /* ASIFormDataRequest.m */; };
-		43EB9D5215438FEE0040C04E /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CFC15438FEE0040C04E /* ASIHTTPRequest.m */; };
-		43EB9D5315438FEE0040C04E /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9D0015438FEE0040C04E /* ASIInputStream.m */; };
-		43EB9D5415438FEE0040C04E /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9D0215438FEE0040C04E /* ASINetworkQueue.m */; };
-		43EB9D5D15438FEE0040C04E /* ASIOARequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9D1815438FEE0040C04E /* ASIOARequest.m */; };
-		43EB9D5E15438FEE0040C04E /* ASIOAuthParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9D1A15438FEE0040C04E /* ASIOAuthParameter.m */; };
+		43EB9D4D15438FEE0040C04E /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CF115438FEE0040C04E /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		43EB9D4E15438FEE0040C04E /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CF415438FEE0040C04E /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		43EB9D4F15438FEE0040C04E /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CF615438FEE0040C04E /* ASIDataDecompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		43EB9D5015438FEE0040C04E /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CF815438FEE0040C04E /* ASIDownloadCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		43EB9D5115438FEE0040C04E /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CFA15438FEE0040C04E /* ASIFormDataRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		43EB9D5215438FEE0040C04E /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9CFC15438FEE0040C04E /* ASIHTTPRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		43EB9D5315438FEE0040C04E /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9D0015438FEE0040C04E /* ASIInputStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		43EB9D5415438FEE0040C04E /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9D0215438FEE0040C04E /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		43EB9D5D15438FEE0040C04E /* ASIOARequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9D1815438FEE0040C04E /* ASIOARequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		43EB9D5E15438FEE0040C04E /* ASIOAuthParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9D1A15438FEE0040C04E /* ASIOAuthParameter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		43EB9D7415438FEE0040C04E /* README-GHUnit in Resources */ = {isa = PBXBuildFile; fileRef = 43EB9D4915438FEE0040C04E /* README-GHUnit */; };
-		43EB9D7515438FEE0040C04E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9D4C15438FEE0040C04E /* Reachability.m */; };
+		43EB9D7515438FEE0040C04E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB9D4C15438FEE0040C04E /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		43EB9D7F154393280040C04E /* tool-line.png in Resources */ = {isa = PBXBuildFile; fileRef = 43EB9D7D154393280040C04E /* tool-line.png */; };
 		43EB9D80154393280040C04E /* tool-paintbucket.png in Resources */ = {isa = PBXBuildFile; fileRef = 43EB9D7E154393280040C04E /* tool-paintbucket.png */; };
 		43EB9D82154399DE0040C04E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB9D81154399DE0040C04E /* QuartzCore.framework */; };
@@ -82,18 +84,18 @@
 		813E1AFE1545AAD10004FBB5 /* PenPixelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AF61545AAD10004FBB5 /* PenPixelTool.m */; };
 		813E1AFF1545AAD10004FBB5 /* PixelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AF81545AAD10004FBB5 /* PixelTool.m */; };
 		813E1B001545AAD10004FBB5 /* ShapeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E1AFA1545AAD10004FBB5 /* ShapeTool.m */; };
-		81F6E70315460EAD00E468CA /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E6E915460EAD00E468CA /* Facebook.m */; };
+		81F6E70315460EAD00E468CA /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E6E915460EAD00E468CA /* Facebook.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		81F6E70415460EAD00E468CA /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 81F6E6EC15460EAD00E468CA /* FBDialog.bundle */; };
-		81F6E70515460EAD00E468CA /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E6EE15460EAD00E468CA /* FBDialog.m */; };
-		81F6E70615460EAD00E468CA /* FBFrictionlessRequestSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E6F015460EAD00E468CA /* FBFrictionlessRequestSettings.m */; };
-		81F6E70715460EAD00E468CA /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E6F215460EAD00E468CA /* FBLoginDialog.m */; };
-		81F6E70815460EAD00E468CA /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E6F415460EAD00E468CA /* FBRequest.m */; };
-		81F6E70915460EAD00E468CA /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E6F815460EAD00E468CA /* NSObject+SBJSON.m */; };
-		81F6E70A15460EAD00E468CA /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E6FA15460EAD00E468CA /* NSString+SBJSON.m */; };
-		81F6E70B15460EAD00E468CA /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E6FC15460EAD00E468CA /* SBJSON.m */; };
-		81F6E70C15460EAD00E468CA /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E6FE15460EAD00E468CA /* SBJsonBase.m */; };
-		81F6E70D15460EAD00E468CA /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E70015460EAD00E468CA /* SBJsonParser.m */; };
-		81F6E70E15460EAD00E468CA /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E70215460EAD00E468CA /* SBJsonWriter.m */; };
+		81F6E70515460EAD00E468CA /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E6EE15460EAD00E468CA /* FBDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		81F6E70615460EAD00E468CA /* FBFrictionlessRequestSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E6F015460EAD00E468CA /* FBFrictionlessRequestSettings.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		81F6E70715460EAD00E468CA /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E6F215460EAD00E468CA /* FBLoginDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		81F6E70815460EAD00E468CA /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E6F415460EAD00E468CA /* FBRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		81F6E70915460EAD00E468CA /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E6F815460EAD00E468CA /* NSObject+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		81F6E70A15460EAD00E468CA /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E6FA15460EAD00E468CA /* NSString+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		81F6E70B15460EAD00E468CA /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E6FC15460EAD00E468CA /* SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		81F6E70C15460EAD00E468CA /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E6FE15460EAD00E468CA /* SBJsonBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		81F6E70D15460EAD00E468CA /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E70015460EAD00E468CA /* SBJsonParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		81F6E70E15460EAD00E468CA /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F6E70215460EAD00E468CA /* SBJsonWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +138,9 @@
 		4382794915429701002E0A53 /* PixelEditOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PixelEditOperation.m; path = ../PixelEditOperation.m; sourceTree = "<group>"; };
 		4382794B15429CF4002E0A53 /* CGHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGHelpers.m; path = ../CGHelpers.m; sourceTree = "<group>"; };
 		4382794D15429CFC002E0A53 /* CGHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CGHelpers.h; path = ../CGHelpers.h; sourceTree = "<group>"; };
+		43A3A68017BA8F990078D3EA /* header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header@2x.png"; sourceTree = "<group>"; };
+		43A3A68217BA95C90078D3EA /* DrawingCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingCollectionViewCell.h; sourceTree = "<group>"; };
+		43A3A68317BA95C90078D3EA /* DrawingCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingCollectionViewCell.m; sourceTree = "<group>"; };
 		43C32CFA15446200006E6895 /* OrangeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrangeButton.h; sourceTree = "<group>"; };
 		43C32CFB15446200006E6895 /* OrangeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrangeButton.m; sourceTree = "<group>"; };
 		43C32CFD15446257006E6895 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Resources/background.png; sourceTree = SOURCE_ROOT; };
@@ -320,6 +325,8 @@
 				4382792215429010002E0A53 /* ViewController.h */,
 				4382792315429010002E0A53 /* ViewController.m */,
 				4382792515429010002E0A53 /* ViewController.xib */,
+				43A3A68217BA95C90078D3EA /* DrawingCollectionViewCell.h */,
+				43A3A68317BA95C90078D3EA /* DrawingCollectionViewCell.m */,
 				43EB9CD7154381F70040C04E /* PostViewController.h */,
 				43EB9CD8154381F70040C04E /* PostViewController.m */,
 				43EB9CD9154381F70040C04E /* PostViewController.xib */,
@@ -353,6 +360,7 @@
 		43827951154312E0002E0A53 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				43A3A68017BA8F990078D3EA /* header@2x.png */,
 				43C32D1F15447AFD006E6895 /* icon144.png */,
 				43C32D1D15447AFA006E6895 /* icon72.png */,
 				43C32D0715446592006E6895 /* icon_comments.png */,
@@ -628,6 +636,7 @@
 				437DB9E3155DBCBF00ADF727 /* tool-ellipse.png in Resources */,
 				437DB9E4155DBCBF00ADF727 /* tool-rect.png in Resources */,
 				437DB9E6155E451A00ADF727 /* drawing_background_portrait.png in Resources */,
+				43A3A68117BA8F990078D3EA /* header@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,6 +690,7 @@
 				81F6E70E15460EAD00E468CA /* SBJsonWriter.m in Sources */,
 				810F68F8154623C700AB815D /* FacebookManager.m in Sources */,
 				437DB9DF155DBAF800ADF727 /* RectTool.m in Sources */,
+				43A3A68417BA95C90078D3EA /* DrawingCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,6 +764,7 @@
 		4382792B15429010002E0A53 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "46px/46px-Prefix.pch";
 				INFOPLIST_FILE = "46px/46px-Info.plist";
@@ -769,6 +780,7 @@
 		4382792C15429010002E0A53 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "46px/46px-Prefix.pch";
 				INFOPLIST_FILE = "46px/46px-Info.plist";

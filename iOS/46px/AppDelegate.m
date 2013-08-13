@@ -17,20 +17,14 @@
 @synthesize viewController = _viewController;
 
 
-- (void)dealloc
-{
-    [_window release];
-    [_viewController release];
-    [super dealloc];
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // Override point for customization after application launch.
-    ViewController * v = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
-    self.viewController = [[[UINavigationController alloc] initWithRootViewController: v] autorelease];
+    ViewController * v = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    self.viewController = [[UINavigationController alloc] initWithRootViewController: v];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     

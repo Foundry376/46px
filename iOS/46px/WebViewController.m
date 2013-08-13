@@ -16,7 +16,7 @@
 {
     self = [super init];
     if (self) {
-        url = [u retain];
+        url = u;
         self.title = @"Loading...";
     }
     return self;
@@ -45,12 +45,6 @@
     return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
-- (void)dealloc 
-{
-    [url release];
-    [webView release];
-    [super dealloc];
-}
 
 - (void)webViewDidFinishLoad:(UIWebView *)wv
 {
@@ -81,10 +75,10 @@
         
         NSString * dir = [[APIConnector shared] pathForNewDrawing];
         
-        PixelDrawing * d = [[[PixelDrawing alloc] initWithSize:CGSizeMake(46, 46) andDirectory:dir] autorelease];
+        PixelDrawing * d = [[PixelDrawing alloc] initWithSize:CGSizeMake(46, 46) andDirectory:dir];
         [d setThreadID: [threadID intValue]];
         
-        PixelEditorViewController * c = [[[PixelEditorViewController alloc] initWithDrawing:d andDelegate:self] autorelease];
+        PixelEditorViewController * c = [[PixelEditorViewController alloc] initWithDrawing:d andDelegate:self];
         [self.navigationController pushViewController:c animated:YES];
         if ([sourceImageURL length] > 0)
             [c downloadAndAddImage: sourceImageURL];

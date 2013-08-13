@@ -11,17 +11,17 @@
 
 @implementation PixelTool
 
-- (void)touchBegan:(TouchProperties)touch inDrawing:(PixelDrawing*)d
+- (void)touchBegan:(TouchProperties*)touch inDrawing:(PixelDrawing*)d
 {
     down = YES;
 }
 
-- (void)touchMoved:(TouchProperties)touch inDrawing:(PixelDrawing*)d
+- (void)touchMoved:(TouchProperties*)touch inDrawing:(PixelDrawing*)d
 {
     // modify the operation's changeRect
 }
 
-- (void)touchEnded:(TouchProperties)touch inDrawing:(PixelDrawing*)d
+- (void)touchEnded:(TouchProperties*)touch inDrawing:(PixelDrawing*)d
 {
     if (down) {
         // expand the changeRegion a bit to account for the fact that rounding

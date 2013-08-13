@@ -10,7 +10,7 @@
 
 @implementation ShapeTool
 
-- (void)touchBegan:(TouchProperties)touch inDrawing:(PixelDrawing*)d
+- (void)touchBegan:(TouchProperties*)touch inDrawing:(PixelDrawing*)d
 {
     [super touchBegan: touch inDrawing: d];
     
@@ -25,7 +25,7 @@
     [operation setChangeRegion: CGRectMake(touch.pixelInView.x, touch.pixelInView.y, 1, 1)];
 }
 
-- (void)touchMoved:(TouchProperties)touch inDrawing:(PixelDrawing*)d
+- (void)touchMoved:(TouchProperties*)touch inDrawing:(PixelDrawing*)d
 {
     end = touch;
     
@@ -37,7 +37,7 @@
     [super touchMoved: touch inDrawing: d];
 }
 
-- (void)touchEnded:(TouchProperties)touch inDrawing:(PixelDrawing*)d
+- (void)touchEnded:(TouchProperties*)touch inDrawing:(PixelDrawing*)d
 {
     end = touch;
     
