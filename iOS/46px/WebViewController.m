@@ -32,11 +32,17 @@
 - (void)viewDidUnload
 {
     [self setWebView:nil];
+    [self setBackgroundView:nil];
     [super viewDidUnload];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
+    if (self.view.frame.size.width > self.view.frame.size.height)
+        [_backgroundView setImage: [UIImage imageNamed: @"background_landscape.png"]];
+    else
+        [_backgroundView setImage: [UIImage imageNamed: @"background_portrait.png"]];
+
     [webView reload];
 }
 
@@ -45,6 +51,13 @@
     return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    if (self.view.frame.size.width > self.view.frame.size.height)
+        [_backgroundView setImage: [UIImage imageNamed: @"background_landscape.png"]];
+    else
+        [_backgroundView setImage: [UIImage imageNamed: @"background_portrait.png"]];
+}
 
 - (void)webViewDidFinishLoad:(UIWebView *)wv
 {

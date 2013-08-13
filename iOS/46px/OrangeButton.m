@@ -40,7 +40,7 @@
     bbh = [bbh stretchableImageWithLeftCapWidth:7 topCapHeight:7];
     bbdh = [bbdh stretchableImageWithLeftCapWidth:7 topCapHeight:7];
     
-    if (self.frame.size.width > 80)
+    if ((self.frame.size.width > 80) && (self.frame.size.height > 39))
         [[self titleLabel] setFont:[UIFont boldSystemFontOfSize: 22]];
     else
         [[self titleLabel] setFont:[UIFont boldSystemFontOfSize: 15]];
@@ -50,9 +50,9 @@
     [self setBackgroundImage:bbh forState:UIControlStateHighlighted];
     [self setBackgroundImage:bbdh forState:UIControlStateSelected | UIControlStateHighlighted];
     [self setTitleColor:[UIColor colorWithWhite:0.2 alpha:1] forState:UIControlStateNormal];
-    [self setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    [self setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [self setTitleShadowColor:[UIColor colorWithWhite:1 alpha:0.5] forState:UIControlStateNormal];
+    [self setTitleShadowColor:[UIColor colorWithWhite:1 alpha:0.5] forState:UIControlStateHighlighted];
+    [self setTitleShadowColor:[UIColor colorWithWhite:1 alpha:0.5] forState:UIControlStateSelected];
     [[self titleLabel] setShadowOffset: CGSizeMake(0, 1)];
     
     baseImageInsets = [self imageEdgeInsets];

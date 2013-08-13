@@ -14,30 +14,32 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _imageView = [[UIImageView alloc] initWithFrame: frame];
-        [_imageView setBackgroundColor: [UIColor whiteColor]];
-        [self.contentView addSubview: _imageView];
+        [self setBackgroundColor: [UIColor whiteColor]];
         [[self layer] setBorderWidth: 2];
         [[self layer] setBorderColor: [[UIColor colorWithWhite:0 alpha:0.3] CGColor]];
     }
     return self;
 }
 
-- (void)layoutSubviews
+- (void)drawRect:(CGRect)rect
 {
-    [super layoutSubviews];
-    [_imageView setFrame: self.bounds];
+    CGContextRef c = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(c, 0, rect.size.height);
+    CGContextScaleCTM(c, 1, -1);
+    CGContextSetInterpolationQuality(c, kCGInterpolationNone);
+    CGContextDrawImage(c, CGRectInset(rect, 2, 2), [[_drawing image] CGImage]);
 }
 
 - (void)setDrawing:(PixelDrawing *)drawing
 {
     _drawing = drawing;
-    [_imageView setImage: [drawing image]];
+    [self setNeedsDisplay];
 }
 
 - (void)prepareForReuse
 {
     [super prepareForReuse];
-    [_imageView setImage: nil];
+    _drawing = nil;
 }
+
 @end

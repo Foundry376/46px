@@ -60,7 +60,7 @@ float:left; padding-right:5px;
 
 .button {
 
-	background:url(/images/button_background.png) top right no-repeat;
+	background:url('../images/button_background.png') top right no-repeat;
 	height:45px;
 	display:inline-block;
 	padding-top:15px;
@@ -84,7 +84,7 @@ float:left; padding-right:5px;
 }
 
 .button:active {
-	background:url(/images/button_background_down.png) top right no-repeat;
+	background:url('../images/button_background_down.png') top right no-repeat;
 	height:42px;
 	display:inline-block;
 	padding-top:18px;
@@ -99,15 +99,18 @@ float:left; padding-right:5px;
 
 
 /*Thread Styling*/
-#thread_content{
+#post_list {
+	list-style-type:none;
+}
 
+#thread_content{
 	margin: auto;
   width: 770px;
 
 }
 
 .image_frame{
-	background:url('/images/post_frame.png') top left no-repeat;
+	background:url('../images/post_frame.png') top left no-repeat;
 	width:588px;
 	height:530px;
 }
@@ -117,8 +120,3 @@ float:left; padding-right:5px;
 	width:515px;
 	height:515px;
 }
-
-}
-
-# PHP-recovered stylings
-

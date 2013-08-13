@@ -10,3 +10,7 @@ iOS/46px.xcodeproj/xcuserdata/Scott.xcuserdatad/
 Web/users
 *.DS_Store
 /iOS/DerivedData/
+
+/Commercial/
+*/.DS_Store
+/iOS/46px/.DS_Store

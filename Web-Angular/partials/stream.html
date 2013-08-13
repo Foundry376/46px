@@ -13,7 +13,7 @@
 			</a>
 
 			<div class="caption">
-			<img style="float:left; padding-right:5px;" ng-src="http://graph.facebook.com/{{ thread.user.id }}/picture">
+			<img style="float:left; padding-right:5px;" ng-src="http://graph.facebook.com/{{ thread.user.id }}/picture" ng-cloak>
 			<div id="postheader">
 				<b>{{thread.user.first_name}} {{thread.user.last_name}}</b><br>
 				{{thread.post.caption}}<br>

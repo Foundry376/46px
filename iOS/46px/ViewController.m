@@ -57,6 +57,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self layoutForOrientation: self.interfaceOrientation];
+    
     // Load in facebook user information
     Facebook * facebook = [FacebookManager sharedManager].facebook;
     [facebook requestWithGraphPath:@"me" andDelegate:self];
@@ -65,6 +67,29 @@
     // Reload the drafts
     [_collectionView reloadData];
 }
+
+
+- (void)layoutForOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+        [_sidebarContainerView setFrame: CGRectMake(0, 0, self.view.frame.size.width, 205)];
+        [_sidebarBackgroundView setFrame: _sidebarContainerView.bounds];
+        [_sidebarBackgroundView setImage: [UIImage imageNamed: @"home_sidebar_background_portrait.png"]];
+        [_collectionView setFrame: CGRectMake(295, 0, self.view.frame.size.width - 290, 205)];
+        [webView setFrame: CGRectMake(0, 205, self.view.frame.size.width, self.view.frame.size.height - 205)];
+        [_webViewBackground setFrame: webView.frame];
+        [_startDrawingButton setFrame: CGRectMake(13, 120, 270, 60)];
+    } else {
+        [_sidebarContainerView setFrame: CGRectMake(0, 0, 300, self.view.frame.size.height)];
+        [_sidebarBackgroundView setFrame: _sidebarContainerView.bounds];
+        [_sidebarBackgroundView setImage: [UIImage imageNamed: @"home_sidebar_background_landscape.png"]];
+        [_collectionView setFrame: CGRectMake(0, 192, 300, 466)];
+        [webView setFrame: CGRectMake(300, 0, self.view.frame.size.width-300, self.view.frame.size.height)];
+        [_webViewBackground setFrame: webView.frame];
+        [_startDrawingButton setFrame: CGRectMake(13, 114, 273, 60)];
+    }
+}
+
 
 - (IBAction)start:(id)sender
 {    
@@ -100,20 +125,18 @@
 {
     [TestFlight passCheckpoint:@"UserStartedLogin"];
     [[FacebookManager sharedManager] login];
-    profilePicture.hidden = NO;
 }
 
 - (IBAction)logoutPressed:(id)sender 
 {
     [[FacebookManager sharedManager] logout];
-    profilePicture.hidden = YES;
 }
 
 - (void)updateUser:(NSNotification*)notif
 {
     NSDictionary * userDict =[[FacebookManager sharedManager] facebookUserDictionary];
     if (userDict) {
-        NSString * urlString = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture", [[FacebookManager sharedManager] facebookUserID]];
+        NSString * urlString = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=156&height=156", [[FacebookManager sharedManager] facebookUserID]];
         NSData *imgUrl = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
         [profilePicture setImage:[UIImage imageWithData:imgUrl]];
     
@@ -125,6 +148,8 @@
         [loginButton setHidden: YES];
         
     } else {
+        [userName setText: @"Anonymous"];
+        [profilePicture setImage: [UIImage imageNamed:@"anonymous.png"]];
         [loginButton setHidden: NO];
     }
 }
@@ -137,12 +162,21 @@
     [self setUserName:nil];
     [self setUserPostCount:nil];
     [self setCollectionView:nil];
+    [self setSidebarContainerView:nil];
+    [self setSidebarBackgroundView:nil];
+    [self setWebViewBackground:nil];
+    [self setStartDrawingButton:nil];
     [super viewDidUnload];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [self layoutForOrientation: self.interfaceOrientation];
 }
 
 

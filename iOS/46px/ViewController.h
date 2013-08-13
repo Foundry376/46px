@@ -10,6 +10,7 @@
 #import "PixelEditorViewController.h"
 #import "FBConnect.h"
 #import "DrawingCollectionViewCell.h"
+#import "OrangeButton.h"
 
 @interface ViewController : UIViewController <UIWebViewDelegate, PixelEditorDelegate, FBRequestDelegate, UIAlertViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 {
@@ -17,12 +18,16 @@
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIImageView *webViewBackground;
+@property (weak, nonatomic) IBOutlet UIView *sidebarContainerView;
+@property (weak, nonatomic) IBOutlet UIImageView *sidebarBackgroundView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UIImageView *profilePicture;
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
 @property (strong, nonatomic) IBOutlet UIButton *logoutButton;
 @property (strong, nonatomic) IBOutlet UILabel *userName;
 @property (strong, nonatomic) IBOutlet UILabel *userPostCount;
+@property (weak, nonatomic) IBOutlet OrangeButton *startDrawingButton;
 
 
 @end

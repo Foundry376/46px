@@ -22,6 +22,8 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    [[UINavigationBar appearance] setTintColor: [UIColor colorWithRed:94/255.0 green:161/255.0 blue:224/255.0 alpha:1]];
+
     // Override point for customization after application launch.
     ViewController * v = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     self.viewController = [[UINavigationController alloc] initWithRootViewController: v];
@@ -30,25 +32,6 @@
     
     // force load the APIConnector
     NSLog(@"%@", [[APIConnector shared] description]);
-    
-    /*
-    facebook = [[Facebook alloc] initWithAppId:FACEBOOK_APP_ID andDelegate:self];
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults objectForKey:@"FBAccessTokenKey"] 
-        && [defaults objectForKey:@"FBExpirationDateKey"]) {
-        facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
-        facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
-    }
-    
-    if (![facebook isSessionValid]) {
-        [facebook authorize:nil];
-    }
-    */
-    
-    // initialize testflight
-    [TestFlight takeOff:@"558dd705e65f522ccbeba78269d7716e_ODk1MDgyMDEyLTA1LTExIDE1OjE1OjU1LjYxNjY1OQ"];
-
 
     //initialization of singleton
     FacebookManager * manager = [FacebookManager sharedManager];

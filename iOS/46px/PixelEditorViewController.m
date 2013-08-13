@@ -49,6 +49,9 @@
     [super viewDidLoad];
     [self.drawing setupForEditing];
     
+    _originalNavTint = [[self.navigationController navigationBar] tintColor];
+    [[self.navigationController navigationBar] setTintColor: [UIColor colorWithRed:30.0/255.0 green:30.0/255.0 blue:40.0/255.0 alpha:1]];
+    
     // attach the tool "buttons" to the sidebar so we can have lots of tools
     for (PixelTool * t in self.drawing.tools) {
         OrangeButton * b = [[OrangeButton alloc] initWithFrame: CGRectMake(0, 0, 60, 60)];
@@ -63,15 +66,12 @@
             
         [toolsView addSubview: b];
     }
-    [self layoutToolButtons];
-    
+
     // attach the drawing to the canvas
     [canvasView setDrawing: self.drawing];
-    [canvasView setNeedsDisplay];
     
     // setup the color view for the first time
     [colorsView setDrawing: self.drawing];
-    [colorsView setNeedsDisplay];
     [undoButton setEnabled: [self.drawing canUndo]];
     [redoButton setEnabled: [self.drawing canRedo]];
     
@@ -85,6 +85,37 @@
 
     UIBarButtonItem * b = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleDone target:self action:@selector(finished:)];
     [self.navigationItem setRightBarButtonItem:b animated:YES];
+}
+
+- (void)layoutForOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    [backgroundView setFrame: self.view.bounds];
+    
+    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+        [undoButton setFrame: CGRectMake(632, 894, 60, 60)];
+        [redoButton setFrame: CGRectMake(700, 894, 60, 60)];
+        [canvasView setFrame: CGRectMake(34, 174, 704, 704)];
+        [canvasThumbnailView setFrame: CGRectMake(601, 13, 138, 138)];
+        [zoomToFitButton setFrame: CGRectMake(601, 13, 138, 138)];
+        [colorsView setFrame: CGRectMake(28, 8, 602, 150)];
+        [toolsView setFrame: CGRectMake(0, 889, 488, 133)];
+        [mirrorXButton setFrame: CGRectMake(350, 894, 125, 60)];
+        [mirrorYButton setFrame: CGRectMake(481, 894, 125, 60)];
+        [backgroundView setImage: [UIImage imageNamed: @"drawing_background_portrait.png"]];
+        
+    } else {
+        [undoButton setFrame: CGRectMake(5, 639, 60, 60)];
+        [redoButton setFrame: CGRectMake(70, 639, 60, 60)];
+        [canvasView setFrame: CGRectMake(141, 0, 704, 704)];
+        [canvasThumbnailView setFrame: CGRectMake(872, 13, 138, 138)];
+        [zoomToFitButton setFrame: CGRectMake(872, 13, 138, 138)];
+        [colorsView setFrame: CGRectMake(865, 166, 150, 540)];
+        [toolsView setFrame: CGRectMake(0, 0, 133, 488)];
+        [mirrorXButton setFrame: CGRectMake(5, 506, 125, 60)];
+        [mirrorYButton setFrame: CGRectMake(5, 573, 125, 60)];
+        [backgroundView setImage: [UIImage imageNamed: @"drawing_background.png"]];
+    }
+    [self layoutToolButtons];
 }
 
 - (void)layoutToolButtons
@@ -117,16 +148,22 @@
     [super viewDidUnload];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
+    [self layoutForOrientation: self.interfaceOrientation];
+    
     [canvasThumbnailView setDrawing: self.drawing];
     [canvasThumbnailView setNeedsDisplay];
+    [canvasView setNeedsDisplay];
+    [colorsView setNeedsDisplay];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     // save the drawing to drafts!!
     [drawing save];
+    
+    [[self.navigationController navigationBar] setTintColor: _originalNavTint];
 }
 
 - (void)downloadAndAddImage:(NSString*)path
@@ -219,31 +256,8 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
 {
-    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-        [undoButton setFrame: CGRectMake(632, 894, 60, 60)];
-        [redoButton setFrame: CGRectMake(700, 894, 60, 60)];
-        [canvasView setFrame: CGRectMake(34, 174, 704, 704)];
-        [canvasThumbnailView setFrame: CGRectMake(601, 13, 138, 138)];
-        [zoomToFitButton setFrame: CGRectMake(601, 13, 138, 138)];
-        [colorsView setFrame: CGRectMake(28, 8, 602, 150)];
-        [toolsView setFrame: CGRectMake(0, 889, 488, 133)];
-        [mirrorXButton setFrame: CGRectMake(350, 894, 125, 60)];
-        [mirrorYButton setFrame: CGRectMake(481, 894, 125, 60)];
-        [backgroundView setImage: [UIImage imageNamed: @"drawing_background_portrait.png"]];
-        
-    } else {
-        [undoButton setFrame: CGRectMake(5, 639, 60, 60)];
-        [redoButton setFrame: CGRectMake(70, 639, 60, 60)];
-        [canvasView setFrame: CGRectMake(141, 0, 704, 704)];
-        [canvasThumbnailView setFrame: CGRectMake(872, 13, 138, 138)];
-        [zoomToFitButton setFrame: CGRectMake(872, 13, 138, 138)];
-        [colorsView setFrame: CGRectMake(865, 166, 150, 540)];
-        [toolsView setFrame: CGRectMake(0, 0, 133, 488)];
-        [mirrorXButton setFrame: CGRectMake(5, 506, 125, 60)];
-        [mirrorYButton setFrame: CGRectMake(5, 573, 125, 60)];
-        [backgroundView setImage: [UIImage imageNamed: @"drawing_background.png"]];
-    }
-    [self layoutToolButtons];
+    [self layoutForOrientation: interfaceOrientation];
 }
+
 
 @end

@@ -15,6 +15,7 @@
     BOOL editing;
 }
 
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 
 - (id)initWithPage:(NSURL*)u;
