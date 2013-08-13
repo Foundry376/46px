@@ -14,10 +14,13 @@
 
 @interface ViewController : UIViewController <UIWebViewDelegate, PixelEditorDelegate, FBRequestDelegate, UIAlertViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 {
+    NSTimer * _webFailTimer;
     int _pendingDeleteIndex;
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIView *webLoadingView;
+@property (weak, nonatomic) IBOutlet UIView *webFailedView;
 @property (weak, nonatomic) IBOutlet UIImageView *webViewBackground;
 @property (weak, nonatomic) IBOutlet UIImageView *sidebarShadowView;
 @property (weak, nonatomic) IBOutlet UIView *sidebarContainerView;
@@ -30,5 +33,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *userPostCount;
 @property (weak, nonatomic) IBOutlet OrangeButton *startDrawingButton;
 
+- (IBAction)gotoHome;
 
 @end

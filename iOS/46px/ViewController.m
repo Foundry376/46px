@@ -59,18 +59,34 @@
     [_collectionView reloadData];
 }
 
-- (void)gotoHome
+- (IBAction)gotoHome
 {
     NSString *urlAddress = [NSString stringWithFormat: @"http://46px.com/index.php?46px_user_id=%@", [[FacebookManager sharedManager] facebookUserID]];
-    NSURL *url = [NSURL URLWithString:urlAddress];
-    [webView loadRequest:[NSURLRequest requestWithURL:url]];
+    [self webViewLoad: [NSURL URLWithString:urlAddress]];
 }
 
 - (void)gotoMyDrawings
 {
     NSString *urlAddress = [NSString stringWithFormat: @"http://46px.com/index.php?46px_user_id=%@&mine=true", [[FacebookManager sharedManager] facebookUserID]];
-    NSURL *url = [NSURL URLWithString:urlAddress];
+    [self webViewLoad: [NSURL URLWithString:urlAddress]];
+}
+
+- (void)webViewLoad:(NSURL*)url
+{
     [webView loadRequest:[NSURLRequest requestWithURL:url]];
+    [_webFailedView setHidden: YES];
+    [_webLoadingView setHidden: NO];
+    
+    _webFailTimer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(webViewFailed:) userInfo:nil repeats:NO];
+}
+
+- (void)webViewFailed:(NSTimer*)timer
+{
+    _webFailTimer = nil;
+    if ([_webLoadingView isHidden] == NO) {
+        [_webLoadingView setHidden: YES];
+        [_webFailedView setHidden: NO];
+    }
 }
 
 - (void)layoutForOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -176,6 +192,8 @@
     [self setWebViewBackground:nil];
     [self setStartDrawingButton:nil];
     [self setSidebarShadowView:nil];
+    [self setWebLoadingView:nil];
+    [self setWebFailedView:nil];
     [super viewDidUnload];
 }
 
@@ -234,6 +252,11 @@
 #pragma mark -
 #pragma mark UIWebView Delegate Functionality
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [_webLoadingView setHidden: YES];
+    [_webFailedView setHidden: YES];
+}
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
