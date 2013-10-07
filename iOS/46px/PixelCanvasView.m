@@ -9,6 +9,21 @@
 #import "PixelCanvasView.h"
 #import "PixelTool.h"
 
+void DrawRectsFromMemory(uint8_t * mem, CGSize size, CGContextRef context, CGSize contextSize)
+{
+    float ww = contextSize.width / size.width;
+    float hh = contextSize.height / size.height;
+    for (int x = 0; x < size.width; x ++) {
+        for (int y = 0; y < size.height; y ++) {
+            int i = (x + y * (int)size.width) * 4;
+            if (mem[i+3] > 0) {
+                CGContextSetRGBFillColor(context, (float)mem[i] / 255.0,(float)mem[i+1] / 255.0,(float)mem[i+2] / 255.0,(float)mem[i+3] / 255.0);
+                CGContextFillRect(context, CGRectMake(x*ww, y*hh, ww, hh));
+            }
+        }
+    }
+}
+
 @implementation TouchProperties
 
 @end
@@ -95,12 +110,17 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef c = UIGraphicsGetCurrentContext();
+
     if ([drawing layersInitialized] == NO)
         [drawing initializeWithContext: c];
-    
+
+    if ([drawing size].width == 0)
+        return;
+        
     // okay - this is pretty simple. Turn off all that linear interpolation shit
     // that will make our image look blurry
     CGContextSetInterpolationQuality(c, kCGInterpolationNone);
+    CGContextSetAllowsAntialiasing(c, false);
     CGContextSaveGState(c);
     
     // apply the camera transforms and the pending transforms. How does this work? 
@@ -131,13 +151,26 @@
     // become 10,10, or 5,0, etc... and the code below doesn't have to care.
     
     // draw the baseLayer of the drawing
-    CGContextDrawLayerInRect(c, [self bounds], drawing.baseLayer);
-    CGContextDrawLayerInRect(c, [self bounds], drawing.operationLayer);
+    uint8_t * mem = calloc(sizeof(uint8_t), 4 * drawing.size.width * drawing.size.height);
+    CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef bitmapContext = CGBitmapContextCreate (mem, drawing.size.width, drawing.size.height, 8, drawing.size.width * 4, colorspace, kCGImageAlphaPremultipliedLast);
+    CGColorSpaceRelease(colorspace);
+
+
+    CGContextScaleCTM(bitmapContext, 1, -1);
+    CGContextTranslateCTM(bitmapContext, 0, -drawing.size.height);
+    CGContextDrawLayerAtPoint(bitmapContext, CGPointZero, drawing.baseLayer);
+    DrawRectsFromMemory(mem, drawing.size, c, [self bounds].size);
+    
+    CGContextClearRect(bitmapContext, CGRectMake(0, 0, 100, 100));
+    CGContextDrawLayerAtPoint(bitmapContext, CGPointZero, drawing.operationLayer);
+    DrawRectsFromMemory(mem, drawing.size, c, [self bounds].size);
+
     if (drawing.mirroringY){
         CGContextSaveGState(c);
         CGContextTranslateCTM(c, [self bounds].size.width, 0);
         CGContextScaleCTM(c, -1, 1);
-        CGContextDrawLayerInRect(c, [self bounds], drawing.operationLayer);
+        DrawRectsFromMemory(mem, drawing.size, c, [self bounds].size);
         CGContextRestoreGState(c);
     }
     
@@ -145,7 +178,7 @@
         CGContextSaveGState(c);
         CGContextTranslateCTM(c, 0, [self bounds].size.height);
         CGContextScaleCTM(c, 1, -1);
-        CGContextDrawLayerInRect(c, [self bounds], drawing.operationLayer);
+        DrawRectsFromMemory(mem, drawing.size, c, [self bounds].size);
         CGContextRestoreGState(c);
     }
     
@@ -155,10 +188,13 @@
         CGContextScaleCTM(c, 1, -1);
         CGContextTranslateCTM(c, [self bounds].size.width, 0);
         CGContextScaleCTM(c, -1, 1);
-        CGContextDrawLayerInRect(c, [self bounds], drawing.operationLayer);
+        DrawRectsFromMemory(mem, drawing.size, c, [self bounds].size);
         CGContextRestoreGState(c);
     }
 
+    free(mem);
+    CGContextRelease(bitmapContext);
+    
     // if the view is more than 4x the width of the drawing, draw little hairlines
     // separating each pixel. If the view is small, we don't want that!
     if (self.bounds.size.width > [drawing size].width * 4) {
@@ -172,14 +208,14 @@
         for (int x = 0; x <= [drawing size].width; x++) {
             CGContextMoveToPoint(c, x * pixelWidth, 0);
             CGContextAddLineToPoint(c, x * pixelWidth, self.bounds.size.height);
-            CGContextStrokePath(c);
         }
 
         for (int y = 0; y <= [drawing size].height; y++) {
             CGContextMoveToPoint(c, 0, y * pixelHeight);
             CGContextAddLineToPoint(c, self.bounds.size.width, y * pixelHeight);
-            CGContextStrokePath(c);
         }
+
+        CGContextStrokePath(c);
     }
     
     // Cool! So we drew the drawing into our view. Now let's draw whatever the 

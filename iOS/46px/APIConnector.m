@@ -63,9 +63,6 @@ static APIConnector * sharedConnector;
             PixelDrawing * d = [[PixelDrawing alloc] initWithDirectory: [draftsFolder stringByAppendingPathComponent: f]];
             [drafts addObject: d];
         }
-        
-        NSLog(@"Loaded %d Saved Drawings: ", [drafts count]);
-        NSLog(@"%@", [drafts description]);
     }
     return self;
 }

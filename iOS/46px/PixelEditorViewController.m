@@ -51,6 +51,7 @@
     
     _originalNavTint = [[self.navigationController navigationBar] tintColor];
     [[self.navigationController navigationBar] setTintColor: [UIColor colorWithRed:30.0/255.0 green:30.0/255.0 blue:40.0/255.0 alpha:1]];
+    [[self.navigationController navigationBar] setTranslucent: NO];
     
     // attach the tool "buttons" to the sidebar so we can have lots of tools
     for (PixelTool * t in self.drawing.tools) {
@@ -147,7 +148,6 @@
     [self setMirrorYButton:nil];
     [self setZoomToFitButton:nil];
     [self setBackgroundView:nil];
-    [super viewDidUnload];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -165,6 +165,7 @@
     [_activityPopover dismissPopoverAnimated:NO];
     
     [[self.navigationController navigationBar] setTintColor: _originalNavTint];
+    [[self.navigationController navigationBar] setTranslucent: YES];
 }
 
 - (void)downloadAndAddImage:(NSString*)path
@@ -232,7 +233,7 @@
         [pvc setDrawing: drawing];
         [pvc setModalTransitionStyle: UIModalTransitionStyleCoverVertical];
         [pvc setModalPresentationStyle: UIModalPresentationFormSheet];
-        [self presentModalViewController:pvc animated:YES];
+        [self presentViewController:pvc animated:YES completion: NULL];
     } else {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Not Logged In" message:@"Before you can post your drawings, you need to sign in to Facebook on the home screen. Don't worry, you can re-open this drawing!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];

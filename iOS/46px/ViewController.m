@@ -30,12 +30,13 @@
     [super viewDidLoad];
     
     [self.view setClipsToBounds: YES];
+
     [self.collectionView registerClass:[DrawingCollectionViewCell class] forCellWithReuseIdentifier:@"DrawingCollectionViewCell"];
     [self.collectionView setAlwaysBounceVertical: YES];
     
     [self gotoHome];
     [[webView scrollView] setBounces: NO];
-    
+    [[webView scrollView] setContentInset: UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height + 20, 0, 0, 0)];
     // Listen for images being posted successfully
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postSuccess:) name:@"PostSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUser:) name:@"UpdateUser" object:nil];
@@ -43,13 +44,14 @@
     [self.navigationItem setTitleView: [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"header.png"]]];
     
     // update the interface to show the currently logged in user (if there is one)
+    [self layoutForOrientation: self.interfaceOrientation];
     [self updateUser: nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self layoutForOrientation: self.interfaceOrientation];
-    
+    [[self.navigationController navigationBar] setTranslucent: YES];
+
     // Load in facebook user information
     Facebook * facebook = [FacebookManager sharedManager].facebook;
     [facebook requestWithGraphPath:@"me" andDelegate:self];
@@ -57,6 +59,11 @@
     
     // Reload the drafts
     [_collectionView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self layoutForOrientation: self.interfaceOrientation];
 }
 
 - (IBAction)gotoHome
@@ -102,7 +109,8 @@
         [_sidebarShadowView setFrame: CGRectMake(0, self.view.frame.size.height - 205 - 20, 768, 20)];
         [_sidebarShadowView setHidden:NO];
     } else {
-        [_sidebarContainerView setFrame: CGRectMake(0, 0, 300, self.view.frame.size.height)];
+        float translucentHeight = self.navigationController.navigationBar.frame.size.height + 20;
+        [_sidebarContainerView setFrame: CGRectMake(0, translucentHeight, 300, self.view.frame.size.height - translucentHeight)];
         [_sidebarBackgroundView setFrame: _sidebarContainerView.bounds];
         [_sidebarBackgroundView setImage: [UIImage imageNamed: @"home_sidebar_background_landscape.png"]];
         [_collectionView setFrame: CGRectMake(0, 192, 300, 466)];

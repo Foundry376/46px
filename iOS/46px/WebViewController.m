@@ -27,6 +27,7 @@
     [super viewDidLoad];
     [webView loadRequest: [NSURLRequest requestWithURL: url]];
     [[webView scrollView] setBounces: NO];
+    [[webView scrollView] setContentInset: UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height + 20, 0, 0, 0)];
 }
 
 - (void)viewDidUnload

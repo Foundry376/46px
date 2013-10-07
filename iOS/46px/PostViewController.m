@@ -44,7 +44,7 @@
 
 - (IBAction)cancel:(id)sender 
 {
-    [self dismissModalViewControllerAnimated: YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (IBAction)post:(id)sender 
@@ -64,7 +64,7 @@
         UIAlertView * a = [[UIAlertView alloc] initWithTitle:@"Post Failed!" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [a show];
     } else {
-        [self dismissModalViewControllerAnimated: YES];
+        [self dismissViewControllerAnimated:YES completion:NULL];
     }
 }
 

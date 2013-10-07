@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>88A0B09C-255D-449A-BC9E-544339CE2698</string>
+	<key>IDESourceControlProjectName</key>
+	<string>46px</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C4BE20E2-6348-467D-B862-DD0C84810790</key>
+		<string>https://github.com/Foundry376/46px.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iOS/46px.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C4BE20E2-6348-467D-B862-DD0C84810790</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Foundry376/46px.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C4BE20E2-6348-467D-B862-DD0C84810790</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C4BE20E2-6348-467D-B862-DD0C84810790</string>
+			<key>IDESourceControlWCCName</key>
+			<string>46px</string>
+		</dict>
+	</array>
+</dict>
+</plist>

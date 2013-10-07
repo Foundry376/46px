@@ -22,8 +22,6 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    [[UINavigationBar appearance] setTintColor: [UIColor colorWithRed:94/255.0 green:161/255.0 blue:224/255.0 alpha:1]];
-
     // Override point for customization after application launch.
     ViewController * v = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     self.viewController = [[UINavigationController alloc] initWithRootViewController: v];
